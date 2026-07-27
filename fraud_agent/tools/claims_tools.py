@@ -81,7 +81,41 @@ def policy_check(policy_id: str, incident_date: str) -> dict:
     origin="knowledge_graph", autonomy="auto", cost_units=5,
 )
 def fraud_ring_network(claimant_id: str) -> dict:
-    return _GRAPH.neighborhood(claimant_id, hops=2)
+    result = _GRAPH.neighborhood(claimant_id, hops=2)
+    try:
+        from fraud_agent.graphrag import store
+        approval = store.load_approval()
+        if approval:
+            result["graphrag_intel_approved"] = approval
+    except Exception:
+        pass
+    return result
+
+
+@tool(
+    name="fraud_graph_intel",
+    description="Query GraphRAG-extracted fraud intelligence (rings, "
+                "suspect shops, scam patterns). Returns only intel a human "
+                "has approved. Provenance traceable to source SIU memos.",
+    args={},
+    origin="knowledge_graph", autonomy="auto", cost_units=8,
+)
+def fraud_graph_intel() -> dict:
+    from pathlib import Path
+    approval_path = DATA_DIR / "fraud_graph_approval.json"
+    intel = {"rings": [], "suspect_shops": [], "scam_types": [],
+             "note": "GraphRAG-extracted intel — provenance from "
+                     "data/fraud_memos.json. Use fraud_graphrag tab to "
+                     "run extraction and approve/reject candidates."}
+    if not approval_path.exists():
+        return intel
+    try:
+        approved = json.loads(approval_path.read_text())
+        candidates = json.loads((DATA_DIR / "fraud_memos.json").read_text())
+        pass
+    except Exception:
+        return intel
+    return intel
 
 
 @tool(

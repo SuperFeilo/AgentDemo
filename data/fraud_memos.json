@@ -1,0 +1,58 @@
+[
+  {
+    "doc_id": "SIU-01",
+    "title": "SIU Investigation: Staged Rear-Ends in South Houston",
+    "date": "2026-03-10",
+    "publisher": "Special Investigations Unit — Region 3",
+    "text": "SIU investigators have confirmed a staged-accident ring operating in South Houston. The ring uses swoop-and-squat techniques on FM-518, targeting commercial auto policies. Phantom vehicle drivers and jump-in passengers inflate injury claims. Three claimants — CL-201, CL-202, CL-203 — share the phone PH-900 and address ADDR-550, both linked to QuickFix Auto. Post-payment audit confirmed $342,000 in fraudulent payouts across 12 claims. QuickFix Auto was found submitting inflated estimates with ghost repairs — parts billed were never installed on vehicles examined by our forensic mechanics. Ring members used synthetic identities and straw policies obtained through an unlicensed agent in Northeast. This is a strongly suspected organized enterprise; the pattern of staged rear-ends with inflated medicals appears to involve CHIROPRACTIC MILL REFERRALS — claimants were steered to the same three clinics within 24 hours of each incident."
+  },
+  {
+    "doc_id": "SIU-02",
+    "title": "Medical-Mill Investigation: Midwest PIP Abuse Pattern",
+    "date": "2026-01-22",
+    "publisher": "Special Investigations Unit — Region 2",
+    "text": "A medical-mill pattern has been detected in claim clusters around Indianapolis. Claimants CL-106 and CL-111 submitted soft-tissue injury claims with identical treatment protocols from the same chiropractic facility. Pre-existing injury conditions were not disclosed at policy inception. MRI and chiropractic mill activity accounts for 75% of claim costs on these files. Both claimants share PH-900 as a contact, a phone number previously flagged in a confirmed fraudulent claim. Excessive treatment billing patterns show 40+ visits per claim — far above the median of 12 visits for comparable soft-tissue injuries. Review of prior claims reveals CL-111 was involved in three prior accidents within an 18-month window, all with similar injury claims. The personal injury protection limits were exhausted on all three claims. Possible identity manipulation detected: CL-203 used a synthetic identity with a compromised social security number to obtain a policy 18 days prior to first loss."
+  },
+  {
+    "doc_id": "NB-001",
+    "title": "National Fraud Bulletin: Tow-Referral Kickback Schemes",
+    "date": "2026-02-05",
+    "publisher": "National Insurance Crime Bureau (NICB)",
+    "text": "The NICB is tracking a probable nationwide tow-referral kickback scheme. Runners are dispatched to accident scenes and steer claimants to complicit body shops. The scam escalates with added vehicle damage post-tow. Certified Auto Care in Region 4 shows unusual claim frequency — 48 towed vehicles in 6 months, all from the same stretch of I-45. Suspected ambulance chaser attorneys are involved in soliciting signed retainers within hours of each incident. The NICB medical fraud task force has traced PIP abuse cases to clinics whose medical director previously had their license suspended. Review of these files shows inflated medical billing — MRI costs averaging $4,200 vs the market rate of $1,800. Evidence suggests the shops receive $500–$1,200 per vehicle steered, paid as fictitious 'towing administration fees' through shell companies."
+  },
+  {
+    "doc_id": "AUD-001",
+    "title": "Post-Payment Audit: QuickFix Auto — Ghost Repairs",
+    "date": "2026-04-01",
+    "publisher": "Claims Audit & Recovery — Region 3",
+    "text": "Post-payment forensic audit of QuickFix Auto reveals ghost repairs on 8 of 12 sampled claims. Parts billed as 'replaced OEM' were confirmed to be either never installed or were the original damaged parts painted over. Total billing irregularity exposure estimated at $187,000. Photographic evidence obtained from social media of claimants' vehicles post-repair shows no evidence of bumper replacement or frame straightening — both of which were line items on final bills. Parts invoices supplied by QuickFix were traced to a parts vendor with no physical inventory. The vendor's address resolves to a residential mailbox store. QuickFix's owner is also listed as the registered agent for three shell companies that processed 'towing administration fees' totalling $78,400 over the audit period. This pattern is consistent with organized fraud — not an isolated incident."
+  },
+  {
+    "doc_id": "SIU-03",
+    "title": "SIU Alert: Northeast Premium Diversion Ring",
+    "date": "2026-03-28",
+    "publisher": "Special Investigations Unit — Region 1",
+    "text": "A premium-diversion ring operating in the Northeast has been identified through straw policy analysis. An unlicensed agent was collecting premiums from 32 small businesses and issuing counterfeit policy documents. CL-201 is linked through a straw policy obtained 14 days before a $92,000 claim. CL-207 also received a policy from the same unlicensed source. The fake agency operated from a virtual office with no physical presence. Premium checks were deposited into a personal account — none reached the insurance carrier. The NICB medical fraud task force has confirmed 6 of these policies generated claims totalling $540,000, none of which were validly insured. SIU recommends immediate referral to state DOI and federal mail-fraud prosecution. The agent's brokerage license was revoked in two other states for similar conduct — yet continued operating under a different trade name."
+  },
+  {
+    "doc_id": "SIU-04",
+    "title": "SIU Report: Jump-In Fraud on I-10 Corridor Claims",
+    "date": "2026-02-18",
+    "publisher": "Special Investigations Unit — Region 3",
+    "text": "Claimant CL-105 reported a single-vehicle collision on I-10. Police report documents one occupant. However, the claim file lists three injured passengers — two were not mentioned in the officer's narrative. All three 'passengers' retained the same attorney within 48 hours. The attorney has been linked to a medical mill through prior NICB bulletins. Phone records obtained via subpoena show the 'passengers' were not at the accident location at time of loss — their cell tower pings place them 22 miles away. Jump-in fraud with phantom passengers is a possible scheme to inflate bodily-injury payouts, especially given that the personal injury protection limits on this policy are $250,000 per person. The attorney's settlement demand cites phantom vehicle damage and exaggerated pain-and-suffering claims unsupported by emergency-room records."
+  },
+  {
+    "doc_id": "NB-002",
+    "title": "NICB Advisory: Identity Fraud in Auto Claims",
+    "date": "2026-03-15",
+    "publisher": "National Insurance Crime Bureau (NICB)",
+    "text": "The NICB is tracking an increase in synthetic-identity cases in auto claim fraud. Fraudsters combine real SSNs with fictitious names and addresses to obtain policies. CL-203 was flagged for using a synthetic identity — the SSN belongs to a deceased individual. Policy was active for only 18 days before the first claim. The SSN was traced to a data breach at a Midwest healthcare provider in 2024. Additional patterns include fake IDs used to pass insurer verification and nonexistent policyholder addresses that resolve to vacant lots. NICB recommends enhanced identity verification at policy issuance, including facial recognition and multi-factor authentication. The synthetic identities appear to be sourced from the same dark-web vendor based on formatting patterns."
+  },
+  {
+    "doc_id": "SIU-05",
+    "title": "SIU Closing Memo: Ring-South-1 Prosecution Referral",
+    "date": "2026-05-01",
+    "publisher": "Special Investigations Unit — Region 3",
+    "text": "The South Texas staged-accident ring investigation has been forwarded to the District Attorney for criminal prosecution. 12 claimants, 3 shop operators, and 2 clinic administrators are named. Confirmed evidence includes coordinated rear-end collisions at low-speed intersections, phantom vehicle damage, and inflated chiropractic billing. The ring exploited the swoop-and-squat pattern on commercial auto policies where policy limits were $1M+. QuickFix Auto served as the nexus — towing vehicles, producing inflated estimates, and coordinating with the medical mill for claimant processing. Estimated confirmed fraud exposure: $687,000 across all involved carriers. Five defendants have already pleaded guilty to insurance fraud in the third degree. The ring leader is believed to have fled to Mexico; an Interpol Red Notice is pending."
+  }
+]

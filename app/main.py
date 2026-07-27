@@ -73,9 +73,8 @@ st.caption("Every component of agent anatomy is real code you can read — "
            "and you can watch them work together live.")
 
 _tabs = st.tabs(["🧠 Anatomy", "▶️ Live Run", "🕸️ Knowledge Graph",
-                 "📊 Eval Lab"] + (["🧬 GraphRAG"] if agent == "cost" else [])
-                + ["🎓 Learning"])
-tab_anatomy, tab_live, tab_graph, tab_eval = _tabs[0], _tabs[1], _tabs[2], _tabs[3]
+                 "📊 Eval Lab", "🧬 GraphRAG", "🎓 Learning"])
+tab_anatomy, tab_live, tab_graph, tab_eval, tab_graphrag = _tabs[0], _tabs[1], _tabs[2], _tabs[3], _tabs[4]
 tab_learning = _tabs[-1]
 
 # ════════════════════════════════════════════════════════════════════
@@ -505,10 +504,84 @@ with tab_eval:
                     render_event(ev)
 
 # ════════════════════════════════════════════════════════════════════
-# TAB 5 — GRAPHRAG (cost analyst only)
+# TAB 5 — GRAPHRAG (both agents)
 # ════════════════════════════════════════════════════════════════════
-if agent == "cost":
-    with _tabs[4]:
+with tab_graphrag:
+    if agent == "fraud":
+        from fraud_agent.graphrag import store as fraud_store
+        from fraud_agent.graphrag.extractor import (
+            MockLLMFraudGraphExtractor, merge_candidates as merge_fraud)
+
+        memos = json.loads((DATA_DIR / "fraud_memos.json").read_text())
+        st.markdown("**The write path behind the fraud knowledge graph.** "
+                    "SIU memos / NICB bulletins → mock-LLM extraction → "
+                    "staged candidates → **human curation** → citable "
+                    "intel with provenance. The investigator's tools only "
+                    "return intel a human has approved (plus baseline "
+                    "curated entities from `entities.json`).")
+
+        left, right = st.columns([2, 3])
+        with left:
+            st.markdown("**1 · Source documents**")
+            for m in memos:
+                with st.expander(f"{m['doc_id']} — {m['title']} ({m['date']})"):
+                    st.caption(m["publisher"])
+                    st.write(m["text"])
+        with right:
+            st.markdown("**2 · Extraction** (mock-LLM — real-LLM seam marked "
+                        "in `fraud_agent/graphrag/extractor.py`)")
+            if st.button("🔍 Run extraction over documents", type="primary",
+                         key="fraud_extract_btn"):
+                st.session_state.fraud_extraction = merge_fraud(
+                    MockLLMFraudGraphExtractor().extract(memos))
+            if "fraud_extraction" not in st.session_state:
+                st.info("Run the extraction to see staged candidates with "
+                        "their provenance, then curate them below.")
+            else:
+                merged = st.session_state.fraud_extraction
+                approval = fraud_store.load_approval()
+                st.markdown("**3 · Staged candidates & curation** — toggle "
+                            "and save; new intel merges into the knowledge "
+                            "graph and becomes visible to the investigator's "
+                            "`fraud_ring_network` tool only after approval.")
+
+                new_state = {}
+                type_icons = {
+                    "fraud_ring": "🕸️", "suspect_shop": "🏪",
+                    "scam_type": "🔍",
+                }
+                for eid, c in sorted(merged.items(),
+                                     key=lambda kv: -kv[1]["confidence"]):
+                    icon = type_icons.get(c["type"], "📌")
+                    approved = approval.get(eid, True)
+                    status = "✅ approved" if approved else "🚫 rejected"
+                    with st.expander(
+                            f"{status} · {icon} **{c['name']}** — "
+                            f"type: {c['type']} · "
+                            f"confidence {c['confidence']:.2f} "
+                            f"(“{c['strength_word']}”)"):
+                        st.write(f"“{c['quote']}”")
+                        st.caption("figures: " + ", ".join(c["figures"])
+                                   if c["figures"] else "figures: none")
+                        st.caption("linked: " +
+                                   ", ".join(c["linked_entities"]))
+                        for prov in c["provenance"]:
+                            st.caption(f"📄 {prov['doc_id']} · "
+                                       f"{prov['title']} · "
+                                       f"{prov['publisher']} · "
+                                       f"{prov['date']}")
+                        new_state[eid] = st.toggle(
+                            "Approved for citation", value=approved,
+                            key=f"fraud_apr_{eid}")
+                if new_state and st.button("💾 Save curation",
+                                          key="fraud_save_btn"):
+                    fraud_store.save_approval({**approval, **new_state})
+                    st.success("Curation saved. `fraud_ring_network` now "
+                               "reflects it — try re-running a claim eval "
+                               "with a key ring rejected and watch the risk "
+                               "score shift.")
+
+    else:  # cost
         from cost_agent.graphrag import store
         from cost_agent.graphrag.extractor import (MockLLMGraphExtractor,
                                                    merge_candidates)
