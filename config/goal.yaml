@@ -1,0 +1,29 @@
+# ──────────────────────────────────────────────────────────────
+# ANATOMY COMPONENT: GOAL
+# The Goal is the agent's reason to exist. Everything else
+# (plan, loop, tools, skills) exists to satisfy this contract.
+# The planner reads this file at PLANNING time.
+# ──────────────────────────────────────────────────────────────
+goal:
+  id: fraud-investigation-v1
+  statement: >
+    Investigate an insurance claim and decide whether it should be
+    APPROVED, REVIEWED by a human adjuster, or ESCALATED to the
+    Special Investigations Unit (SIU) for suspected fraud.
+  success_criteria:
+    - Every available evidence source is examined before deciding
+    - A fraud risk score in [0, 100] is produced with cited evidence
+    - High-risk claims (>= 70) are escalated only with human approval
+  constraints:
+    max_steps: 12            # harness enforces this budget
+    max_tool_errors: 2       # harness aborts after this many failures
+    max_cost_units: 60       # cost budget metered by the harness
+    escalation_threshold: 70 # risk score that triggers SIU escalation
+    review_threshold: 40     # risk score that triggers human review
+  skills_to_load:            # planner loads these playbooks
+    - velocity_check
+    - policy_timing
+    - network_analysis
+    - notes_analysis
+    - verification
+    - escalation_policy

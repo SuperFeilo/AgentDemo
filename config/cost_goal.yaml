@@ -1,0 +1,28 @@
+# ──────────────────────────────────────────────────────────────
+# ANATOMY COMPONENT: GOAL  (agent #2 — Cost Trend Analyst)
+# Same skeleton, different contract: the fraud agent DECIDES on one
+# claim; this agent EXPLAINS a cost trend with cited drivers.
+# ──────────────────────────────────────────────────────────────
+goal:
+  id: cost-trend-analysis-v1
+  statement: >
+    Answer an analytic research question about insurance cost trends
+    (severity, frequency, loss ratio) using the internal data warehouse
+    for numbers and the driver knowledge graph for explanations.
+    Produce a verdict: EXPLAINED, PARTIALLY EXPLAINED, or UNEXPLAINED.
+  success_criteria:
+    - The reported trend numbers come from the warehouse, never invented
+    - Every cited driver is backed by a graph path AND quantitative evidence
+    - No driver is cited whose evidence contradicts the observed trend
+  constraints:
+    max_steps: 14
+    max_tool_errors: 2
+    max_cost_units: 40
+    explained_threshold: 70   # confidence >= 70 -> EXPLAINED
+    partial_threshold: 40     # confidence >= 40 -> PARTIALLY EXPLAINED
+  skills_to_load:
+    - trend_reading
+    - decomposition
+    - driver_analysis
+    - verification
+    - citation_policy

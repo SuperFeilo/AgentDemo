@@ -1,0 +1,165 @@
+[
+  {
+    "claim_id": "C-1001", "claimant_id": "CL-101", "policy_id": "P-9001",
+    "claim_type": "auto_collision", "amount": 2400,
+    "incident_date": "2026-06-14", "filed_date": "2026-06-15",
+    "description": "Rear bumper damage in grocery store parking lot.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-15 | Claimant reports being rear-ended on June 14 at the Maple St. lot. Other driver admitted fault, police report attached.",
+      "2026-06-16 | Inspection confirms damage consistent with claimant account. No injuries reported. Photos match the described scene."
+    ]
+  },
+  {
+    "claim_id": "C-1002", "claimant_id": "CL-102", "policy_id": "P-9002",
+    "claim_type": "home_water", "amount": 8900,
+    "incident_date": "2026-06-02", "filed_date": "2026-06-03",
+    "description": "Burst pipe under kitchen sink, water damage to floor and cabinets.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-03 | Pipe failed overnight on June 2. Plumber invoice attached. Damage matches statement.",
+      "2026-06-05 | Moisture readings consistent with a recent sudden leak, not long-term seepage. No injuries reported."
+    ]
+  },
+  {
+    "claim_id": "C-1003", "claimant_id": "CL-103", "policy_id": "P-9003",
+    "claim_type": "auto_glass", "amount": 650,
+    "incident_date": "2026-06-20", "filed_date": "2026-06-20",
+    "description": "Windshield cracked by highway debris.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-20 | Rock strike on I-90 on June 20. Crack pattern consistent with claimant account. Glass shop estimate attached."
+    ]
+  },
+  {
+    "claim_id": "C-1004", "claimant_id": "CL-104", "policy_id": "P-9004",
+    "claim_type": "auto_collision", "amount": 5100,
+    "incident_date": "2026-05-28", "filed_date": "2026-05-29",
+    "description": "Rear-ended at a stoplight, bumper and trunk damage.",
+    "prior_claims": [
+      {"claim_id": "C-0711", "filed_date": "2024-04-11", "amount": 3200, "claim_type": "auto_collision"}
+    ],
+    "adjuster_notes": [
+      "2026-05-29 | Collision occurred May 28 at 5th and Main. Police report and witness statement corroborate.",
+      "2026-05-31 | Claimant reported minor stiffness at scene, resolved same day, declined medical. No treatment sought. Account is internally consistent."
+    ]
+  },
+  {
+    "claim_id": "C-1005", "claimant_id": "CL-105", "policy_id": "P-9005",
+    "claim_type": "auto_collision", "amount": 4700,
+    "incident_date": "2026-06-10", "filed_date": "2026-06-11",
+    "description": "Sideswipe damage to driver side doors.",
+    "prior_claims": [
+      {"claim_id": "C-0981", "filed_date": "2026-03-18", "amount": 3900, "claim_type": "auto_collision"},
+      {"claim_id": "C-0987", "filed_date": "2026-04-22", "amount": 2750, "claim_type": "auto_theft"},
+      {"claim_id": "C-0992", "filed_date": "2026-05-19", "amount": 4100, "claim_type": "auto_collision"}
+    ],
+    "adjuster_notes": [
+      "2026-06-11 | Claimant reports sideswipe on June 10. Fourth auto claim in four months under the same policy.",
+      "2026-06-12 | Damage photos provided. Statement was brief but consistent with the photos."
+    ]
+  },
+  {
+    "claim_id": "C-1006", "claimant_id": "CL-106", "policy_id": "P-9006",
+    "claim_type": "auto_collision", "amount": 12300,
+    "incident_date": "2026-06-05", "filed_date": "2026-06-06",
+    "description": "Two-car collision, front-end damage, airbags deployed.",
+    "prior_claims": [],
+    "repair_shop_id": "SHOP-77",
+    "adjuster_notes": [
+      "2026-06-06 | Collision reported June 5. Vehicle towed directly to QuickFix Auto by a tow truck that arrived within minutes, before being called.",
+      "2026-06-08 | Estimate from QuickFix Auto appears inflated versus market rates. Statement otherwise coherent."
+    ]
+  },
+  {
+    "claim_id": "C-1007", "claimant_id": "CL-107", "policy_id": "P-9007",
+    "claim_type": "auto_injury", "amount": 15800,
+    "incident_date": "2026-06-08", "filed_date": "2026-06-09",
+    "description": "Injury claim following alleged rear-end collision.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-09 | Initial statement: accident occurred on March 3 on I-95 northbound. Claimant reported no injuries at the scene and declined ambulance.",
+      "2026-06-11 | Recorded statement: claimant now says the accident happened March 5 on Route 9. When asked about the discrepancy, claimant said maybe he was confused, I think it was a weekday, not sure.",
+      "2026-06-14 | Medical records submitted for severe whiplash with treatment beginning the same day as the alleged accident, contradicting the no-injury scene report."
+    ]
+  },
+  {
+    "claim_id": "C-1008", "claimant_id": "CL-108", "policy_id": "P-9008",
+    "claim_type": "home_theft", "amount": 22000,
+    "incident_date": "2026-06-17", "filed_date": "2026-06-17",
+    "description": "Theft of jewelry and electronics from residence.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-17 | Burglary reported June 17. No signs of forced entry noted by police. Itemized list of valuables provided immediately with estimated values.",
+      "2026-06-18 | Receipts for several listed items could not be produced. Claimant says they were gifts."
+    ]
+  },
+  {
+    "claim_id": "C-1009", "claimant_id": "CL-109", "policy_id": "P-9009",
+    "claim_type": "home_weather", "amount": 3300,
+    "incident_date": "2026-05-30", "filed_date": "2026-05-31",
+    "description": "Hail damage to roof shingles.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-05-31 | Hail storm on May 30 confirmed by weather service data for the insured zip code. Damage pattern consistent with hail."
+    ]
+  },
+  {
+    "claim_id": "C-1010", "claimant_id": "CL-110", "policy_id": "P-9010",
+    "claim_type": "auto_collision", "amount": 1100,
+    "incident_date": "2026-06-19", "filed_date": "2026-06-19",
+    "description": "Door dent from unknown vehicle in parking garage.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-19 | Hit-and-run dent reported June 19. Garage camera footage requested. Damage minor and consistent with statement."
+    ]
+  },
+  {
+    "claim_id": "C-1011", "claimant_id": "CL-111", "policy_id": "P-9011",
+    "claim_type": "auto_collision", "amount": 9400,
+    "incident_date": "2026-06-12", "filed_date": "2026-06-13",
+    "description": "Single-vehicle collision with a guardrail.",
+    "prior_claims": [],
+    "repair_shop_id": "SHOP-77",
+    "adjuster_notes": [
+      "2026-06-13 | Claimant states the crash happened June 12 around 10 PM on Miller Rd. No police report filed.",
+      "2026-06-15 | In the recorded statement, claimant says the crash occurred around 2 AM, and I think it was on County Line Rd, maybe further west, can't recall exactly.",
+      "2026-06-16 | Vehicle taken to QuickFix Auto. Passenger in the vehicle is listed as the roommate of a claimant from a prior suspected-fraud case."
+    ]
+  },
+  {
+    "claim_id": "C-1012", "claimant_id": "CL-112", "policy_id": "P-9012",
+    "claim_type": "auto_theft", "amount": 6200,
+    "incident_date": "2026-06-15", "filed_date": "2026-06-16",
+    "description": "Catalytic converter theft.",
+    "prior_claims": [
+      {"claim_id": "C-0989", "filed_date": "2026-04-28", "amount": 5400, "claim_type": "auto_theft"},
+      {"claim_id": "C-0995", "filed_date": "2026-05-25", "amount": 4800, "claim_type": "auto_collision"}
+    ],
+    "adjuster_notes": [
+      "2026-06-16 | Third claim in three months. Claimant unsure of exact time of theft, maybe overnight, not sure, approximately.",
+      "2026-06-17 | First note said the car was parked on the street; claimant now says it was in a locked garage, I think, can't recall."
+    ]
+  },
+  {
+    "claim_id": "C-1013", "claimant_id": "CL-113", "policy_id": "P-9013",
+    "claim_type": "auto_collision", "amount": 4050,
+    "incident_date": "2026-06-01", "filed_date": "2026-06-13",
+    "description": "Deer strike, front grille and radiator damage.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-13 | Deer strike occurred June 1 on Hwy 12; claimant delayed filing while waiting for a police report copy. Fur and biological residue observed in grille, consistent with account."
+    ]
+  },
+  {
+    "claim_id": "C-1014", "claimant_id": "CL-114", "policy_id": "P-9014",
+    "claim_type": "home_fire", "amount": 18500,
+    "incident_date": "2026-06-07", "filed_date": "2026-06-07",
+    "description": "Kitchen fire from unattended cooking.",
+    "prior_claims": [],
+    "adjuster_notes": [
+      "2026-06-07 | Fire on June 7, fire department report attached. Origin at stove consistent with claimant account. Family of four displaced, staying with relatives.",
+      "2026-06-09 | Contractor walkthrough complete. Burn pattern and smoke damage consistent with a grease fire. No red flags."
+    ]
+  }
+]

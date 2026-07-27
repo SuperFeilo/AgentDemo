@@ -1,0 +1,18 @@
+[
+  {"driver_id": "parts_inflation", "realized_direction": "+", "magnitude_pct": 1.3,
+   "validates": true, "note": "Parts index kept rising into 2026Q1."},
+  {"driver_id": "adas_complexity", "realized_direction": "+", "magnitude_pct": 0.9,
+   "validates": true, "note": "ADAS fleet share continued climbing."},
+  {"driver_id": "supply_chain", "realized_direction": "-", "magnitude_pct": -0.4,
+   "validates": false, "note": "Delays normalized in 2026Q1; supplements fell."},
+  {"driver_id": "medical_inflation", "realized_direction": "+", "magnitude_pct": 1.5,
+   "validates": true, "note": "Medical CPI still outpacing general inflation."},
+  {"driver_id": "litigation_climate", "realized_direction": "+", "magnitude_pct": 1.1,
+   "validates": true, "note": "Representation rates still rising in the Northeast."},
+  {"driver_id": "cat_weather", "realized_direction": "0", "magnitude_pct": 0.0,
+   "validates": true, "note": "Episodic by definition; no follow-on effect expected."},
+  {"driver_id": "vmt_mileage", "realized_direction": "+", "magnitude_pct": 0.3,
+   "validates": true, "note": "Mileage growth persisted at a mild pace."},
+  {"driver_id": "winter_weather", "realized_direction": "0", "magnitude_pct": 0.0,
+   "validates": true, "note": "Episodic; 2026Q1 milder than 2025Q1."}
+]

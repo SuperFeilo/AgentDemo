@@ -1,0 +1,16 @@
+scoring:
+  velocity:
+    one_prior_90d: 15
+    two_priors_90d: 30
+    three_plus_priors_90d: 55
+  policy_timing:
+    in_force_le_14d: 40
+    in_force_le_45d: 20
+  network:
+    known_fraud_link: 50
+    shared_attribute: 10
+  notes:
+    per_contradiction: 15
+    contradiction_cap: 45
+    hedging_min_phrases: 3
+    hedging_points: 10

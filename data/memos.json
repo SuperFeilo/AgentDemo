@@ -1,0 +1,58 @@
+[
+  {
+    "doc_id": "M-01",
+    "title": "OEM Parts Price Bulletin",
+    "date": "2026-01-15",
+    "publisher": "OEM parts price index",
+    "text": "OEM replacement parts prices rose +9.2% during 2024 and a further +4.6% in 2025, a cumulative increase of roughly 14%. Parts cost remains the primary driver of auto physical damage severity nationwide, with every region reporting higher average repair bills."
+  },
+  {
+    "doc_id": "M-02",
+    "title": "Actuarial Trend Selection Memo — Q1",
+    "date": "2026-01-31",
+    "publisher": "Pricing actuarial",
+    "text": "Medical care CPI has risen approximately 18% cumulatively since 2023Q1 and continues to outpace general inflation. We assess medical inflation as the dominant driver of bodily injury severity countrywide and recommend maintaining elevated BI severity trend selections."
+  },
+  {
+    "doc_id": "M-03",
+    "title": "Legal Operations Quarterly Review",
+    "date": "2026-02-10",
+    "publisher": "Internal legal-ops data",
+    "text": "Attorney representation rates on Northeast BI claims climbed from 48% to 57% over the review period. Represented claims settle approximately 25% higher than unrepresented ones. Litigation climate is now the primary driver of BI severity in the Northeast, amplifying the effect of medical inflation."
+  },
+  {
+    "doc_id": "M-04",
+    "title": "Catastrophe Event Report — 2024Q3 Hurricane",
+    "date": "2024-10-05",
+    "publisher": "Cat event reports",
+    "text": "A hurricane made landfall in the South region late in 2024Q3. Auto claim counts spiked +18% in 2024Q3 and +10% in 2024Q4 before normalizing. The event is overwhelmingly the driver of the South frequency spike in late 2024."
+  },
+  {
+    "doc_id": "M-05",
+    "title": "Repair Network Cost Study",
+    "date": "2026-02-20",
+    "publisher": "Repair-order text mining + teardown reports",
+    "text": "Vehicles equipped with ADAS sensor suites cost approximately 22% more to repair than non-ADAS equivalents, and ADAS vehicles rose from 45% to 61% of the repairable fleet — a significant contributor to PD severity nationally. Separately, parts delivery delays peaked at 9.1 days in 2024Q2 and remain at 6.3 days; supplement handling adds about $180 per claim, a modest contributor to severity."
+  },
+  {
+    "doc_id": "M-06",
+    "title": "Mobility & Exposure Digest",
+    "date": "2026-01-20",
+    "publisher": "FHWA vehicle-miles traveled",
+    "text": "Vehicle-miles traveled grew +2.1% year over year. Higher mileage is a mild upward pressure on accident frequency nationwide, though it explains little of any single region's movement."
+  },
+  {
+    "doc_id": "M-07",
+    "title": "Winter Operations Flash — Polar Vortex",
+    "date": "2025-02-02",
+    "publisher": "Cat event reports",
+    "text": "The January polar vortex lifted Midwest auto frequency by about +6% for 2025Q1 only. We assess this as a minor, one-quarter effect with no lasting impact on trend."
+  },
+  {
+    "doc_id": "M-08",
+    "title": "Collision Parts Vendor Newsletter",
+    "date": "2026-03-01",
+    "publisher": "Cycle-time analytics",
+    "text": "Aftermarket parts availability has improved but not normalized; supplement volumes remain elevated, adding roughly $180 per claim. Supply-chain friction remains a modest contributor to PD severity."
+  }
+]

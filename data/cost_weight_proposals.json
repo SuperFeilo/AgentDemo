@@ -1,0 +1,83 @@
+[
+  {
+    "driver_id": "parts_inflation",
+    "metric": "severity",
+    "region": "ALL",
+    "coverage": "auto_pd",
+    "current_weight": 0.55,
+    "proposed_weight": 0.6,
+    "rationale": "validated: Parts index kept rising into 2026Q1."
+  },
+  {
+    "driver_id": "adas_complexity",
+    "metric": "severity",
+    "region": "ALL",
+    "coverage": "auto_pd",
+    "current_weight": 0.45,
+    "proposed_weight": 0.5,
+    "rationale": "validated: ADAS fleet share continued climbing."
+  },
+  {
+    "driver_id": "supply_chain",
+    "metric": "severity",
+    "region": "ALL",
+    "coverage": "auto_pd",
+    "current_weight": 0.35,
+    "proposed_weight": 0.24,
+    "rationale": "CONTRADICTED: Delays normalized in 2026Q1; supplements fell."
+  },
+  {
+    "driver_id": "medical_inflation",
+    "metric": "severity",
+    "region": "ALL",
+    "coverage": "auto_bi",
+    "current_weight": 0.6,
+    "proposed_weight": 0.65,
+    "rationale": "validated: Medical CPI still outpacing general inflation."
+  },
+  {
+    "driver_id": "litigation_climate",
+    "metric": "severity",
+    "region": "Northeast",
+    "coverage": "auto_bi",
+    "current_weight": 0.55,
+    "proposed_weight": 0.6,
+    "rationale": "validated: Representation rates still rising in the Northeast."
+  },
+  {
+    "driver_id": "cat_weather",
+    "metric": "frequency",
+    "region": "South",
+    "coverage": "auto_pd",
+    "current_weight": 0.7,
+    "proposed_weight": 0.75,
+    "rationale": "validated: Episodic by definition; no follow-on effect expected."
+  },
+  {
+    "driver_id": "cat_weather",
+    "metric": "severity",
+    "region": "South",
+    "coverage": "home",
+    "current_weight": 0.5,
+    "proposed_weight": 0.55,
+    "rationale": "validated: Episodic by definition; no follow-on effect expected."
+  },
+  {
+    "driver_id": "vmt_mileage",
+    "metric": "frequency",
+    "region": "ALL",
+    "coverage": "auto_pd",
+    "current_weight": 0.3,
+    "proposed_weight": 0.35,
+    "rationale": "validated: Mileage growth persisted at a mild pace."
+  },
+  {
+    "driver_id": "winter_weather",
+    "metric": "frequency",
+    "region": "Midwest",
+    "coverage": "auto_pd",
+    "current_weight": 0.35,
+    "proposed_weight": 0.4,
+    "rationale": "validated: Episodic; 2026Q1 milder than 2025Q1."
+  }
+]

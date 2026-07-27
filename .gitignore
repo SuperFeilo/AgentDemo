@@ -1,0 +1,14 @@
+# Python virtual environment
+.venv/
+
+# Compiled Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime generated
+data/graph_approval.json
+
+# IDE
+.vscode/
+.idea/

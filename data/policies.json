@@ -1,0 +1,16 @@
+[
+  {"policy_id": "P-9001", "claimant_id": "CL-101", "inception_date": "2024-09-01", "status": "active"},
+  {"policy_id": "P-9002", "claimant_id": "CL-102", "inception_date": "2023-02-15", "status": "active"},
+  {"policy_id": "P-9003", "claimant_id": "CL-103", "inception_date": "2025-01-10", "status": "active"},
+  {"policy_id": "P-9004", "claimant_id": "CL-104", "inception_date": "2022-11-20", "status": "active"},
+  {"policy_id": "P-9005", "claimant_id": "CL-105", "inception_date": "2026-02-20", "status": "active"},
+  {"policy_id": "P-9006", "claimant_id": "CL-106", "inception_date": "2025-08-01", "status": "active"},
+  {"policy_id": "P-9007", "claimant_id": "CL-107", "inception_date": "2025-10-12", "status": "active"},
+  {"policy_id": "P-9008", "claimant_id": "CL-108", "inception_date": "2026-06-14", "status": "active"},
+  {"policy_id": "P-9009", "claimant_id": "CL-109", "inception_date": "2024-05-30", "status": "active"},
+  {"policy_id": "P-9010", "claimant_id": "CL-110", "inception_date": "2025-07-22", "status": "active"},
+  {"policy_id": "P-9011", "claimant_id": "CL-111", "inception_date": "2026-01-05", "status": "active"},
+  {"policy_id": "P-9012", "claimant_id": "CL-112", "inception_date": "2026-03-30", "status": "active"},
+  {"policy_id": "P-9013", "claimant_id": "CL-113", "inception_date": "2023-12-01", "status": "active"},
+  {"policy_id": "P-9014", "claimant_id": "CL-114", "inception_date": "2024-03-18", "status": "active"}
+]
