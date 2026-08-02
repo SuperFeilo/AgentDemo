@@ -32,11 +32,17 @@ from fraud_agent.tools.registry import call_tool, tool_meta
 class Harness:
     """Agent-agnostic runtime: plan + brain + loop function plugged in."""
 
-    def __init__(self, plan, brain, loop_fn) -> None:
+    def __init__(self, plan, brain, loop_fn, agent_name: str = "") -> None:
         self.plan = plan
         self.brain = brain
         self.loop_fn = loop_fn
+        self.agent_name = agent_name or type(self).__name__.lower()[:-7]
         self.registry = RunRegistry()
+
+    def _record(self, run: Run) -> None:
+        """Always-on tracing: one JSONL line per finished run."""
+        from fraud_agent.tracing import record_run
+        record_run(run, self.agent_name)
 
     # ── interactive: a generator the UI can step through ────────────
     def start_run(self, subject, autonomy_level: str = "gated") -> Run:
@@ -61,6 +67,7 @@ class Harness:
                 event = loop.send(send_value) if started else next(loop)
                 started = True
             except StopIteration:
+                self._record(run)
                 break
             send_value = None
 
@@ -74,6 +81,7 @@ class Harness:
                     run.trace.append(aborted)
                     yield aborted
                     self.registry.transition(run, RunState.FAILED)
+                    self._record(run)
                     loop.close()
                     return
 
@@ -122,6 +130,7 @@ class Harness:
                         run.trace.append(aborted)
                         yield aborted
                         self.registry.transition(run, RunState.FAILED)
+                        self._record(run)
                         loop.close()
                         return
                 event["latency_ms"] = round(
@@ -136,6 +145,7 @@ class Harness:
                     run.trace.append(aborted)
                     yield aborted
                     self.registry.transition(run, RunState.FAILED)
+                    self._record(run)
                     loop.close()
                     return
 
@@ -191,4 +201,5 @@ class FraudHarness(Harness):
         from fraud_agent.planner import build_plan
 
         plan = build_plan()
-        super().__init__(plan, RuleBasedBrain(plan), agent_loop)
+        super().__init__(plan, RuleBasedBrain(plan), agent_loop,
+                         agent_name="fraud")

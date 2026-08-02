@@ -1,0 +1,8 @@
+# Render free tier (512 MB RAM): slim deps — the Neo4j driver is
+# optional (the app auto-falls back to the in-memory graph store when
+# NEO4J_URI is unset), so it is left out to keep memory comfortable.
+streamlit>=1.35
+networkx>=3.2
+plotly>=5.20
+pandas>=2.0
+pyyaml>=6.0

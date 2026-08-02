@@ -8,6 +8,14 @@ __pycache__/
 
 # Runtime generated
 data/graph_approval.json
+data/fraud_graph_approval.json
+data/portfolio_graph_approval.json
+data/traces/
+data/backup_*/
+data/*.db
+data/eval_history.jsonl
+data/knowledge_toggles_*.json
+data/learning_evidence.jsonl
 
 # IDE
 .vscode/

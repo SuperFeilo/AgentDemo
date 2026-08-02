@@ -1,0 +1,203 @@
+{
+ "fraud": {
+  "rings": {
+   "RING-SOUTH-1": {
+    "members": [
+     "CL-201",
+     "CL-202",
+     "CL-203",
+     "CL-207",
+     "CL-301",
+     "CL-302",
+     "CL-303",
+     "CL-304",
+     "CL-305",
+     "CL-306",
+     "CL-307",
+     "CL-308",
+     "CL-309",
+     "CL-310",
+     "CL-311",
+     "CL-312"
+    ],
+    "exposure": 687000,
+    "root_pattern": "PATTERN-STAGING-1",
+    "facilitators": [
+     "SHOP-77",
+     "CLIN-01",
+     "ATTY-01",
+     "SHELL-01"
+    ],
+    "cited_docs": [
+     "SIU-01",
+     "AUD-001",
+     "SIU-05"
+    ]
+   },
+   "RING-MIDWEST-1": {
+    "members": [
+     "CL-106",
+     "CL-111",
+     "CL-313",
+     "CL-314",
+     "CL-315",
+     "CL-316",
+     "CL-317",
+     "CL-318",
+     "CL-319",
+     "CL-320",
+     "CL-321",
+     "CL-322",
+     "CL-323",
+     "CL-324",
+     "CL-325",
+     "CL-326"
+    ],
+    "exposure": 412000,
+    "root_pattern": "PATTERN-PIP-1",
+    "facilitators": [
+     "CLIN-02",
+     "ATTY-02",
+     "SHELL-02"
+    ]
+   },
+   "RING-NORTHEAST-1": {
+    "members": [
+     "CL-327",
+     "CL-328",
+     "CL-329",
+     "CL-330",
+     "CL-331",
+     "CL-332",
+     "CL-333",
+     "CL-334",
+     "CL-335",
+     "CL-336",
+     "CL-337",
+     "CL-338",
+     "CL-339",
+     "CL-340",
+     "CL-341",
+     "CL-342"
+    ],
+    "exposure": 540000,
+    "root_pattern": "PATTERN-ID-1",
+    "facilitators": [
+     "ATTY-03",
+     "SHELL-03"
+    ]
+   }
+  },
+  "assignments": {
+   "root_cause_cl201": {
+    "subject": "CL-201",
+    "ring": "RING-SOUTH-1",
+    "root_pattern": "PATTERN-STAGING-1",
+    "facilitators": [
+     "SHOP-77",
+     "CLIN-01",
+     "ATTY-01",
+     "SHELL-01"
+    ],
+    "exposure": 687000,
+    "cited_docs": [
+     "SIU-01",
+     "AUD-001"
+    ]
+   },
+   "plan_ring_member": {
+    "subject": "CL-343",
+    "ring": "RING-SE-1",
+    "root_pattern": "PATTERN-TOW-1",
+    "facilitators": [
+     "SHOP-12",
+     "ATTY-04",
+     "SHELL-04"
+    ],
+    "steps": [
+     "ego_neighborhood",
+     "shared_attributes",
+     "paths_to_fraud",
+     "root_cause_claimant"
+    ]
+   },
+   "distractor_clean": {
+    "subject": "CL-701",
+    "expected_ring": null,
+    "known_fraud_links": 0
+   }
+  }
+ },
+ "cost": {
+  "assignments": {
+   "root_cause_south_frequency": {
+    "metric": "frequency",
+    "region": "South",
+    "coverage": "auto_pd",
+    "trigger_event": "EVT-01",
+    "primary_driver": "cat_weather",
+    "secondary_drivers": [
+     "vmt_mileage"
+    ],
+    "excluded": [
+     "winter_weather"
+    ],
+    "cited_docs": [
+     "M-04"
+    ]
+   }
+  }
+ },
+ "portfolio": {
+  "assignments": {
+   "leverage_bro_w": {
+    "segment": {
+     "broker": "BRO-W",
+     "class_code": "ALL",
+     "region": "ALL"
+    },
+    "lever": "reserve_adequacy",
+    "stage": "claim",
+    "outcome": "leakage_pct",
+    "cited_docs": [
+     "PFM-114"
+    ]
+   },
+   "leverage_5437": {
+    "segment": {
+     "broker": "ALL",
+     "class_code": "5437",
+     "region": "ALL"
+    },
+    "lever": "risk_score_override",
+    "stage": "risk_scoring",
+    "outcome": "loss_ratio",
+    "cited_docs": [
+     "PFM-115"
+    ]
+   },
+   "journey_clm015": {
+    "claim": "CLM-015",
+    "signals": [
+     "late_fnol",
+     "reserve_adequacy"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "seed": 20260801,
+  "dataset_size": "full",
+  "counts": {
+   "fraud": {
+    "nodes": 426
+   },
+   "cost": {
+    "nodes": 22
+   },
+   "portfolio": {
+    "nodes": 126
+   }
+  }
+ }
+}

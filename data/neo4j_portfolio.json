@@ -1,0 +1,2861 @@
+{
+ "nodes": [
+  {
+   "id": "submission",
+   "type": "stage",
+   "approved": true,
+   "name": "Submission",
+   "definition": "Broker quote intake \u00e2\u20ac\u201d exposure detail + loss history + class code.",
+   "sql_hint": "fact_submission"
+  },
+  {
+   "id": "underwriting",
+   "type": "stage",
+   "approved": true,
+   "name": "Underwriting",
+   "definition": "Underwriter reasoning captured in notes; risk score produced or overridden.",
+   "sql_hint": "fact_underwriting_note + fact_risk_score"
+  },
+  {
+   "id": "risk_scoring",
+   "type": "stage",
+   "approved": true,
+   "name": "Risk scoring",
+   "definition": "Model score, with override flag + magnitude.",
+   "sql_hint": "fact_risk_score"
+  },
+  {
+   "id": "site_inspection",
+   "type": "stage",
+   "approved": true,
+   "name": "Site inspection",
+   "definition": "Optional field inspection; inspected + flagged issue.",
+   "sql_hint": "fact_site_inspection"
+  },
+  {
+   "id": "bind",
+   "type": "stage",
+   "approved": true,
+   "name": "Bind",
+   "definition": "Quote converts to policy: premium, deductible, limit, tier.",
+   "sql_hint": "fact_bind"
+  },
+  {
+   "id": "claim",
+   "type": "stage",
+   "approved": true,
+   "name": "Claim",
+   "definition": "Loss occurrence + First Notice of Loss + reserve.",
+   "sql_hint": "fact_claim"
+  },
+  {
+   "id": "settlement",
+   "type": "stage",
+   "approved": true,
+   "name": "Settlement",
+   "definition": "Final settlement amount + leakage vs reserve.",
+   "sql_hint": "fact_settlement"
+  },
+  {
+   "id": "exposure_completeness",
+   "type": "signal",
+   "approved": true,
+   "stage": "submission",
+   "name": "Exposure detail completeness",
+   "evidence": "BRO-W submissions carry incomplete exposure detail ~55% of the time",
+   "figures": [
+    "55% of BRO-W subs",
+    "vs <15% for other brokers"
+   ],
+   "source": "warehouse: submission rollup by broker",
+   "provenance": [
+    {
+     "doc_id": "PFM-101",
+     "title": "Submission Hygiene Audit",
+     "publisher": "Internal UW",
+     "date": "2024-Q1"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "broker_pattern",
+   "type": "signal",
+   "approved": true,
+   "stage": "submission",
+   "name": "Broker submission pattern",
+   "evidence": "BRO-W exhibits incomplete-exposure + lower bind conversion",
+   "figures": [
+    "45% conversion vs 68% portfolio"
+   ],
+   "source": "warehouse: submission->bind funnel",
+   "provenance": [
+    {
+     "doc_id": "PFM-101",
+     "title": "Submission Hygiene Audit"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "uw_note_hedging",
+   "type": "signal",
+   "approved": true,
+   "stage": "underwriting",
+   "name": "UW hedging phrasing",
+   "evidence": "Hedging phrasing in pricing notes correlates with under-pricing",
+   "figures": [
+    "~35% of pricing notes hedged on overridden 5437s"
+   ],
+   "source": "warehouse: notes scan rolup",
+   "provenance": [
+    {
+     "doc_id": "PFM-102",
+     "title": "UW Note Quality Review",
+     "publisher": "Pricing Actuary",
+     "date": "2024-Q2"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "risk_score_override",
+   "type": "signal",
+   "approved": true,
+   "stage": "risk_scoring",
+   "name": "Risk-score override (downward)",
+   "evidence": "55% of class 5437 submissions receive a downward override reducing model score 8-15pts",
+   "figures": [
+    "5437 override rate 55%",
+    "other classes 0%"
+   ],
+   "source": "warehouse: risk_score by class_code",
+   "provenance": [
+    {
+     "doc_id": "PFM-103",
+     "title": "Override Discipline Memo",
+     "publisher": "Pricing Actuary",
+     "date": "2024-Q2"
+    },
+    {
+     "doc_id": "MEDIA-02",
+     "title": "Industry News \u2014 Risk-Model Override Coverage",
+     "quote": "Downward risk-score overrides near 2.2x the portfolio average on class 5437 correlate with loss-ratio spikes one to two quarters later."
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "inspection_flag_ignored",
+   "type": "signal",
+   "approved": true,
+   "stage": "site_inspection",
+   "name": "Inspection flag waived at bind",
+   "evidence": "Inspection-flagged issues waived at bind produce ~40% more claims than clean binds",
+   "figures": [
+    "bind freq uplift on flagged"
+   ],
+   "source": "warehouse: claim rollup by inspection_flag_at_bind",
+   "provenance": [
+    {
+     "doc_id": "PFM-104",
+     "title": "Site Inspection Findings",
+     "publisher": "Loss Control",
+     "date": "2024-Q3"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "pricing_inadequacy",
+   "type": "signal",
+   "approved": true,
+   "stage": "bind",
+   "name": "Premium vs expected loss",
+   "evidence": "Overridden 5437 binds priced ~15% below model premium with elevated loss costs",
+   "figures": [
+    "-15% premium vs model",
+    "+5-10% severity on overridden"
+   ],
+   "source": "warehouse: premium adequacy",
+   "provenance": [
+    {
+     "doc_id": "PFM-105",
+     "title": "Pricing Adequacy Brief",
+     "publisher": "Pricing Actuary",
+     "date": "2024-Q3"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "late_fnol",
+   "type": "signal",
+   "approved": true,
+   "stage": "claim",
+   "name": "Late FNOL on class 5437",
+   "evidence": "FNOL lag > 14 days appears disproportionately on class 5437 claims",
+   "figures": [
+    "45% of 5437 claims have FNOL lag >=15d"
+   ],
+   "source": "warehouse: claim fnol_lag by class",
+   "provenance": [
+    {
+     "doc_id": "PFM-106",
+     "title": "FNOL Latency Briefing",
+     "publisher": "Claims",
+     "date": "2024-Q4"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "reserve_adequacy",
+   "type": "signal",
+   "approved": true,
+   "stage": "claim",
+   "name": "Reserve adequacy",
+   "evidence": "Reserves < 60% of final cost inflate settlement-vs-reserve ratio above 2.0",
+   "figures": [
+    "35% of claims low-reserved",
+    "leakage avg ~22%"
+   ],
+   "source": "warehouse: settlement_vs_reserve_ratio",
+   "provenance": [
+    {
+     "doc_id": "PFM-107",
+     "title": "Reserving Discipline Memo",
+     "publisher": "Claims",
+     "date": "2024-Q4"
+    },
+    {
+     "doc_id": "MEDIA-01",
+     "title": "Industry News \u2014 Reserve Adequacy Watch",
+     "quote": "Regulators flagged reserve adequacy as the top watch item; carriers with low reserve adequacy are seeing settlement leakage of up to 12% of reserves."
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "settlement_slowness",
+   "type": "signal",
+   "approved": true,
+   "stage": "settlement",
+   "name": "Settlement slowness",
+   "evidence": "Days-to-settle > 180 compounds leakage via ALAE and supplemental reserves",
+   "figures": [
+    "mean 1-2 quarters",
+    "long tail >180d"
+   ],
+   "source": "warehouse: days_to_settle",
+   "provenance": [
+    {
+     "doc_id": "PFM-108",
+     "title": "Cycle-Time Impact Study",
+     "publisher": "Claims",
+     "date": "2024-Q4"
+    }
+   ],
+   "curated": true
+  },
+  {
+   "id": "loss_ratio",
+   "type": "outcome",
+   "approved": true,
+   "name": "Loss ratio",
+   "definition": "Incurred loss / earned premium",
+   "sql_hint": "SUM(severity)/SUM(premium) per bind"
+  },
+  {
+   "id": "claim_frequency",
+   "type": "outcome",
+   "approved": true,
+   "name": "Claim frequency",
+   "definition": "Claims per bound policy",
+   "sql_hint": "COUNT(claims)/COUNT(binds)"
+  },
+  {
+   "id": "leakage_pct",
+   "type": "outcome",
+   "approved": true,
+   "name": "Leakage %",
+   "definition": "leakage_amount / settlement_amount",
+   "sql_hint": "SUM(leakage_amount)/SUM(settlement_amount)"
+  },
+  {
+   "id": "bind_conversion",
+   "type": "outcome",
+   "approved": true,
+   "name": "Bind conversion",
+   "definition": "Binds / submissions",
+   "sql_hint": "COUNT(binds)/COUNT(subs)"
+  },
+  {
+   "id": "margin_contribution",
+   "type": "outcome",
+   "approved": true,
+   "name": "Margin contribution",
+   "definition": "Premium - losses - ALAE - leakage",
+   "sql_hint": "premium - severity - leakage"
+  },
+  {
+   "id": "submission_velocity",
+   "type": "signal",
+   "approved": true,
+   "stage": "submission",
+   "name": "Rush submission surge",
+   "curated": false,
+   "evidence": "Rush quotes rose 3.1x in 2024Q4 as brokers raced year-end renewals",
+   "figures": [
+    "3.1x Q4 rush quotes"
+   ],
+   "source": "warehouse: submission rollup"
+  },
+  {
+   "id": "broker_latency",
+   "type": "signal",
+   "approved": true,
+   "stage": "submission",
+   "name": "Broker response latency",
+   "curated": false,
+   "evidence": "Average broker response time grew from 6 to 11 days after the consolidation wave",
+   "figures": [
+    "6 -> 11 days"
+   ],
+   "source": "warehouse: cycle time"
+  },
+  {
+   "id": "uw_staffing",
+   "type": "signal",
+   "approved": true,
+   "stage": "underwriting",
+   "name": "UW capacity strain",
+   "curated": false,
+   "evidence": "Note volume per UW rose 40% while staffing was frozen in 2024Q4",
+   "figures": [
+    "40% note volume per UW"
+   ],
+   "source": "UW workforce report"
+  },
+  {
+   "id": "score_drift",
+   "type": "signal",
+   "approved": true,
+   "stage": "risk_scoring",
+   "name": "Model score drift",
+   "curated": false,
+   "evidence": "Post-refresh score drift reached 0.7% of book between model versions",
+   "figures": [
+    "0.7% drift"
+   ],
+   "source": "model governance log"
+  },
+  {
+   "id": "deductible_gaming",
+   "type": "signal",
+   "approved": true,
+   "stage": "bind",
+   "name": "Deductible gaming at bind",
+   "curated": false,
+   "evidence": "Deductible-lowering endorsements doubled in Q1 2025 for mid-tier accounts",
+   "figures": [
+    "2x deductible endorsements"
+   ],
+   "source": "warehouse: bind rollup"
+  },
+  {
+   "id": "premium_override",
+   "type": "signal",
+   "approved": true,
+   "stage": "bind",
+   "name": "Premium override frequency",
+   "curated": false,
+   "evidence": "Downward premium overrides rose 2.2x after the rate filing approval",
+   "figures": [
+    "2.2x overrides"
+   ],
+   "source": "warehouse: bind rollup"
+  },
+  {
+   "id": "reserve_cycles",
+   "type": "signal",
+   "approved": true,
+   "stage": "claim",
+   "name": "Reserve cycle manipulation",
+   "curated": false,
+   "evidence": "Reserve increase frequency fell 28% while settlement leakage stayed flat \u2014 signs of reserve suppression",
+   "figures": [
+    "-28% reserve increases"
+   ],
+   "source": "warehouse: reserve history"
+  },
+  {
+   "id": "attorney_engagement",
+   "type": "signal",
+   "approved": true,
+   "stage": "settlement",
+   "name": "Attorney engagement at settlement",
+   "curated": false,
+   "evidence": "Claimant attorney representation at settlement rose from 22% to 31%",
+   "figures": [
+    "22% -> 31% represented"
+   ],
+   "source": "warehouse: settlement rollup"
+  },
+  {
+   "id": "audit_findings",
+   "type": "signal",
+   "approved": true,
+   "stage": "settlement",
+   "name": "Internal audit findings rate",
+   "curated": false,
+   "evidence": "Audit exception rate on settlement payments reached 9.4% in 2025Q2",
+   "figures": [
+    "9.4% exceptions"
+   ],
+   "source": "internal audit"
+  },
+  {
+   "id": "inspection_quality",
+   "type": "signal",
+   "approved": true,
+   "stage": "site_inspection",
+   "name": "Inspection report quality",
+   "curated": false,
+   "evidence": "Inspection reports flagged incomplete in 18% of sampled files",
+   "figures": [
+    "18% incomplete reports"
+   ],
+   "source": "inspection QA sample"
+  },
+  {
+   "id": "EVT-P1",
+   "type": "event",
+   "approved": true,
+   "name": "Gulf hurricane exposure spike",
+   "quarter": "2024Q3"
+  },
+  {
+   "id": "EVT-P2",
+   "type": "event",
+   "approved": true,
+   "name": "UW staffing freeze",
+   "quarter": "2024Q4"
+  },
+  {
+   "id": "EVT-P3",
+   "type": "event",
+   "approved": true,
+   "name": "Broker consolidation wave",
+   "quarter": "2025Q1"
+  },
+  {
+   "id": "EVT-P4",
+   "type": "event",
+   "approved": true,
+   "name": "Risk model refresh",
+   "quarter": "2025Q2"
+  },
+  {
+   "id": "EVT-P5",
+   "type": "event",
+   "approved": true,
+   "name": "Rate filing approval",
+   "quarter": "2025Q3"
+  },
+  {
+   "id": "SUB-001",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-002",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-003",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-004",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-005",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-006",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-007",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-008",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-009",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-010",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-011",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-012",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-013",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-014",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-015",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-016",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-017",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-018",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-019",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-020",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-021",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-022",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-023",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-024",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-025",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-026",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "SUB-027",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "SUB-028",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "SUB-029",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "SUB-030",
+   "type": "submission",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-002",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-003",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "BIND-004",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-005",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "BIND-006",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-008",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-009",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "BIND-010",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-011",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "BIND-012",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-014",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-015",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "BIND-016",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-017",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "BIND-018",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-020",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-021",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "BIND-022",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-023",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "BIND-024",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-026",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "BIND-027",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast"
+  },
+  {
+   "id": "BIND-028",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West"
+  },
+  {
+   "id": "BIND-029",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest"
+  },
+  {
+   "id": "BIND-030",
+   "type": "bind",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast"
+  },
+  {
+   "id": "CLM-002",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "fnol_days": 14
+  },
+  {
+   "id": "CLM-003",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "fnol_days": 21
+  },
+  {
+   "id": "CLM-004",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "fnol_days": 21
+  },
+  {
+   "id": "CLM-005",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "fnol_days": 3
+  },
+  {
+   "id": "CLM-007",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "fnol_days": 14
+  },
+  {
+   "id": "CLM-008",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "fnol_days": 21
+  },
+  {
+   "id": "CLM-009",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "fnol_days": 2
+  },
+  {
+   "id": "CLM-010",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "fnol_days": 1
+  },
+  {
+   "id": "CLM-012",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "fnol_days": 21
+  },
+  {
+   "id": "CLM-013",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "fnol_days": 2
+  },
+  {
+   "id": "CLM-014",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "fnol_days": 3
+  },
+  {
+   "id": "CLM-015",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "fnol_days": 2
+  },
+  {
+   "id": "CLM-017",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "fnol_days": 3
+  },
+  {
+   "id": "CLM-018",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "fnol_days": 1
+  },
+  {
+   "id": "CLM-019",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "fnol_days": 14
+  },
+  {
+   "id": "CLM-020",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "fnol_days": 21
+  },
+  {
+   "id": "CLM-022",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "fnol_days": 1
+  },
+  {
+   "id": "CLM-023",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "fnol_days": 2
+  },
+  {
+   "id": "CLM-024",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "fnol_days": 14
+  },
+  {
+   "id": "CLM-025",
+   "type": "claim",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "fnol_days": 21
+  },
+  {
+   "id": "SETT-002",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "leakage_pct": 16.8
+  },
+  {
+   "id": "SETT-003",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "leakage_pct": 5.1
+  },
+  {
+   "id": "SETT-004",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "leakage_pct": 12.3
+  },
+  {
+   "id": "SETT-006",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "leakage_pct": 11.2
+  },
+  {
+   "id": "SETT-007",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "leakage_pct": 6.8
+  },
+  {
+   "id": "SETT-008",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "leakage_pct": 8.0
+  },
+  {
+   "id": "SETT-010",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "leakage_pct": 14.6
+  },
+  {
+   "id": "SETT-011",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "leakage_pct": 4.3
+  },
+  {
+   "id": "SETT-012",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "leakage_pct": 7.4
+  },
+  {
+   "id": "SETT-014",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "leakage_pct": 14.8
+  },
+  {
+   "id": "SETT-015",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-C",
+   "class_code": "5620",
+   "region": "Southeast",
+   "leakage_pct": 15.8
+  },
+  {
+   "id": "SETT-016",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "leakage_pct": 14.2
+  },
+  {
+   "id": "SETT-018",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-W",
+   "class_code": "5437",
+   "region": "West",
+   "leakage_pct": 2.6
+  },
+  {
+   "id": "SETT-019",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-A",
+   "class_code": "5438",
+   "region": "Midwest",
+   "leakage_pct": 9.1
+  },
+  {
+   "id": "SETT-020",
+   "type": "settlement",
+   "approved": true,
+   "broker": "BRO-M",
+   "class_code": "5602",
+   "region": "Northeast",
+   "leakage_pct": 11.4
+  }
+ ],
+ "edges": [
+  {
+   "a": "submission",
+   "b": "underwriting",
+   "relation": "FLOWS_TO",
+   "retention_rate": 1.0,
+   "label": "every submission routed to UW"
+  },
+  {
+   "a": "underwriting",
+   "b": "risk_scoring",
+   "relation": "FLOWS_TO",
+   "retention_rate": 1.0,
+   "label": "UW prices -> risk score produced/overridden"
+  },
+  {
+   "a": "risk_scoring",
+   "b": "site_inspection",
+   "relation": "FLOWS_TO",
+   "retention_rate": 0.67,
+   "label": "~67% of submissions field-inspected"
+  },
+  {
+   "a": "site_inspection",
+   "b": "bind",
+   "relation": "FLOWS_TO",
+   "retention_rate": 0.68,
+   "label": "~68% of inspected quotes convert"
+  },
+  {
+   "a": "underwriting",
+   "b": "bind",
+   "relation": "FLOWS_TO",
+   "retention_rate": 0.68,
+   "label": "UW -> bind (direct, joint with inspection)"
+  },
+  {
+   "a": "bind",
+   "b": "claim",
+   "relation": "FLOWS_TO",
+   "retention_rate": 0.26,
+   "label": "~26% of binds incur at least one claim"
+  },
+  {
+   "a": "claim",
+   "b": "settlement",
+   "relation": "FLOWS_TO",
+   "retention_rate": 1.0,
+   "label": "every claim settles"
+  },
+  {
+   "a": "exposure_completeness",
+   "b": "bind_conversion",
+   "relation": "PREDISPOSES",
+   "weight": 0.55,
+   "direction": "+",
+   "lag_quarters": 0,
+   "stage": "submission",
+   "coverage": "ALL",
+   "region": "West",
+   "provenance": [
+    {
+     "doc_id": "PFM-101",
+     "title": "Submission Hygiene Audit",
+     "publisher": "Internal UW",
+     "date": "2024-Q1"
+    }
+   ]
+  },
+  {
+   "a": "broker_pattern",
+   "b": "loss_ratio",
+   "relation": "PREDISPOSES",
+   "weight": 0.45,
+   "direction": "-",
+   "lag_quarters": 2,
+   "stage": "submission",
+   "coverage": "ALL",
+   "region": "West",
+   "provenance": [
+    {
+     "doc_id": "PFM-101",
+     "title": "Submission Hygiene Audit"
+    }
+   ]
+  },
+  {
+   "a": "uw_note_hedging",
+   "b": "pricing_inadequacy",
+   "relation": "PREDISPOSES",
+   "weight": 0.4,
+   "direction": "+",
+   "lag_quarters": 0,
+   "stage": "underwriting",
+   "coverage": "ALL",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-102",
+     "title": "UW Note Quality Review",
+     "publisher": "Pricing Actuary",
+     "date": "2024-Q2"
+    }
+   ]
+  },
+  {
+   "a": "risk_score_override",
+   "b": "loss_ratio",
+   "relation": "PREDISPOSES",
+   "weight": 0.72,
+   "direction": "+",
+   "lag_quarters": 2,
+   "stage": "risk_scoring",
+   "coverage": "5437",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-103",
+     "title": "Override Discipline Memo",
+     "publisher": "Pricing Actuary",
+     "date": "2024-Q2"
+    }
+   ],
+   "exposure": 0.95
+  },
+  {
+   "a": "risk_score_override",
+   "b": "claim_frequency",
+   "relation": "PREDISPOSES",
+   "weight": 0.62,
+   "direction": "+",
+   "lag_quarters": 2,
+   "stage": "risk_scoring",
+   "coverage": "5437",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-103",
+     "title": "Override Discipline Memo"
+    }
+   ]
+  },
+  {
+   "a": "inspection_flag_ignored",
+   "b": "claim_frequency",
+   "relation": "PREDISPOSES",
+   "weight": 0.5,
+   "direction": "+",
+   "lag_quarters": 1,
+   "stage": "site_inspection",
+   "coverage": "ALL",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-104",
+     "title": "Site Inspection Findings",
+     "publisher": "Loss Control",
+     "date": "2024-Q3"
+    }
+   ]
+  },
+  {
+   "a": "inspection_flag_ignored",
+   "b": "loss_ratio",
+   "relation": "PREDISPOSES",
+   "weight": 0.45,
+   "direction": "+",
+   "lag_quarters": 1,
+   "stage": "site_inspection",
+   "coverage": "ALL",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-104",
+     "title": "Site Inspection Findings"
+    }
+   ]
+  },
+  {
+   "a": "pricing_inadequacy",
+   "b": "margin_contribution",
+   "relation": "PREDISPOSES",
+   "weight": 0.6,
+   "direction": "-",
+   "lag_quarters": 0,
+   "stage": "bind",
+   "coverage": "5437",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-105",
+     "title": "Pricing Adequacy Brief"
+    }
+   ]
+  },
+  {
+   "a": "late_fnol",
+   "b": "loss_ratio",
+   "relation": "PREDISPOSES",
+   "weight": 0.4,
+   "direction": "+",
+   "lag_quarters": 0,
+   "stage": "claim",
+   "coverage": "5437",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-106",
+     "title": "FNOL Latency Briefing",
+     "publisher": "Claims",
+     "date": "2024-Q4"
+    }
+   ]
+  },
+  {
+   "a": "reserve_adequacy",
+   "b": "leakage_pct",
+   "relation": "PREDISPOSES",
+   "weight": 0.65,
+   "direction": "-",
+   "lag_quarters": 0,
+   "stage": "claim",
+   "coverage": "ALL",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-107",
+     "title": "Reserving Discipline Memo",
+     "publisher": "Claims",
+     "date": "2024-Q4"
+    }
+   ],
+   "exposure": 0.85
+  },
+  {
+   "a": "settlement_slowness",
+   "b": "leakage_pct",
+   "relation": "PREDISPOSES",
+   "weight": 0.45,
+   "direction": "+",
+   "lag_quarters": 0,
+   "stage": "settlement",
+   "coverage": "ALL",
+   "region": "ALL",
+   "provenance": [
+    {
+     "doc_id": "PFM-108",
+     "title": "Cycle-Time Impact Study",
+     "publisher": "Claims",
+     "date": "2024-Q4"
+    }
+   ]
+  },
+  {
+   "a": "exposure_completeness",
+   "b": "PFM-101",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "broker_pattern",
+   "b": "PFM-101",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "uw_note_hedging",
+   "b": "PFM-102",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "risk_score_override",
+   "b": "PFM-103",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "inspection_flag_ignored",
+   "b": "PFM-104",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "pricing_inadequacy",
+   "b": "PFM-105",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "late_fnol",
+   "b": "PFM-106",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "reserve_adequacy",
+   "b": "PFM-107",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "settlement_slowness",
+   "b": "PFM-108",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "reserve_adequacy",
+   "b": "MEDIA-01",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "risk_score_override",
+   "b": "MEDIA-02",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "submission_velocity",
+   "b": "submission",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "broker_latency",
+   "b": "submission",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "uw_staffing",
+   "b": "underwriting",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "score_drift",
+   "b": "risk_scoring",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "deductible_gaming",
+   "b": "bind",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "premium_override",
+   "b": "bind",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "reserve_cycles",
+   "b": "claim",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "attorney_engagement",
+   "b": "settlement",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "audit_findings",
+   "b": "settlement",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "inspection_quality",
+   "b": "site_inspection",
+   "relation": "PERTAINS_TO"
+  },
+  {
+   "a": "EVT-P1",
+   "b": "late_fnol",
+   "relation": "CAUSES",
+   "weight": 0.6
+  },
+  {
+   "a": "EVT-P2",
+   "b": "uw_staffing",
+   "relation": "CAUSES",
+   "weight": 0.65
+  },
+  {
+   "a": "EVT-P3",
+   "b": "broker_latency",
+   "relation": "CAUSES",
+   "weight": 0.55
+  },
+  {
+   "a": "EVT-P4",
+   "b": "score_drift",
+   "relation": "CAUSES",
+   "weight": 0.55
+  },
+  {
+   "a": "EVT-P5",
+   "b": "premium_override",
+   "relation": "CAUSES",
+   "weight": 0.6
+  },
+  {
+   "a": "submission_velocity",
+   "b": "bind_conversion",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "West",
+   "weight": 0.3,
+   "direction": "-",
+   "lag_quarters": 0,
+   "exposure": 0.35,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-104"
+    }
+   ]
+  },
+  {
+   "a": "submission_velocity",
+   "b": "PFM-104",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "broker_latency",
+   "b": "bind_conversion",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.32,
+   "direction": "-",
+   "lag_quarters": 1,
+   "exposure": 0.4,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-105"
+    }
+   ]
+  },
+  {
+   "a": "broker_latency",
+   "b": "PFM-105",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "uw_staffing",
+   "b": "pricing_inadequacy",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.38,
+   "direction": "+",
+   "lag_quarters": 0,
+   "exposure": 0.45,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-106"
+    }
+   ]
+  },
+  {
+   "a": "uw_staffing",
+   "b": "PFM-106",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "score_drift",
+   "b": "loss_ratio",
+   "relation": "PREDISPOSES",
+   "coverage": "5437",
+   "region": "ALL",
+   "weight": 0.4,
+   "direction": "+",
+   "lag_quarters": 1,
+   "exposure": 0.5,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-107"
+    }
+   ]
+  },
+  {
+   "a": "score_drift",
+   "b": "PFM-107",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "deductible_gaming",
+   "b": "margin_contribution",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.34,
+   "direction": "-",
+   "lag_quarters": 1,
+   "exposure": 0.42,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-108"
+    }
+   ]
+  },
+  {
+   "a": "deductible_gaming",
+   "b": "PFM-108",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "premium_override",
+   "b": "margin_contribution",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.36,
+   "direction": "-",
+   "lag_quarters": 1,
+   "exposure": 0.6,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-109"
+    }
+   ]
+  },
+  {
+   "a": "premium_override",
+   "b": "PFM-109",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "reserve_cycles",
+   "b": "leakage_pct",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.38,
+   "direction": "+",
+   "lag_quarters": 1,
+   "exposure": 0.55,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-110"
+    }
+   ]
+  },
+  {
+   "a": "reserve_cycles",
+   "b": "PFM-110",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "attorney_engagement",
+   "b": "leakage_pct",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.42,
+   "direction": "+",
+   "lag_quarters": 0,
+   "exposure": 0.58,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-111"
+    }
+   ]
+  },
+  {
+   "a": "attorney_engagement",
+   "b": "PFM-111",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "audit_findings",
+   "b": "leakage_pct",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.4,
+   "direction": "+",
+   "lag_quarters": 0,
+   "exposure": 0.5,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-112"
+    }
+   ]
+  },
+  {
+   "a": "audit_findings",
+   "b": "PFM-112",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "inspection_quality",
+   "b": "pricing_inadequacy",
+   "relation": "PREDISPOSES",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.3,
+   "direction": "+",
+   "lag_quarters": 1,
+   "exposure": 0.33,
+   "stage": "submission",
+   "provenance": [
+    {
+     "doc_id": "PFM-113"
+    }
+   ]
+  },
+  {
+   "a": "inspection_quality",
+   "b": "PFM-113",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "SUB-001",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-002",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-003",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-004",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-004",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-005",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-005",
+   "b": "submission_velocity",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-006",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-007",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-007",
+   "b": "broker_latency",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-008",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-008",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-009",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-010",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-010",
+   "b": "submission_velocity",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-011",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-012",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-012",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-013",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-014",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-014",
+   "b": "broker_latency",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-015",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-015",
+   "b": "submission_velocity",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-016",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-016",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-017",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-018",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-019",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-020",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-020",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-020",
+   "b": "submission_velocity",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-021",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-021",
+   "b": "broker_latency",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-022",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-023",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-024",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-024",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-025",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-025",
+   "b": "submission_velocity",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-026",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-027",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-028",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-028",
+   "b": "exposure_completeness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-028",
+   "b": "broker_latency",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-029",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-030",
+   "b": "submission",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-030",
+   "b": "submission_velocity",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-002",
+   "b": "BIND-002",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-002",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-003",
+   "b": "BIND-003",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-003",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-004",
+   "b": "BIND-004",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-004",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-004",
+   "b": "risk_score_override",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-005",
+   "b": "BIND-005",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-005",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-006",
+   "b": "BIND-006",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-006",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-008",
+   "b": "BIND-008",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-008",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-009",
+   "b": "BIND-009",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-009",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-010",
+   "b": "BIND-010",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-010",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-010",
+   "b": "deductible_gaming",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-011",
+   "b": "BIND-011",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-011",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-012",
+   "b": "BIND-012",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-012",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-014",
+   "b": "BIND-014",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-014",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-015",
+   "b": "BIND-015",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-015",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-016",
+   "b": "BIND-016",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-016",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-016",
+   "b": "risk_score_override",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-017",
+   "b": "BIND-017",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-017",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-018",
+   "b": "BIND-018",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-018",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-020",
+   "b": "BIND-020",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-020",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-021",
+   "b": "BIND-021",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-021",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-022",
+   "b": "BIND-022",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-022",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-023",
+   "b": "BIND-023",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-023",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-024",
+   "b": "BIND-024",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-024",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-026",
+   "b": "BIND-026",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-026",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-027",
+   "b": "BIND-027",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-027",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-028",
+   "b": "BIND-028",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-028",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-028",
+   "b": "risk_score_override",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-028",
+   "b": "deductible_gaming",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SUB-029",
+   "b": "BIND-029",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-029",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SUB-030",
+   "b": "BIND-030",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "BIND-030",
+   "b": "bind",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-003",
+   "b": "CLM-002",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-002",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-002",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-004",
+   "b": "CLM-003",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-003",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-003",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-005",
+   "b": "CLM-004",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-004",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-004",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-006",
+   "b": "CLM-005",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-005",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-005",
+   "b": "reserve_adequacy",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-009",
+   "b": "CLM-007",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-007",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-007",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-007",
+   "b": "reserve_cycles",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-010",
+   "b": "CLM-008",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-008",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-008",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-011",
+   "b": "CLM-009",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-009",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-009",
+   "b": "reserve_adequacy",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-012",
+   "b": "CLM-010",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-010",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-015",
+   "b": "CLM-012",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-012",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-012",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-016",
+   "b": "CLM-013",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-013",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-013",
+   "b": "reserve_adequacy",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-013",
+   "b": "reserve_cycles",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-017",
+   "b": "CLM-014",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-014",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-018",
+   "b": "CLM-015",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-015",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-015",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-015",
+   "b": "reserve_adequacy",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-021",
+   "b": "CLM-017",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-017",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-017",
+   "b": "reserve_adequacy",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-022",
+   "b": "CLM-018",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-018",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-023",
+   "b": "CLM-019",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-019",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-019",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-019",
+   "b": "reserve_cycles",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-024",
+   "b": "CLM-020",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-020",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-020",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-027",
+   "b": "CLM-022",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-022",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-028",
+   "b": "CLM-023",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-023",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "BIND-029",
+   "b": "CLM-024",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-024",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-024",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "BIND-030",
+   "b": "CLM-025",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "CLM-025",
+   "b": "claim",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-025",
+   "b": "late_fnol",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-025",
+   "b": "reserve_adequacy",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-025",
+   "b": "reserve_cycles",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-003",
+   "b": "SETT-002",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-002",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-002",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-004",
+   "b": "SETT-003",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-003",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-005",
+   "b": "SETT-004",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-004",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-004",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-008",
+   "b": "SETT-006",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-006",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-006",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SETT-006",
+   "b": "attorney_engagement",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-009",
+   "b": "SETT-007",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-007",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-010",
+   "b": "SETT-008",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-008",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-008",
+   "b": "audit_findings",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-013",
+   "b": "SETT-010",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-010",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-010",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-014",
+   "b": "SETT-011",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-011",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-011",
+   "b": "attorney_engagement",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-015",
+   "b": "SETT-012",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-012",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-018",
+   "b": "SETT-014",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-014",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-014",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-019",
+   "b": "SETT-015",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-015",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-015",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SETT-015",
+   "b": "audit_findings",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-020",
+   "b": "SETT-016",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-016",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-016",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "SETT-016",
+   "b": "attorney_engagement",
+   "relation": "EXHIBITS"
+  },
+  {
+   "a": "CLM-023",
+   "b": "SETT-018",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-018",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-024",
+   "b": "SETT-019",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-019",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "CLM-025",
+   "b": "SETT-020",
+   "relation": "FLOWS_TO"
+  },
+  {
+   "a": "SETT-020",
+   "b": "settlement",
+   "relation": "AT_STAGE"
+  },
+  {
+   "a": "SETT-020",
+   "b": "settlement_slowness",
+   "relation": "EXHIBITS"
+  }
+ ]
+}

@@ -1,35 +1,41 @@
-"""Curation store for extracted drivers.
+"""Curation store for extracted drivers — Neo4j edition.
 
-Extracted drivers land in a *staging* state; a human approves or rejects
-them before the analyst may cite them (the same governance instinct as
-the fraud agent's SIU checkpoint — knowledge that can influence decisions
-deserves a checkpoint too).
+Delegates to the shared dual-mode store (`graphrag_neo4j.store`), same
+governance as before: extracted drivers land in a *staging* state; a
+human approves or rejects them before the analyst may cite them.
+State lives in `data/graph_approval.json` (the shared single source of
+truth); in Neo4j mode the property is also written to the database.
 
-State lives in `data/graph_approval.json` keyed by driver_id. Drivers
-marked `curated: true` in the graph are always citable; anything else
-defaults to approved=True unless the file says otherwise, so headless
-evals stay green out of the box.
+Public API unchanged: load_approval / save_approval / is_citable /
+set_approval.
 """
 from __future__ import annotations
 
-import json
+from graphrag_neo4j.store import APPROVAL_PATHS, get_store as _get_shared
 
-from fraud_agent.paths import DATA_DIR
+APPROVAL_PATH = APPROVAL_PATHS["cost"]
 
-APPROVAL_PATH = DATA_DIR / "graph_approval.json"
+
+def _store():
+    return _get_shared("cost", prefer_neo4j=False)
 
 
 def load_approval() -> dict[str, bool]:
-    if APPROVAL_PATH.exists():
-        return json.loads(APPROVAL_PATH.read_text())
-    return {}
+    return _store().load_approval()
 
 
 def save_approval(state: dict[str, bool]) -> None:
-    APPROVAL_PATH.write_text(json.dumps(state, indent=2))
+    _store().save_approval(state)
+
+
+def set_approval(entity_id: str, approved: bool) -> None:
+    _store().set_approval(entity_id, approved)
 
 
 def is_citable(driver_id: str, node: dict) -> bool:
-    if node.get("curated"):
-        return True
-    return load_approval().get(driver_id, True)
+    return _store().is_citable(driver_id, node)
+
+
+def get_store():
+    """The active (Neo4j-backed or local) store for the cost domain (prefers Neo4j)."""
+    return _get_shared("cost")

@@ -1,0 +1,24 @@
+# ──────────────────────────────────────────────────────────────
+# ANATOMY COMPONENT: GOAL  (agent #3c — Loss Settlement Quality Agent)
+# Part of the Portfolio Journey Analyst system.
+# ──────────────────────────────────────────────────────────────
+goal:
+  id: portfolio-settlement-quality-v1
+  statement: >
+    Evaluate settlement quality on claims attached to a bound policy
+    using the claim + settlement fact tables. Produce a verdict:
+    CLEAN SETTLEMENT, ACCEPTABLE, or LEAKAGE DETECTED.
+  success_criteria:
+    - Reserve ratio, cycle time and leakage figures come from the warehouse
+    - No claims attached => CLEAN SETTLEMENT by absence, with a note
+    - Every cited signal maps to a stage-flow lineage node
+  constraints:
+    max_steps: 12
+    max_tool_errors: 2
+    max_cost_units: 30
+    clean_threshold: 70
+    acceptable_threshold: 40
+  skills_to_load:
+    - settlement_quality
+    - verification
+    - citation_policy

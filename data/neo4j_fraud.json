@@ -1,0 +1,7932 @@
+{
+ "nodes": [
+  {
+   "id": "RING-SOUTH-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "South Texas staged-accident ring",
+   "region": "South",
+   "confidence": 0.85,
+   "strength_word": "confirmed",
+   "exposure": 687000,
+   "curated": true,
+   "provenance": [
+    {
+     "doc_id": "SIU-01",
+     "title": "SIU Investigation: Staged Rear-Ends in South Houston",
+     "publisher": "Special Investigations Unit \u2014 Region 3",
+     "date": "2026-03-10"
+    },
+    {
+     "doc_id": "AUD-001",
+     "title": "Post-Payment Audit: QuickFix Auto \u2014 Ghost Repairs",
+     "publisher": "Claims Audit & Recovery \u2014 Region 3",
+     "date": "2026-04-01"
+    },
+    {
+     "doc_id": "SIU-05",
+     "title": "SIU Closing Memo: Ring-South-1 Prosecution Referral",
+     "publisher": "Special Investigations Unit \u2014 Region 3",
+     "date": "2026-05-01"
+    }
+   ]
+  },
+  {
+   "id": "RING-MIDWEST-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "Midwest medical-mill ring",
+   "region": "Midwest",
+   "confidence": 0.7,
+   "strength_word": "strongly_suspected",
+   "exposure": 412000,
+   "curated": true,
+   "provenance": [
+    {
+     "doc_id": "SIU-02",
+     "title": "Medical-Mill Investigation: Midwest PIP Abuse Pattern",
+     "publisher": "Special Investigations Unit \u2014 Region 2",
+     "date": "2026-01-22"
+    }
+   ]
+  },
+  {
+   "id": "RING-NORTHEAST-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "Northeast premium-diversion ring",
+   "region": "Northeast",
+   "confidence": 0.85,
+   "strength_word": "confirmed",
+   "exposure": 540000,
+   "curated": true,
+   "provenance": [
+    {
+     "doc_id": "SIU-03",
+     "title": "SIU Alert: Northeast Premium Diversion Ring",
+     "publisher": "Special Investigations Unit \u2014 Region 1",
+     "date": "2026-03-28"
+    }
+   ]
+  },
+  {
+   "id": "RING-SE-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "Southeast tow-steering ring",
+   "region": "Southeast",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "exposure": 296000,
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "SIU-07",
+     "title": "SIU Report: Tow-Steering Corridor on I-285",
+     "publisher": "Special Investigations Unit \u2014 Region 4",
+     "date": "2026-02-27"
+    }
+   ]
+  },
+  {
+   "id": "RING-WEST-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "West ghost-repair ring",
+   "region": "West",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "exposure": 348000,
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "SIU-08",
+     "title": "SIU Investigation: Ghost Repairs in the San Gabriel Valley",
+     "publisher": "Special Investigations Unit \u2014 Region 5",
+     "date": "2026-03-05"
+    }
+   ]
+  },
+  {
+   "id": "RING-DFW-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "DFW swoop-and-squat cell",
+   "region": "South",
+   "confidence": 0.4,
+   "strength_word": "possible",
+   "exposure": 187000,
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "SIU-10",
+     "title": "SIU Alert: Swoop-and-Squat Cell on FM-635",
+     "publisher": "Special Investigations Unit \u2014 Region 3",
+     "date": "2026-03-19"
+    }
+   ]
+  },
+  {
+   "id": "RING-PHX-1",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "Phoenix rental-receipt ring",
+   "region": "West",
+   "confidence": 0.4,
+   "strength_word": "possible",
+   "exposure": 143000,
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "SIU-09",
+     "title": "SIU Report: Rental-Receipt Inflation in Maricopa County",
+     "publisher": "Special Investigations Unit \u2014 Region 5",
+     "date": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "id": "RING-MW-2",
+   "type": "fraud_ring",
+   "approved": true,
+   "name": "Indianapolis chiro-referral cell",
+   "region": "Midwest",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "exposure": 231000,
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "SIU-12",
+     "title": "SIU Investigation: Chiro-Referral Cell in Indianapolis",
+     "publisher": "Special Investigations Unit \u2014 Region 2",
+     "date": "2026-04-09"
+    }
+   ]
+  },
+  {
+   "id": "PATTERN-STAGING-1",
+   "type": "scam_type",
+   "approved": true,
+   "name": "Staged accidents \u2014 swoop-and-squat & jump-ins",
+   "confidence": 0.85,
+   "strength_word": "confirmed",
+   "curated": true,
+   "provenance": [
+    {
+     "doc_id": "SIU-01"
+    },
+    {
+     "doc_id": "SIU-04"
+    },
+    {
+     "doc_id": "SIU-10"
+    }
+   ]
+  },
+  {
+   "id": "PATTERN-PIP-1",
+   "type": "scam_type",
+   "approved": true,
+   "name": "PIP abuse \u2014 inflated soft-tissue treatment",
+   "confidence": 0.7,
+   "strength_word": "strongly_suspected",
+   "curated": true,
+   "provenance": [
+    {
+     "doc_id": "SIU-02"
+    },
+    {
+     "doc_id": "NB-001"
+    }
+   ]
+  },
+  {
+   "id": "PATTERN-ID-1",
+   "type": "scam_type",
+   "approved": true,
+   "name": "Identity manipulation \u2014 synthetic claimants",
+   "confidence": 0.85,
+   "strength_word": "confirmed",
+   "curated": true,
+   "provenance": [
+    {
+     "doc_id": "SIU-03"
+    },
+    {
+     "doc_id": "NB-002"
+    }
+   ]
+  },
+  {
+   "id": "PATTERN-TOW-1",
+   "type": "scam_type",
+   "approved": true,
+   "name": "Tow steering \u2014 referral kickbacks",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "NB-001"
+    },
+    {
+     "doc_id": "SIU-07"
+    }
+   ]
+  },
+  {
+   "id": "PATTERN-GHOST-1",
+   "type": "scam_type",
+   "approved": true,
+   "name": "Ghost repairs \u2014 parts never installed",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "AUD-001"
+    },
+    {
+     "doc_id": "AUD-005"
+    },
+    {
+     "doc_id": "SIU-08"
+    }
+   ]
+  },
+  {
+   "id": "PATTERN-RENTAL-1",
+   "type": "scam_type",
+   "approved": true,
+   "name": "Rental-reimbursement inflation",
+   "confidence": 0.4,
+   "strength_word": "possible",
+   "curated": false,
+   "provenance": [
+    {
+     "doc_id": "NB-004"
+    },
+    {
+     "doc_id": "SIU-09"
+    }
+   ]
+  },
+  {
+   "id": "SHOP-77",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "QuickFix Auto",
+   "region": "South",
+   "suspect": true
+  },
+  {
+   "id": "SHOP-COLLUSION-1",
+   "type": "suspect_shop",
+   "approved": true,
+   "name": "QuickFix Auto \u2014 suspected billing fraud",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "curated": true,
+   "refers_to": "SHOP-77"
+  },
+  {
+   "id": "SHOP-12",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Certified Auto Care",
+   "region": "Southeast",
+   "suspect": true
+  },
+  {
+   "id": "SHOP-COLLUSION-2",
+   "type": "suspect_shop",
+   "approved": true,
+   "name": "Certified Auto Care \u2014 suspected billing fraud",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "curated": true,
+   "refers_to": "SHOP-12"
+  },
+  {
+   "id": "SHOP-45",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Ace Collision & Paint",
+   "region": "West",
+   "suspect": true
+  },
+  {
+   "id": "SHOP-COLLUSION-3",
+   "type": "suspect_shop",
+   "approved": true,
+   "name": "Ace Collision & Paint \u2014 suspected billing fraud",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "curated": true,
+   "refers_to": "SHOP-45"
+  },
+  {
+   "id": "SHOP-88",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Metro Body DFW",
+   "region": "South",
+   "suspect": true
+  },
+  {
+   "id": "SHOP-COLLUSION-4",
+   "type": "suspect_shop",
+   "approved": true,
+   "name": "Metro Body DFW \u2014 suspected billing fraud",
+   "confidence": 0.55,
+   "strength_word": "suspected",
+   "curated": true,
+   "refers_to": "SHOP-88"
+  },
+  {
+   "id": "SHOP-201",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Lone Star Collision",
+   "region": "South",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-202",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Hilltop Auto Body",
+   "region": "Midwest",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-203",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Beacon Street Repair",
+   "region": "Northeast",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-204",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Peachtree Frame & Body",
+   "region": "Southeast",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-205",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Pacific Auto Craft",
+   "region": "West",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-206",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Trinity Valley Collision",
+   "region": "South",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-207",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Fox River Body Shop",
+   "region": "Midwest",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-208",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Hudson Auto Works",
+   "region": "Northeast",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-209",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Magnolia Repair Center",
+   "region": "Southeast",
+   "suspect": false
+  },
+  {
+   "id": "SHOP-210",
+   "type": "repair_shop",
+   "approved": true,
+   "name": "Desert Sky Collision",
+   "region": "West",
+   "suspect": false
+  },
+  {
+   "id": "CLIN-01",
+   "type": "clinic",
+   "approved": true,
+   "name": "South Houston Spine & Rehab",
+   "suspicious": true
+  },
+  {
+   "id": "CLIN-02",
+   "type": "clinic",
+   "approved": true,
+   "name": "Midwest Injury Centers",
+   "suspicious": true
+  },
+  {
+   "id": "CLIN-03",
+   "type": "clinic",
+   "approved": true,
+   "name": "Circle City Chiro Clinic",
+   "suspicious": true
+  },
+  {
+   "id": "CLIN-04",
+   "type": "clinic",
+   "approved": true,
+   "name": "Valley Rehab Partners",
+   "suspicious": true
+  },
+  {
+   "id": "CLIN-51",
+   "type": "clinic",
+   "approved": true,
+   "name": "FirstCare Family Medicine",
+   "suspicious": false
+  },
+  {
+   "id": "CLIN-52",
+   "type": "clinic",
+   "approved": true,
+   "name": "Riverbend Orthopedics",
+   "suspicious": false
+  },
+  {
+   "id": "CLIN-53",
+   "type": "clinic",
+   "approved": true,
+   "name": "Northgate Physical Therapy",
+   "suspicious": false
+  },
+  {
+   "id": "CLIN-54",
+   "type": "clinic",
+   "approved": true,
+   "name": "Summit Chiropractic Care",
+   "suspicious": false
+  },
+  {
+   "id": "CLIN-55",
+   "type": "clinic",
+   "approved": true,
+   "name": "Bayview Health Clinic",
+   "suspicious": false
+  },
+  {
+   "id": "ATTY-01",
+   "type": "attorney",
+   "approved": true,
+   "name": "Marcus Devereaux",
+   "suspicious": true
+  },
+  {
+   "id": "ATTY-02",
+   "type": "attorney",
+   "approved": true,
+   "name": "Neil Prescott",
+   "suspicious": true
+  },
+  {
+   "id": "ATTY-03",
+   "type": "attorney",
+   "approved": true,
+   "name": "Howard Castellano",
+   "suspicious": true
+  },
+  {
+   "id": "ATTY-04",
+   "type": "attorney",
+   "approved": true,
+   "name": "Ralph Berman",
+   "suspicious": true
+  },
+  {
+   "id": "ATTY-05",
+   "type": "attorney",
+   "approved": true,
+   "name": "Lyle Drummond",
+   "suspicious": true
+  },
+  {
+   "id": "ATTY-06",
+   "type": "attorney",
+   "approved": true,
+   "name": "Victor Salazar",
+   "suspicious": true
+  },
+  {
+   "id": "ATTY-51",
+   "type": "attorney",
+   "approved": true,
+   "name": "Amanda Whitfield",
+   "suspicious": false
+  },
+  {
+   "id": "ATTY-52",
+   "type": "attorney",
+   "approved": true,
+   "name": "George Kim",
+   "suspicious": false
+  },
+  {
+   "id": "ATTY-53",
+   "type": "attorney",
+   "approved": true,
+   "name": "Priya Raman",
+   "suspicious": false
+  },
+  {
+   "id": "ATTY-54",
+   "type": "attorney",
+   "approved": true,
+   "name": "Daniel Ochoa",
+   "suspicious": false
+  },
+  {
+   "id": "ATTY-55",
+   "type": "attorney",
+   "approved": true,
+   "name": "Susan Marsh",
+   "suspicious": false
+  },
+  {
+   "id": "SHELL-01",
+   "type": "shell_company",
+   "approved": true,
+   "name": "Gulf Coast Logistics LLC"
+  },
+  {
+   "id": "SHELL-02",
+   "type": "shell_company",
+   "approved": true,
+   "name": "Hoosier Billing Services LLC"
+  },
+  {
+   "id": "SHELL-03",
+   "type": "shell_company",
+   "approved": true,
+   "name": "Liberty Square Insurance Group"
+  },
+  {
+   "id": "SHELL-04",
+   "type": "shell_company",
+   "approved": true,
+   "name": "Peachtree Towing Admin LLC"
+  },
+  {
+   "id": "SHELL-05",
+   "type": "shell_company",
+   "approved": true,
+   "name": "West Coast Parts Supply LLC"
+  },
+  {
+   "id": "SHELL-06",
+   "type": "shell_company",
+   "approved": true,
+   "name": "Sunset Valley Rentals LLC"
+  },
+  {
+   "id": "SHELL-07",
+   "type": "shell_company",
+   "approved": true,
+   "name": "Circle City Admin Services LLC"
+  },
+  {
+   "id": "CL-101",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-102",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-103",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-104",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-105",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-106",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-107",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-108",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-109",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-110",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-111",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-112",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-113",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-114",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-201",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-202",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-203",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": []
+  },
+  {
+   "id": "CL-207",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-900",
+   "type": "phone",
+   "approved": true,
+   "number": "(713) 555-0190"
+  },
+  {
+   "id": "ADDR-550",
+   "type": "address",
+   "approved": true,
+   "zip": "77017",
+   "street": "4102 Bellfort St"
+  },
+  {
+   "id": "PH-101",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0101-101"
+  },
+  {
+   "id": "ADDR-101",
+   "type": "address",
+   "approved": true,
+   "zip": "77101",
+   "street": "201 Anchor St"
+  },
+  {
+   "id": "PH-102",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0102-102"
+  },
+  {
+   "id": "ADDR-102",
+   "type": "address",
+   "approved": true,
+   "zip": "77102",
+   "street": "202 Anchor St"
+  },
+  {
+   "id": "PH-103",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0103-103"
+  },
+  {
+   "id": "ADDR-103",
+   "type": "address",
+   "approved": true,
+   "zip": "77103",
+   "street": "203 Anchor St"
+  },
+  {
+   "id": "PH-104",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0104-104"
+  },
+  {
+   "id": "ADDR-104",
+   "type": "address",
+   "approved": true,
+   "zip": "77104",
+   "street": "204 Anchor St"
+  },
+  {
+   "id": "PH-105",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0105-105"
+  },
+  {
+   "id": "ADDR-105",
+   "type": "address",
+   "approved": true,
+   "zip": "77105",
+   "street": "205 Anchor St"
+  },
+  {
+   "id": "PH-106",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0106-106"
+  },
+  {
+   "id": "ADDR-106",
+   "type": "address",
+   "approved": true,
+   "zip": "77106",
+   "street": "206 Anchor St"
+  },
+  {
+   "id": "PH-107",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0107-107"
+  },
+  {
+   "id": "ADDR-107",
+   "type": "address",
+   "approved": true,
+   "zip": "77107",
+   "street": "207 Anchor St"
+  },
+  {
+   "id": "PH-108",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0108-108"
+  },
+  {
+   "id": "ADDR-108",
+   "type": "address",
+   "approved": true,
+   "zip": "77108",
+   "street": "208 Anchor St"
+  },
+  {
+   "id": "PH-109",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0109-109"
+  },
+  {
+   "id": "ADDR-109",
+   "type": "address",
+   "approved": true,
+   "zip": "77109",
+   "street": "209 Anchor St"
+  },
+  {
+   "id": "PH-110",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0110-110"
+  },
+  {
+   "id": "ADDR-110",
+   "type": "address",
+   "approved": true,
+   "zip": "77110",
+   "street": "210 Anchor St"
+  },
+  {
+   "id": "PH-111",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0111-111"
+  },
+  {
+   "id": "ADDR-111",
+   "type": "address",
+   "approved": true,
+   "zip": "77111",
+   "street": "211 Anchor St"
+  },
+  {
+   "id": "PH-112",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0112-112"
+  },
+  {
+   "id": "ADDR-112",
+   "type": "address",
+   "approved": true,
+   "zip": "77112",
+   "street": "212 Anchor St"
+  },
+  {
+   "id": "PH-113",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0113-113"
+  },
+  {
+   "id": "ADDR-113",
+   "type": "address",
+   "approved": true,
+   "zip": "77113",
+   "street": "213 Anchor St"
+  },
+  {
+   "id": "PH-114",
+   "type": "phone",
+   "approved": true,
+   "number": "(555) 0114-114"
+  },
+  {
+   "id": "ADDR-114",
+   "type": "address",
+   "approved": true,
+   "zip": "77114",
+   "street": "214 Anchor St"
+  },
+  {
+   "id": "CL-301",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-302",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-303",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-304",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-305",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-306",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-307",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-308",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-309",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-310",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-311",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-312",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-313",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-314",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-315",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-316",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-317",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-318",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-319",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-320",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-321",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-322",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-323",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-324",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-325",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-326",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-327",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-328",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-329",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-330",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-331",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-332",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-333",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-334",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-335",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-336",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-337",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-338",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-339",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-340",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-341",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-342",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-343",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-344",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-345",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-346",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-347",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-348",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-349",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-350",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-351",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-352",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-353",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-354",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-355",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-356",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-357",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-358",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-359",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-360",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-361",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-362",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-363",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-364",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-365",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-366",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-367",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-368",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-369",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-370",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-371",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-372",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-373",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-374",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-375",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-376",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-377",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-378",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-379",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-380",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-381",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-382",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-383",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-384",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-385",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-386",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-387",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-388",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-389",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-390",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-391",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-392",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-393",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-394",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-395",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-396",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-397",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-398",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-399",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-400",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-401",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-402",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-403",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-404",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-405",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-406",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-407",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-408",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-409",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-410",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-411",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-412",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-413",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-414",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-415",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-416",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-417",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-418",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-419",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-420",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-421",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "CL-422",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": true,
+   "risk_flags": [
+    "member_of_ring"
+   ]
+  },
+  {
+   "id": "PH-91",
+   "type": "phone",
+   "approved": true,
+   "number": "(800) 555-9376"
+  },
+  {
+   "id": "ADDR-92",
+   "type": "address",
+   "approved": true,
+   "zip": "42850",
+   "street": "6141 Ring Rd"
+  },
+  {
+   "id": "PH-92",
+   "type": "phone",
+   "approved": true,
+   "number": "(800) 555-9476"
+  },
+  {
+   "id": "PH-94",
+   "type": "phone",
+   "approved": true,
+   "number": "(800) 555-9780"
+  },
+  {
+   "id": "ADDR-91",
+   "type": "address",
+   "approved": true,
+   "zip": "37557",
+   "street": "5181 Ring Rd"
+  },
+  {
+   "id": "PH-93",
+   "type": "phone",
+   "approved": true,
+   "number": "(800) 555-9925"
+  },
+  {
+   "id": "ADDR-93",
+   "type": "address",
+   "approved": true,
+   "zip": "82540",
+   "street": "4286 Ring Rd"
+  },
+  {
+   "id": "ADDR-94",
+   "type": "address",
+   "approved": true,
+   "zip": "40150",
+   "street": "6621 Ring Rd"
+  },
+  {
+   "id": "CL-701",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-701",
+   "type": "phone",
+   "approved": true,
+   "number": "(366) 555-9999"
+  },
+  {
+   "id": "ADDR-701",
+   "type": "address",
+   "approved": true,
+   "zip": "88301",
+   "street": "8264 Maple Ln"
+  },
+  {
+   "id": "CL-702",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-702",
+   "type": "phone",
+   "approved": true,
+   "number": "(509) 555-5905"
+  },
+  {
+   "id": "ADDR-702",
+   "type": "address",
+   "approved": true,
+   "zip": "38551",
+   "street": "1302 Oak St"
+  },
+  {
+   "id": "CL-703",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-703",
+   "type": "phone",
+   "approved": true,
+   "number": "(827) 555-3937"
+  },
+  {
+   "id": "ADDR-703",
+   "type": "address",
+   "approved": true,
+   "zip": "28860",
+   "street": "8490 Pine Dr"
+  },
+  {
+   "id": "CL-704",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-704",
+   "type": "phone",
+   "approved": true,
+   "number": "(787) 555-2923"
+  },
+  {
+   "id": "ADDR-704",
+   "type": "address",
+   "approved": true,
+   "zip": "40025",
+   "street": "5476 Elm St"
+  },
+  {
+   "id": "CL-705",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-705",
+   "type": "phone",
+   "approved": true,
+   "number": "(316) 555-5896"
+  },
+  {
+   "id": "ADDR-705",
+   "type": "address",
+   "approved": true,
+   "zip": "95884",
+   "street": "8525 Oak St"
+  },
+  {
+   "id": "CL-706",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-706",
+   "type": "phone",
+   "approved": true,
+   "number": "(283) 555-3259"
+  },
+  {
+   "id": "ADDR-706",
+   "type": "address",
+   "approved": true,
+   "zip": "68161",
+   "street": "899 Maple Ave"
+  },
+  {
+   "id": "CL-707",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-707",
+   "type": "phone",
+   "approved": true,
+   "number": "(874) 555-6792"
+  },
+  {
+   "id": "ADDR-707",
+   "type": "address",
+   "approved": true,
+   "zip": "35279",
+   "street": "149 Main Ave"
+  },
+  {
+   "id": "CL-708",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-708",
+   "type": "phone",
+   "approved": true,
+   "number": "(253) 555-6080"
+  },
+  {
+   "id": "ADDR-708",
+   "type": "address",
+   "approved": true,
+   "zip": "63298",
+   "street": "3002 Cedar St"
+  },
+  {
+   "id": "CL-709",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-709",
+   "type": "phone",
+   "approved": true,
+   "number": "(927) 555-4867"
+  },
+  {
+   "id": "ADDR-709",
+   "type": "address",
+   "approved": true,
+   "zip": "19476",
+   "street": "3669 Cedar St"
+  },
+  {
+   "id": "CL-710",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-710",
+   "type": "phone",
+   "approved": true,
+   "number": "(421) 555-7170"
+  },
+  {
+   "id": "ADDR-710",
+   "type": "address",
+   "approved": true,
+   "zip": "34049",
+   "street": "8163 Cedar Ln"
+  },
+  {
+   "id": "CL-711",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-711",
+   "type": "phone",
+   "approved": true,
+   "number": "(345) 555-4291"
+  },
+  {
+   "id": "ADDR-711",
+   "type": "address",
+   "approved": true,
+   "zip": "81648",
+   "street": "6119 Elm Ave"
+  },
+  {
+   "id": "CL-712",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-712",
+   "type": "phone",
+   "approved": true,
+   "number": "(549) 555-4683"
+  },
+  {
+   "id": "ADDR-712",
+   "type": "address",
+   "approved": true,
+   "zip": "43865",
+   "street": "4547 Cedar St"
+  },
+  {
+   "id": "CL-713",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-713",
+   "type": "phone",
+   "approved": true,
+   "number": "(413) 555-8667"
+  },
+  {
+   "id": "ADDR-713",
+   "type": "address",
+   "approved": true,
+   "zip": "65356",
+   "street": "7803 Main Ave"
+  },
+  {
+   "id": "CL-714",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-714",
+   "type": "phone",
+   "approved": true,
+   "number": "(546) 555-4126"
+  },
+  {
+   "id": "ADDR-714",
+   "type": "address",
+   "approved": true,
+   "zip": "49581",
+   "street": "6252 Pine St"
+  },
+  {
+   "id": "CL-715",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-715",
+   "type": "phone",
+   "approved": true,
+   "number": "(937) 555-5023"
+  },
+  {
+   "id": "ADDR-715",
+   "type": "address",
+   "approved": true,
+   "zip": "42499",
+   "street": "7856 Elm Ave"
+  },
+  {
+   "id": "CL-716",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-716",
+   "type": "phone",
+   "approved": true,
+   "number": "(836) 555-2130"
+  },
+  {
+   "id": "ADDR-716",
+   "type": "address",
+   "approved": true,
+   "zip": "75835",
+   "street": "817 Pine Ln"
+  },
+  {
+   "id": "CL-717",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-717",
+   "type": "phone",
+   "approved": true,
+   "number": "(450) 555-3920"
+  },
+  {
+   "id": "ADDR-717",
+   "type": "address",
+   "approved": true,
+   "zip": "25525",
+   "street": "817 Elm St"
+  },
+  {
+   "id": "CL-718",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-718",
+   "type": "phone",
+   "approved": true,
+   "number": "(235) 555-6500"
+  },
+  {
+   "id": "ADDR-718",
+   "type": "address",
+   "approved": true,
+   "zip": "14962",
+   "street": "5309 Oak St"
+  },
+  {
+   "id": "CL-719",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-719",
+   "type": "phone",
+   "approved": true,
+   "number": "(224) 555-8154"
+  },
+  {
+   "id": "ADDR-719",
+   "type": "address",
+   "approved": true,
+   "zip": "96085",
+   "street": "2059 Elm Ln"
+  },
+  {
+   "id": "CL-720",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-720",
+   "type": "phone",
+   "approved": true,
+   "number": "(579) 555-7463"
+  },
+  {
+   "id": "ADDR-720",
+   "type": "address",
+   "approved": true,
+   "zip": "32077",
+   "street": "8543 Cedar Dr"
+  },
+  {
+   "id": "CL-721",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-721",
+   "type": "phone",
+   "approved": true,
+   "number": "(563) 555-1862"
+  },
+  {
+   "id": "ADDR-721",
+   "type": "address",
+   "approved": true,
+   "zip": "13257",
+   "street": "7493 Pine St"
+  },
+  {
+   "id": "CL-722",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-722",
+   "type": "phone",
+   "approved": true,
+   "number": "(658) 555-1647"
+  },
+  {
+   "id": "ADDR-722",
+   "type": "address",
+   "approved": true,
+   "zip": "50179",
+   "street": "4959 Oak Ave"
+  },
+  {
+   "id": "CL-723",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-723",
+   "type": "phone",
+   "approved": true,
+   "number": "(371) 555-4124"
+  },
+  {
+   "id": "ADDR-723",
+   "type": "address",
+   "approved": true,
+   "zip": "91006",
+   "street": "8903 Main Dr"
+  },
+  {
+   "id": "CL-724",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-724",
+   "type": "phone",
+   "approved": true,
+   "number": "(285) 555-9946"
+  },
+  {
+   "id": "ADDR-724",
+   "type": "address",
+   "approved": true,
+   "zip": "72644",
+   "street": "7378 Main Dr"
+  },
+  {
+   "id": "CL-725",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-725",
+   "type": "phone",
+   "approved": true,
+   "number": "(348) 555-5119"
+  },
+  {
+   "id": "ADDR-725",
+   "type": "address",
+   "approved": true,
+   "zip": "92238",
+   "street": "6253 Main Dr"
+  },
+  {
+   "id": "CL-726",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-726",
+   "type": "phone",
+   "approved": true,
+   "number": "(983) 555-4871"
+  },
+  {
+   "id": "ADDR-726",
+   "type": "address",
+   "approved": true,
+   "zip": "95093",
+   "street": "4121 Maple Ave"
+  },
+  {
+   "id": "CL-727",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-727",
+   "type": "phone",
+   "approved": true,
+   "number": "(854) 555-8843"
+  },
+  {
+   "id": "ADDR-727",
+   "type": "address",
+   "approved": true,
+   "zip": "31179",
+   "street": "8683 Maple St"
+  },
+  {
+   "id": "CL-728",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-728",
+   "type": "phone",
+   "approved": true,
+   "number": "(660) 555-2547"
+  },
+  {
+   "id": "ADDR-728",
+   "type": "address",
+   "approved": true,
+   "zip": "44623",
+   "street": "2742 Maple Dr"
+  },
+  {
+   "id": "CL-729",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-729",
+   "type": "phone",
+   "approved": true,
+   "number": "(247) 555-7731"
+  },
+  {
+   "id": "ADDR-729",
+   "type": "address",
+   "approved": true,
+   "zip": "27637",
+   "street": "5890 Maple Ave"
+  },
+  {
+   "id": "CL-730",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-730",
+   "type": "phone",
+   "approved": true,
+   "number": "(903) 555-7622"
+  },
+  {
+   "id": "ADDR-730",
+   "type": "address",
+   "approved": true,
+   "zip": "83691",
+   "street": "9380 Maple Dr"
+  },
+  {
+   "id": "CL-731",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-731",
+   "type": "phone",
+   "approved": true,
+   "number": "(244) 555-9276"
+  },
+  {
+   "id": "ADDR-731",
+   "type": "address",
+   "approved": true,
+   "zip": "11955",
+   "street": "8457 Elm Dr"
+  },
+  {
+   "id": "CL-732",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-732",
+   "type": "phone",
+   "approved": true,
+   "number": "(428) 555-8425"
+  },
+  {
+   "id": "ADDR-732",
+   "type": "address",
+   "approved": true,
+   "zip": "72457",
+   "street": "8590 Maple St"
+  },
+  {
+   "id": "CL-733",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-733",
+   "type": "phone",
+   "approved": true,
+   "number": "(612) 555-5681"
+  },
+  {
+   "id": "ADDR-733",
+   "type": "address",
+   "approved": true,
+   "zip": "60118",
+   "street": "6337 Elm St"
+  },
+  {
+   "id": "CL-734",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-734",
+   "type": "phone",
+   "approved": true,
+   "number": "(410) 555-6095"
+  },
+  {
+   "id": "ADDR-734",
+   "type": "address",
+   "approved": true,
+   "zip": "79702",
+   "street": "2897 Maple St"
+  },
+  {
+   "id": "CL-735",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-735",
+   "type": "phone",
+   "approved": true,
+   "number": "(517) 555-5399"
+  },
+  {
+   "id": "ADDR-735",
+   "type": "address",
+   "approved": true,
+   "zip": "38821",
+   "street": "8537 Cedar Ave"
+  },
+  {
+   "id": "CL-736",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-736",
+   "type": "phone",
+   "approved": true,
+   "number": "(358) 555-4483"
+  },
+  {
+   "id": "ADDR-736",
+   "type": "address",
+   "approved": true,
+   "zip": "74242",
+   "street": "7264 Elm Dr"
+  },
+  {
+   "id": "CL-737",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-737",
+   "type": "phone",
+   "approved": true,
+   "number": "(825) 555-4815"
+  },
+  {
+   "id": "ADDR-737",
+   "type": "address",
+   "approved": true,
+   "zip": "90607",
+   "street": "8819 Pine St"
+  },
+  {
+   "id": "CL-738",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-738",
+   "type": "phone",
+   "approved": true,
+   "number": "(926) 555-2580"
+  },
+  {
+   "id": "ADDR-738",
+   "type": "address",
+   "approved": true,
+   "zip": "64717",
+   "street": "9804 Pine Dr"
+  },
+  {
+   "id": "CL-739",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-739",
+   "type": "phone",
+   "approved": true,
+   "number": "(916) 555-7822"
+  },
+  {
+   "id": "ADDR-739",
+   "type": "address",
+   "approved": true,
+   "zip": "21104",
+   "street": "2498 Elm Dr"
+  },
+  {
+   "id": "CL-740",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-740",
+   "type": "phone",
+   "approved": true,
+   "number": "(953) 555-6497"
+  },
+  {
+   "id": "ADDR-740",
+   "type": "address",
+   "approved": true,
+   "zip": "75994",
+   "street": "4285 Maple St"
+  },
+  {
+   "id": "CL-741",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-741",
+   "type": "phone",
+   "approved": true,
+   "number": "(863) 555-6341"
+  },
+  {
+   "id": "ADDR-741",
+   "type": "address",
+   "approved": true,
+   "zip": "18650",
+   "street": "5650 Main Ln"
+  },
+  {
+   "id": "CL-742",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-742",
+   "type": "phone",
+   "approved": true,
+   "number": "(438) 555-3252"
+  },
+  {
+   "id": "ADDR-742",
+   "type": "address",
+   "approved": true,
+   "zip": "14628",
+   "street": "5554 Elm Ln"
+  },
+  {
+   "id": "CL-743",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-743",
+   "type": "phone",
+   "approved": true,
+   "number": "(544) 555-5901"
+  },
+  {
+   "id": "ADDR-743",
+   "type": "address",
+   "approved": true,
+   "zip": "12498",
+   "street": "9451 Elm Dr"
+  },
+  {
+   "id": "CL-744",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-744",
+   "type": "phone",
+   "approved": true,
+   "number": "(480) 555-5453"
+  },
+  {
+   "id": "ADDR-744",
+   "type": "address",
+   "approved": true,
+   "zip": "40199",
+   "street": "2886 Oak Ln"
+  },
+  {
+   "id": "CL-745",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-745",
+   "type": "phone",
+   "approved": true,
+   "number": "(574) 555-2377"
+  },
+  {
+   "id": "ADDR-745",
+   "type": "address",
+   "approved": true,
+   "zip": "60415",
+   "street": "1973 Main Dr"
+  },
+  {
+   "id": "CL-746",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-746",
+   "type": "phone",
+   "approved": true,
+   "number": "(642) 555-7412"
+  },
+  {
+   "id": "ADDR-746",
+   "type": "address",
+   "approved": true,
+   "zip": "95037",
+   "street": "5931 Cedar St"
+  },
+  {
+   "id": "CL-747",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-747",
+   "type": "phone",
+   "approved": true,
+   "number": "(202) 555-8394"
+  },
+  {
+   "id": "ADDR-747",
+   "type": "address",
+   "approved": true,
+   "zip": "82578",
+   "street": "6180 Pine St"
+  },
+  {
+   "id": "CL-748",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-748",
+   "type": "phone",
+   "approved": true,
+   "number": "(237) 555-7625"
+  },
+  {
+   "id": "ADDR-748",
+   "type": "address",
+   "approved": true,
+   "zip": "90250",
+   "street": "3441 Main St"
+  },
+  {
+   "id": "CL-749",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-749",
+   "type": "phone",
+   "approved": true,
+   "number": "(639) 555-3144"
+  },
+  {
+   "id": "ADDR-749",
+   "type": "address",
+   "approved": true,
+   "zip": "84188",
+   "street": "138 Pine St"
+  },
+  {
+   "id": "CL-750",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-750",
+   "type": "phone",
+   "approved": true,
+   "number": "(209) 555-1475"
+  },
+  {
+   "id": "ADDR-750",
+   "type": "address",
+   "approved": true,
+   "zip": "79632",
+   "street": "6893 Maple St"
+  },
+  {
+   "id": "CL-751",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-751",
+   "type": "phone",
+   "approved": true,
+   "number": "(653) 555-8802"
+  },
+  {
+   "id": "ADDR-751",
+   "type": "address",
+   "approved": true,
+   "zip": "62356",
+   "street": "5269 Main Ave"
+  },
+  {
+   "id": "CL-752",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-752",
+   "type": "phone",
+   "approved": true,
+   "number": "(943) 555-2947"
+  },
+  {
+   "id": "ADDR-752",
+   "type": "address",
+   "approved": true,
+   "zip": "59945",
+   "street": "2081 Elm Ave"
+  },
+  {
+   "id": "CL-753",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-753",
+   "type": "phone",
+   "approved": true,
+   "number": "(684) 555-2178"
+  },
+  {
+   "id": "ADDR-753",
+   "type": "address",
+   "approved": true,
+   "zip": "34486",
+   "street": "3066 Cedar St"
+  },
+  {
+   "id": "CL-754",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-754",
+   "type": "phone",
+   "approved": true,
+   "number": "(440) 555-6269"
+  },
+  {
+   "id": "ADDR-754",
+   "type": "address",
+   "approved": true,
+   "zip": "19110",
+   "street": "4075 Cedar Ave"
+  },
+  {
+   "id": "CL-755",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-755",
+   "type": "phone",
+   "approved": true,
+   "number": "(516) 555-7145"
+  },
+  {
+   "id": "ADDR-755",
+   "type": "address",
+   "approved": true,
+   "zip": "88435",
+   "street": "550 Main Dr"
+  },
+  {
+   "id": "CL-756",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-756",
+   "type": "phone",
+   "approved": true,
+   "number": "(594) 555-4673"
+  },
+  {
+   "id": "ADDR-756",
+   "type": "address",
+   "approved": true,
+   "zip": "70566",
+   "street": "1977 Maple Ave"
+  },
+  {
+   "id": "CL-757",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-757",
+   "type": "phone",
+   "approved": true,
+   "number": "(250) 555-1891"
+  },
+  {
+   "id": "ADDR-757",
+   "type": "address",
+   "approved": true,
+   "zip": "52718",
+   "street": "9007 Oak Ln"
+  },
+  {
+   "id": "CL-758",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-758",
+   "type": "phone",
+   "approved": true,
+   "number": "(803) 555-7643"
+  },
+  {
+   "id": "ADDR-758",
+   "type": "address",
+   "approved": true,
+   "zip": "61661",
+   "street": "2283 Oak Ln"
+  },
+  {
+   "id": "CL-759",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-759",
+   "type": "phone",
+   "approved": true,
+   "number": "(956) 555-7467"
+  },
+  {
+   "id": "ADDR-759",
+   "type": "address",
+   "approved": true,
+   "zip": "58332",
+   "street": "8851 Cedar Dr"
+  },
+  {
+   "id": "CL-760",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-760",
+   "type": "phone",
+   "approved": true,
+   "number": "(380) 555-3483"
+  },
+  {
+   "id": "ADDR-760",
+   "type": "address",
+   "approved": true,
+   "zip": "13713",
+   "street": "4810 Cedar St"
+  },
+  {
+   "id": "CL-761",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-761",
+   "type": "phone",
+   "approved": true,
+   "number": "(877) 555-1454"
+  },
+  {
+   "id": "ADDR-761",
+   "type": "address",
+   "approved": true,
+   "zip": "48553",
+   "street": "7894 Oak Ave"
+  },
+  {
+   "id": "CL-762",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-762",
+   "type": "phone",
+   "approved": true,
+   "number": "(953) 555-5099"
+  },
+  {
+   "id": "ADDR-762",
+   "type": "address",
+   "approved": true,
+   "zip": "73069",
+   "street": "3815 Maple Dr"
+  },
+  {
+   "id": "CL-763",
+   "type": "claimant",
+   "approved": true,
+   "known_fraud": false,
+   "risk_flags": []
+  },
+  {
+   "id": "PH-763",
+   "type": "phone",
+   "approved": true,
+   "number": "(432) 555-5449"
+  },
+  {
+   "id": "ADDR-763",
+   "type": "address",
+   "approved": true,
+   "zip": "22617",
+   "street": "1879 Cedar St"
+  }
+ ],
+ "edges": [
+  {
+   "a": "RING-SOUTH-1",
+   "b": "PATTERN-STAGING-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "PATTERN-ID-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "PATTERN-PIP-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "SHOP-77",
+   "relation": "OPERATES_THROUGH",
+   "role": "billing nexus"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "CLIN-01",
+   "relation": "OPERATES_THROUGH",
+   "role": "medical mill"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "ATTY-01",
+   "relation": "OPERATES_THROUGH",
+   "role": "retainer solicitor"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "SHELL-01",
+   "relation": "OPERATES_THROUGH",
+   "role": "fee laundering"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "SIU-01",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "AUD-001",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-SOUTH-1",
+   "b": "SIU-05",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-MIDWEST-1",
+   "b": "PATTERN-PIP-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-MIDWEST-1",
+   "b": "CLIN-02",
+   "relation": "OPERATES_THROUGH",
+   "role": "treatment mill"
+  },
+  {
+   "a": "RING-MIDWEST-1",
+   "b": "ATTY-02",
+   "relation": "OPERATES_THROUGH",
+   "role": "referral attorney"
+  },
+  {
+   "a": "RING-MIDWEST-1",
+   "b": "SHELL-02",
+   "relation": "OPERATES_THROUGH",
+   "role": "billing shell"
+  },
+  {
+   "a": "RING-MIDWEST-1",
+   "b": "SIU-02",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-NORTHEAST-1",
+   "b": "PATTERN-ID-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-NORTHEAST-1",
+   "b": "ATTY-03",
+   "relation": "OPERATES_THROUGH",
+   "role": "straw agent"
+  },
+  {
+   "a": "RING-NORTHEAST-1",
+   "b": "SHELL-03",
+   "relation": "OPERATES_THROUGH",
+   "role": "fake agency"
+  },
+  {
+   "a": "RING-NORTHEAST-1",
+   "b": "SIU-03",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-SE-1",
+   "b": "PATTERN-TOW-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-SE-1",
+   "b": "SHOP-12",
+   "relation": "OPERATES_THROUGH",
+   "role": "tow-yard nexus"
+  },
+  {
+   "a": "RING-SE-1",
+   "b": "ATTY-04",
+   "relation": "OPERATES_THROUGH",
+   "role": "ambulance chaser"
+  },
+  {
+   "a": "RING-SE-1",
+   "b": "SHELL-04",
+   "relation": "OPERATES_THROUGH",
+   "role": "towing fee shell"
+  },
+  {
+   "a": "RING-SE-1",
+   "b": "SIU-07",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-WEST-1",
+   "b": "PATTERN-GHOST-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-WEST-1",
+   "b": "SHOP-45",
+   "relation": "OPERATES_THROUGH",
+   "role": "ghost-repair bay"
+  },
+  {
+   "a": "RING-WEST-1",
+   "b": "CLIN-04",
+   "relation": "OPERATES_THROUGH",
+   "role": "referral clinic"
+  },
+  {
+   "a": "RING-WEST-1",
+   "b": "SHELL-05",
+   "relation": "OPERATES_THROUGH",
+   "role": "parts vendor shell"
+  },
+  {
+   "a": "RING-WEST-1",
+   "b": "SIU-08",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-DFW-1",
+   "b": "PATTERN-STAGING-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-DFW-1",
+   "b": "SHOP-88",
+   "relation": "OPERATES_THROUGH",
+   "role": "phantom repair shop"
+  },
+  {
+   "a": "RING-DFW-1",
+   "b": "ATTY-05",
+   "relation": "OPERATES_THROUGH",
+   "role": "runner attorney"
+  },
+  {
+   "a": "RING-DFW-1",
+   "b": "SIU-10",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-PHX-1",
+   "b": "PATTERN-RENTAL-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-PHX-1",
+   "b": "ATTY-06",
+   "relation": "OPERATES_THROUGH",
+   "role": "receipt fabricator"
+  },
+  {
+   "a": "RING-PHX-1",
+   "b": "SHELL-06",
+   "relation": "OPERATES_THROUGH",
+   "role": "rental billing shell"
+  },
+  {
+   "a": "RING-PHX-1",
+   "b": "SIU-09",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "RING-MW-2",
+   "b": "PATTERN-PIP-1",
+   "relation": "USES_PATTERN"
+  },
+  {
+   "a": "RING-MW-2",
+   "b": "CLIN-03",
+   "relation": "OPERATES_THROUGH",
+   "role": "chiro referral mill"
+  },
+  {
+   "a": "RING-MW-2",
+   "b": "SHELL-07",
+   "relation": "OPERATES_THROUGH",
+   "role": "admin fee shell"
+  },
+  {
+   "a": "RING-MW-2",
+   "b": "SIU-12",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-STAGING-1",
+   "b": "SIU-01",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-STAGING-1",
+   "b": "SIU-04",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-STAGING-1",
+   "b": "SIU-10",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-PIP-1",
+   "b": "SIU-02",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-PIP-1",
+   "b": "NB-001",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-ID-1",
+   "b": "SIU-03",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-ID-1",
+   "b": "NB-002",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-TOW-1",
+   "b": "NB-001",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-TOW-1",
+   "b": "SIU-07",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-GHOST-1",
+   "b": "AUD-001",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-GHOST-1",
+   "b": "AUD-005",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-GHOST-1",
+   "b": "SIU-08",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-RENTAL-1",
+   "b": "NB-004",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "PATTERN-RENTAL-1",
+   "b": "SIU-09",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "SHOP-COLLUSION-1",
+   "b": "SHOP-77",
+   "relation": "REFERS_TO"
+  },
+  {
+   "a": "SHOP-COLLUSION-2",
+   "b": "SHOP-12",
+   "relation": "REFERS_TO"
+  },
+  {
+   "a": "SHOP-COLLUSION-3",
+   "b": "SHOP-45",
+   "relation": "REFERS_TO"
+  },
+  {
+   "a": "SHOP-COLLUSION-4",
+   "b": "SHOP-88",
+   "relation": "REFERS_TO"
+  },
+  {
+   "a": "SHOP-77",
+   "b": "SHELL-01",
+   "relation": "PAID_VIA",
+   "amount": 54700
+  },
+  {
+   "a": "SHOP-12",
+   "b": "SHELL-04",
+   "relation": "PAID_VIA",
+   "amount": 93300
+  },
+  {
+   "a": "SHOP-45",
+   "b": "SHELL-05",
+   "relation": "PAID_VIA",
+   "amount": 54700
+  },
+  {
+   "a": "SHOP-88",
+   "b": "SHELL-04",
+   "relation": "PAID_VIA",
+   "amount": 61200
+  },
+  {
+   "a": "CL-101",
+   "b": "PH-101",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-101",
+   "b": "ADDR-101",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-102",
+   "b": "PH-102",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-102",
+   "b": "ADDR-102",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-103",
+   "b": "PH-103",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-103",
+   "b": "ADDR-103",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-104",
+   "b": "PH-104",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-104",
+   "b": "ADDR-104",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-105",
+   "b": "PH-105",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-105",
+   "b": "ADDR-105",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-106",
+   "b": "PH-106",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-106",
+   "b": "ADDR-106",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-107",
+   "b": "PH-107",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-107",
+   "b": "ADDR-107",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-108",
+   "b": "PH-108",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-108",
+   "b": "ADDR-108",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-109",
+   "b": "PH-109",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-109",
+   "b": "ADDR-109",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-110",
+   "b": "PH-110",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-110",
+   "b": "ADDR-110",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-111",
+   "b": "PH-111",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-111",
+   "b": "ADDR-111",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-112",
+   "b": "PH-112",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-112",
+   "b": "ADDR-112",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-113",
+   "b": "PH-113",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-113",
+   "b": "ADDR-113",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-114",
+   "b": "PH-114",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-114",
+   "b": "ADDR-114",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-106",
+   "b": "PH-900",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-201",
+   "b": "PH-900",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-202",
+   "b": "PH-900",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-201",
+   "b": "ADDR-550",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-202",
+   "b": "ADDR-550",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-203",
+   "b": "ADDR-550",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-111",
+   "b": "ADDR-550",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-106",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-111",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-201",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-202",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-203",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-101",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-104",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT"
+  },
+  {
+   "a": "CL-201",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-201",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-201",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-201",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 48
+  },
+  {
+   "a": "CL-201",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-202",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-202",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-202",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-202",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 53
+  },
+  {
+   "a": "CL-202",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-203",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-203",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-203",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-203",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 25
+  },
+  {
+   "a": "CL-203",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-203",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-207",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-207",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-207",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-207",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 17
+  },
+  {
+   "a": "CL-207",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-301",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-301",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-301",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-301",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 45
+  },
+  {
+   "a": "CL-301",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-301",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-302",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-302",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-302",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-302",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 34
+  },
+  {
+   "a": "CL-302",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-302",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-303",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-303",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-303",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-303",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 30
+  },
+  {
+   "a": "CL-303",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-303",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-304",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-304",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-304",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-304",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 13
+  },
+  {
+   "a": "CL-304",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-305",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-305",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-305",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-305",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 5
+  },
+  {
+   "a": "CL-305",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-305",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-306",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-306",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-306",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-306",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 26
+  },
+  {
+   "a": "CL-306",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-306",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-307",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-307",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-307",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-307",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 52
+  },
+  {
+   "a": "CL-307",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-307",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-308",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-308",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-308",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-308",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 17
+  },
+  {
+   "a": "CL-308",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-309",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-309",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-309",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-309",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 35
+  },
+  {
+   "a": "CL-309",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-310",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-310",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-310",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-310",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 43
+  },
+  {
+   "a": "CL-310",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-310",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-311",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-311",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-311",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-311",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 8
+  },
+  {
+   "a": "CL-311",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-312",
+   "b": "RING-SOUTH-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-312",
+   "b": "PH-91",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-312",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-312",
+   "b": "SHOP-77",
+   "relation": "REPAIRED_AT",
+   "days_before": 49
+  },
+  {
+   "a": "CL-312",
+   "b": "CLIN-01",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-312",
+   "b": "ATTY-01",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-106",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-106",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-106",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-111",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-111",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-111",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-111",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-313",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-313",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-313",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-313",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-313",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-314",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-314",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-314",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-314",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-314",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-315",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-315",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-315",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-315",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-316",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-316",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-316",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-316",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-317",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-317",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-317",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-317",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-317",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-318",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-318",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-318",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-318",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-318",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-319",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-319",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-319",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-319",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-320",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-320",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-320",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-320",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-320",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-321",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-321",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-321",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-321",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-322",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-322",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-322",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-322",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-322",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-323",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-323",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-323",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-323",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-323",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-324",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-324",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-324",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-324",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-324",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-325",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-325",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-325",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-325",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-325",
+   "b": "ATTY-02",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-326",
+   "b": "RING-MIDWEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-326",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-326",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-326",
+   "b": "CLIN-02",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-327",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-327",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-327",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-327",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-328",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-328",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-328",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-328",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-329",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-329",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-329",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-330",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-330",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-330",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-330",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-331",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-331",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-331",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-331",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-332",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-332",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-332",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-332",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-333",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-333",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-333",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-333",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-334",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-334",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-334",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-335",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-335",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-335",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-336",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-336",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-336",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-337",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-337",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-337",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-337",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-338",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-338",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-338",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-339",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-339",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-339",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-340",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-340",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-340",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-341",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-341",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-341",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-342",
+   "b": "RING-NORTHEAST-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-342",
+   "b": "PH-92",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-342",
+   "b": "ADDR-92",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-342",
+   "b": "ATTY-03",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-343",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-343",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-343",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-343",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 41
+  },
+  {
+   "a": "CL-343",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-344",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-344",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-344",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-344",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 49
+  },
+  {
+   "a": "CL-345",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-345",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-345",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-345",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 16
+  },
+  {
+   "a": "CL-346",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-346",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-346",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-346",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 23
+  },
+  {
+   "a": "CL-346",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-347",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-347",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-347",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-347",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 24
+  },
+  {
+   "a": "CL-347",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-348",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-348",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-348",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-348",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 32
+  },
+  {
+   "a": "CL-348",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-349",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-349",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-349",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-349",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 46
+  },
+  {
+   "a": "CL-350",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-350",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-350",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-350",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 44
+  },
+  {
+   "a": "CL-351",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-351",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-351",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-351",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 21
+  },
+  {
+   "a": "CL-351",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-352",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-352",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-352",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-352",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 52
+  },
+  {
+   "a": "CL-353",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-353",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-353",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-353",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 24
+  },
+  {
+   "a": "CL-354",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-354",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-354",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-354",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 7
+  },
+  {
+   "a": "CL-354",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-355",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-355",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-355",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-355",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 35
+  },
+  {
+   "a": "CL-355",
+   "b": "ATTY-04",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-356",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-356",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-356",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-356",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 51
+  },
+  {
+   "a": "CL-357",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-357",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-357",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-357",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 29
+  },
+  {
+   "a": "CL-358",
+   "b": "RING-SE-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-358",
+   "b": "PH-94",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-358",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-358",
+   "b": "SHOP-12",
+   "relation": "REPAIRED_AT",
+   "days_before": 39
+  },
+  {
+   "a": "CL-359",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-359",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-359",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-359",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 50
+  },
+  {
+   "a": "CL-359",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-360",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-360",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-360",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-360",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 18
+  },
+  {
+   "a": "CL-360",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-361",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-361",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-361",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-361",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 13
+  },
+  {
+   "a": "CL-361",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-362",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-362",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-362",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-362",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 29
+  },
+  {
+   "a": "CL-362",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-363",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-363",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-363",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-363",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 32
+  },
+  {
+   "a": "CL-363",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-364",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-364",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-364",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-364",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 30
+  },
+  {
+   "a": "CL-364",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-365",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-365",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-365",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-365",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 59
+  },
+  {
+   "a": "CL-365",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-366",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-366",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-366",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-366",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 6
+  },
+  {
+   "a": "CL-366",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-367",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-367",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-367",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-367",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 52
+  },
+  {
+   "a": "CL-368",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-368",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-368",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-368",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 57
+  },
+  {
+   "a": "CL-368",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-369",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-369",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-369",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-369",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 11
+  },
+  {
+   "a": "CL-369",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-370",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-370",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-370",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-370",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 18
+  },
+  {
+   "a": "CL-370",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-371",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-371",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-371",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-371",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 34
+  },
+  {
+   "a": "CL-371",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-372",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-372",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-372",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-372",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 25
+  },
+  {
+   "a": "CL-372",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-373",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-373",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-373",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-373",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 37
+  },
+  {
+   "a": "CL-374",
+   "b": "RING-WEST-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-374",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-374",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-374",
+   "b": "SHOP-45",
+   "relation": "REPAIRED_AT",
+   "days_before": 31
+  },
+  {
+   "a": "CL-374",
+   "b": "CLIN-04",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-375",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-375",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-375",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-375",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 11
+  },
+  {
+   "a": "CL-376",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-376",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-376",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-376",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 26
+  },
+  {
+   "a": "CL-376",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-377",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-377",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-377",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-377",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 55
+  },
+  {
+   "a": "CL-378",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-378",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-378",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-378",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 30
+  },
+  {
+   "a": "CL-379",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-379",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-379",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-379",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 25
+  },
+  {
+   "a": "CL-379",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-380",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-380",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-380",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-380",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 21
+  },
+  {
+   "a": "CL-380",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-381",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-381",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-381",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-381",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 46
+  },
+  {
+   "a": "CL-381",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-382",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-382",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-382",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-382",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 12
+  },
+  {
+   "a": "CL-382",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-383",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-383",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-383",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-383",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 32
+  },
+  {
+   "a": "CL-384",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-384",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-384",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-384",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 52
+  },
+  {
+   "a": "CL-385",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-385",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-385",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-385",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 25
+  },
+  {
+   "a": "CL-385",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-386",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-386",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-386",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-386",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 26
+  },
+  {
+   "a": "CL-386",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-387",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-387",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-387",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-387",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 3
+  },
+  {
+   "a": "CL-387",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-388",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-388",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-388",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-388",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 41
+  },
+  {
+   "a": "CL-388",
+   "b": "ATTY-05",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-389",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-389",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-389",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-389",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 60
+  },
+  {
+   "a": "CL-390",
+   "b": "RING-DFW-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-390",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-390",
+   "b": "ADDR-91",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-390",
+   "b": "SHOP-88",
+   "relation": "REPAIRED_AT",
+   "days_before": 33
+  },
+  {
+   "a": "CL-391",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-391",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-391",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-392",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-392",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-392",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-393",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-393",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-393",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-394",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-394",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-394",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-394",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-395",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-395",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-395",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-396",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-396",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-396",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-397",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-397",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-397",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-397",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-398",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-398",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-398",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-399",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-399",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-399",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-399",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-400",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-400",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-400",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-400",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-401",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-401",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-401",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-402",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-402",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-402",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-402",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-403",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-403",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-403",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-404",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-404",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-404",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-405",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-405",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-405",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-405",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-406",
+   "b": "RING-PHX-1",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-406",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-406",
+   "b": "ADDR-94",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-406",
+   "b": "ATTY-06",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-407",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-407",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-407",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-408",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-408",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-408",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-408",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-409",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-409",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-409",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-410",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-410",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-410",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-411",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-411",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-411",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-411",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-412",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-412",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-412",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-412",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-413",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-413",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-413",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-413",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-414",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-414",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-414",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-414",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-415",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "strongly_suspected"
+  },
+  {
+   "a": "CL-415",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-415",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-415",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-416",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-416",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-416",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-416",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-417",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "spotter",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-417",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-417",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-417",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-418",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "driver",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-418",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-418",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-419",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "straw_policy",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-419",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-419",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-419",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-420",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "suspected"
+  },
+  {
+   "a": "CL-420",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-420",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-420",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-421",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "claimant",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-421",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-421",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-421",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-422",
+   "b": "RING-MW-2",
+   "relation": "MEMBER_OF",
+   "role": "organizer",
+   "strength": "confirmed"
+  },
+  {
+   "a": "CL-422",
+   "b": "PH-93",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-422",
+   "b": "ADDR-93",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-422",
+   "b": "CLIN-03",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-701",
+   "b": "PH-701",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-701",
+   "b": "ADDR-701",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-702",
+   "b": "PH-702",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-702",
+   "b": "ADDR-702",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-702",
+   "b": "SHOP-210",
+   "relation": "REPAIRED_AT",
+   "days_before": 231
+  },
+  {
+   "a": "CL-703",
+   "b": "PH-703",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-703",
+   "b": "ADDR-703",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-704",
+   "b": "PH-704",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-704",
+   "b": "ADDR-704",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-705",
+   "b": "PH-705",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-705",
+   "b": "ADDR-705",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-705",
+   "b": "SHOP-205",
+   "relation": "REPAIRED_AT",
+   "days_before": 278
+  },
+  {
+   "a": "CL-705",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-706",
+   "b": "PH-706",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-706",
+   "b": "ADDR-706",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-706",
+   "b": "CLIN-55",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-707",
+   "b": "PH-707",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-707",
+   "b": "ADDR-707",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-707",
+   "b": "SHOP-203",
+   "relation": "REPAIRED_AT",
+   "days_before": 190
+  },
+  {
+   "a": "CL-708",
+   "b": "PH-708",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-708",
+   "b": "ADDR-708",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-708",
+   "b": "SHOP-206",
+   "relation": "REPAIRED_AT",
+   "days_before": 135
+  },
+  {
+   "a": "CL-708",
+   "b": "CLIN-53",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-709",
+   "b": "PH-709",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-709",
+   "b": "ADDR-709",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-709",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-710",
+   "b": "PH-710",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-710",
+   "b": "ADDR-710",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-711",
+   "b": "PH-711",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-711",
+   "b": "ADDR-711",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-712",
+   "b": "PH-712",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-712",
+   "b": "ADDR-712",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-712",
+   "b": "CLIN-51",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-713",
+   "b": "PH-713",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-713",
+   "b": "ADDR-713",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-713",
+   "b": "SHOP-205",
+   "relation": "REPAIRED_AT",
+   "days_before": 114
+  },
+  {
+   "a": "CL-713",
+   "b": "CLIN-55",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-713",
+   "b": "ATTY-53",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-714",
+   "b": "PH-714",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-714",
+   "b": "ADDR-714",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-715",
+   "b": "PH-715",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-715",
+   "b": "ADDR-715",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-716",
+   "b": "PH-716",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-716",
+   "b": "ADDR-716",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-716",
+   "b": "SHOP-201",
+   "relation": "REPAIRED_AT",
+   "days_before": 142
+  },
+  {
+   "a": "CL-717",
+   "b": "PH-717",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-717",
+   "b": "ADDR-717",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-717",
+   "b": "SHOP-202",
+   "relation": "REPAIRED_AT",
+   "days_before": 2
+  },
+  {
+   "a": "CL-717",
+   "b": "CLIN-52",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-718",
+   "b": "PH-718",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-718",
+   "b": "ADDR-718",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-719",
+   "b": "PH-719",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-719",
+   "b": "ADDR-719",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-719",
+   "b": "SHOP-209",
+   "relation": "REPAIRED_AT",
+   "days_before": 29
+  },
+  {
+   "a": "CL-719",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-720",
+   "b": "PH-720",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-720",
+   "b": "ADDR-720",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-721",
+   "b": "PH-721",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-721",
+   "b": "ADDR-721",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-721",
+   "b": "SHOP-206",
+   "relation": "REPAIRED_AT",
+   "days_before": 48
+  },
+  {
+   "a": "CL-721",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-722",
+   "b": "PH-722",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-722",
+   "b": "ADDR-722",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-722",
+   "b": "SHOP-203",
+   "relation": "REPAIRED_AT",
+   "days_before": 12
+  },
+  {
+   "a": "CL-722",
+   "b": "ATTY-53",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-723",
+   "b": "PH-723",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-723",
+   "b": "ADDR-723",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-723",
+   "b": "SHOP-205",
+   "relation": "REPAIRED_AT",
+   "days_before": 147
+  },
+  {
+   "a": "CL-724",
+   "b": "PH-724",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-724",
+   "b": "ADDR-724",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-725",
+   "b": "PH-725",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-725",
+   "b": "ADDR-725",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-726",
+   "b": "PH-726",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-726",
+   "b": "ADDR-726",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-727",
+   "b": "PH-727",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-727",
+   "b": "ADDR-727",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-728",
+   "b": "PH-728",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-728",
+   "b": "ADDR-728",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-728",
+   "b": "ATTY-51",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-729",
+   "b": "PH-729",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-729",
+   "b": "ADDR-729",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-729",
+   "b": "SHOP-210",
+   "relation": "REPAIRED_AT",
+   "days_before": 92
+  },
+  {
+   "a": "CL-729",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-730",
+   "b": "PH-730",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-730",
+   "b": "ADDR-730",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-730",
+   "b": "SHOP-203",
+   "relation": "REPAIRED_AT",
+   "days_before": 40
+  },
+  {
+   "a": "CL-730",
+   "b": "CLIN-55",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-731",
+   "b": "PH-731",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-731",
+   "b": "ADDR-731",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-732",
+   "b": "PH-732",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-732",
+   "b": "ADDR-732",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-732",
+   "b": "SHOP-209",
+   "relation": "REPAIRED_AT",
+   "days_before": 293
+  },
+  {
+   "a": "CL-732",
+   "b": "ATTY-55",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-733",
+   "b": "PH-733",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-733",
+   "b": "ADDR-733",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-734",
+   "b": "PH-734",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-734",
+   "b": "ADDR-734",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-734",
+   "b": "ATTY-54",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-735",
+   "b": "PH-735",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-735",
+   "b": "ADDR-735",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-735",
+   "b": "SHOP-210",
+   "relation": "REPAIRED_AT",
+   "days_before": 189
+  },
+  {
+   "a": "CL-736",
+   "b": "PH-736",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-736",
+   "b": "ADDR-736",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-737",
+   "b": "PH-737",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-737",
+   "b": "ADDR-737",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-737",
+   "b": "CLIN-53",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-738",
+   "b": "PH-738",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-738",
+   "b": "ADDR-738",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-738",
+   "b": "ATTY-51",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-739",
+   "b": "PH-739",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-739",
+   "b": "ADDR-739",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-739",
+   "b": "SHOP-207",
+   "relation": "REPAIRED_AT",
+   "days_before": 231
+  },
+  {
+   "a": "CL-740",
+   "b": "PH-740",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-740",
+   "b": "ADDR-740",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-741",
+   "b": "PH-741",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-741",
+   "b": "ADDR-741",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-742",
+   "b": "PH-742",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-742",
+   "b": "ADDR-742",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-742",
+   "b": "SHOP-209",
+   "relation": "REPAIRED_AT",
+   "days_before": 254
+  },
+  {
+   "a": "CL-743",
+   "b": "PH-743",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-743",
+   "b": "ADDR-743",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-744",
+   "b": "PH-744",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-744",
+   "b": "ADDR-744",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-745",
+   "b": "PH-745",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-745",
+   "b": "ADDR-745",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-746",
+   "b": "PH-746",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-746",
+   "b": "ADDR-746",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-746",
+   "b": "SHOP-201",
+   "relation": "REPAIRED_AT",
+   "days_before": 145
+  },
+  {
+   "a": "CL-747",
+   "b": "PH-747",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-747",
+   "b": "ADDR-747",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-747",
+   "b": "SHOP-202",
+   "relation": "REPAIRED_AT",
+   "days_before": 3
+  },
+  {
+   "a": "CL-748",
+   "b": "PH-748",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-748",
+   "b": "ADDR-748",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-748",
+   "b": "SHOP-202",
+   "relation": "REPAIRED_AT",
+   "days_before": 225
+  },
+  {
+   "a": "CL-749",
+   "b": "PH-749",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-749",
+   "b": "ADDR-749",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-749",
+   "b": "CLIN-52",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-750",
+   "b": "PH-750",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-750",
+   "b": "ADDR-750",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-750",
+   "b": "SHOP-201",
+   "relation": "REPAIRED_AT",
+   "days_before": 212
+  },
+  {
+   "a": "CL-750",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-751",
+   "b": "PH-751",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-751",
+   "b": "ADDR-751",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-751",
+   "b": "SHOP-203",
+   "relation": "REPAIRED_AT",
+   "days_before": 161
+  },
+  {
+   "a": "CL-752",
+   "b": "PH-752",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-752",
+   "b": "ADDR-752",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-752",
+   "b": "SHOP-209",
+   "relation": "REPAIRED_AT",
+   "days_before": 48
+  },
+  {
+   "a": "CL-752",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-753",
+   "b": "PH-753",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-753",
+   "b": "ADDR-753",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-753",
+   "b": "SHOP-204",
+   "relation": "REPAIRED_AT",
+   "days_before": 273
+  },
+  {
+   "a": "CL-753",
+   "b": "CLIN-52",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-754",
+   "b": "PH-754",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-754",
+   "b": "ADDR-754",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-754",
+   "b": "CLIN-52",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-755",
+   "b": "PH-755",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-755",
+   "b": "ADDR-755",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-755",
+   "b": "ATTY-52",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-756",
+   "b": "PH-756",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-756",
+   "b": "ADDR-756",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-756",
+   "b": "SHOP-205",
+   "relation": "REPAIRED_AT",
+   "days_before": 171
+  },
+  {
+   "a": "CL-756",
+   "b": "CLIN-54",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-757",
+   "b": "PH-757",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-757",
+   "b": "ADDR-757",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-757",
+   "b": "SHOP-203",
+   "relation": "REPAIRED_AT",
+   "days_before": 151
+  },
+  {
+   "a": "CL-758",
+   "b": "PH-758",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-758",
+   "b": "ADDR-758",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-759",
+   "b": "PH-759",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-759",
+   "b": "ADDR-759",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-759",
+   "b": "SHOP-204",
+   "relation": "REPAIRED_AT",
+   "days_before": 122
+  },
+  {
+   "a": "CL-759",
+   "b": "CLIN-51",
+   "relation": "TREATED_AT"
+  },
+  {
+   "a": "CL-760",
+   "b": "PH-760",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-760",
+   "b": "ADDR-760",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-760",
+   "b": "SHOP-208",
+   "relation": "REPAIRED_AT",
+   "days_before": 204
+  },
+  {
+   "a": "CL-761",
+   "b": "PH-761",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-761",
+   "b": "ADDR-761",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-762",
+   "b": "PH-762",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-762",
+   "b": "ADDR-762",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-762",
+   "b": "ATTY-51",
+   "relation": "REPRESENTED_BY"
+  },
+  {
+   "a": "CL-763",
+   "b": "PH-763",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-763",
+   "b": "ADDR-763",
+   "relation": "LIVES_AT"
+  },
+  {
+   "a": "CL-763",
+   "b": "SHOP-206",
+   "relation": "REPAIRED_AT",
+   "days_before": 164
+  },
+  {
+   "a": "CL-702",
+   "b": "PH-701",
+   "relation": "USES_PHONE"
+  },
+  {
+   "a": "CL-733",
+   "b": "PH-732",
+   "relation": "USES_PHONE"
+  }
+ ]
+}

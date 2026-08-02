@@ -1,0 +1,29 @@
+# ──────────────────────────────────────────────────────────────
+# ANATOMY COMPONENT: GOAL  (agent #3d — Assembly / Reflection Analyst)
+# Orchestrates the three stage agents and composes a margin thesis
+# over the stage-flow lineage graph.
+# ──────────────────────────────────────────────────────────────
+goal:
+  id: portfolio-assembly-v1
+  statement: >
+    For one commercial segment (broker/class/region) orchestrates the
+    submissions, underwriting and settlement agents, then traverses the
+    stage-flow lineage graph and identifies the high-leverage margin
+    lever. Produce a verdict: PROFIT EDGE IDENTIFIED, MARGINAL, or
+    NO EDGE.
+  success_criteria:
+    - All three stage agents run and contribute verdicts
+    - Funnel rates and signal magnitudes come from the warehouse
+    - Every cited signal has a lineage edge AND corroborating stage verdict
+    - No profit edge claimed where the top signal weight is below 0.55
+  constraints:
+    max_steps: 24
+    max_tool_errors: 4
+    max_cost_units: 100
+    edge_threshold: 70
+    marginal_threshold: 40
+    min_signal_weight: 0.55
+  skills_to_load:
+    - lineage_analysis
+    - verification
+    - citation_policy

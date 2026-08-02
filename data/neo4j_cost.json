@@ -1,0 +1,647 @@
+{
+ "nodes": [
+  {
+   "id": "severity",
+   "type": "metric",
+   "approved": true,
+   "definition": "Average paid cost per closed claim",
+   "sql_hint": "fact_metric WHERE metric='severity'"
+  },
+  {
+   "id": "frequency",
+   "type": "metric",
+   "approved": true,
+   "definition": "Closed claims per 1,000 earned exposure units",
+   "sql_hint": "fact_metric WHERE metric='frequency'"
+  },
+  {
+   "id": "loss_ratio",
+   "type": "metric",
+   "approved": true,
+   "definition": "Incurred losses divided by earned premium",
+   "sql_hint": "fact_metric WHERE metric='loss_ratio'"
+  },
+  {
+   "id": "parts_inflation",
+   "type": "driver",
+   "approved": true,
+   "name": "OEM parts inflation",
+   "curated": true,
+   "evidence": "OEM replacement parts price index rose +9.2% in 2024 and a further +4.6% in 2025 (cumulative \u00e2\u2030\u02c6 +14.2%).",
+   "figures": [
+    "+9.2% 2024",
+    "+4.6% 2025"
+   ],
+   "source": "OEM parts price index",
+   "provenance": [
+    {
+     "doc_id": "M-01",
+     "title": "OEM Parts Price Bulletin",
+     "quote": "OEM replacement parts prices rose +9.2% during 2024 and a further +4.6% in 2025"
+    },
+    {
+     "doc_id": "MEDIA-01",
+     "title": "Market Bulletin \u2014 OEM Parts Pricing",
+     "quote": "OEM parts prices remain the primary contributor to repair severity, with the average parts ticket up +6.1% year over year as of Q4."
+    }
+   ]
+  },
+  {
+   "id": "adas_complexity",
+   "type": "driver",
+   "approved": true,
+   "name": "ADAS repair complexity",
+   "curated": false,
+   "evidence": "ADAS-equipped vehicles cost \u00e2\u2030\u02c622% more to repair than non-ADAS equivalents, and their share of repairable vehicles rose from 45% to 61% over the period.",
+   "figures": [
+    "+22% repair cost premium",
+    "fleet share 45% \u00e2\u2020\u2019 61%"
+   ],
+   "source": "repair-order text mining + teardown reports",
+   "provenance": [
+    {
+     "doc_id": "M-05",
+     "title": "Repair Network Cost Study",
+     "quote": "ADAS sensor suites cost approximately 22% more to repair ... rose from 45% to 61% of the repairable fleet"
+    }
+   ]
+  },
+  {
+   "id": "supply_chain",
+   "type": "driver",
+   "approved": true,
+   "name": "Parts supply-chain friction",
+   "curated": false,
+   "evidence": "Average parts delivery delay peaked at 9.1 days in 2024Q2 and remains 6.3 days; supplement handling adds \u00e2\u2030\u02c6 $180 per claim.",
+   "figures": [
+    "peak delay 9.1 days",
+    "+$180/claim supplements"
+   ],
+   "source": "cycle-time analytics",
+   "provenance": [
+    {
+     "doc_id": "M-05",
+     "title": "Repair Network Cost Study",
+     "quote": "parts delivery delays peaked at 9.1 days in 2024Q2 and remain at 6.3 days"
+    },
+    {
+     "doc_id": "M-08",
+     "title": "Collision Parts Vendor Newsletter",
+     "quote": "supplement volumes remain elevated, adding roughly $180 per claim"
+    }
+   ]
+  },
+  {
+   "id": "medical_inflation",
+   "type": "driver",
+   "approved": true,
+   "name": "Medical cost inflation",
+   "curated": true,
+   "evidence": "Medical care CPI rose \u00e2\u2030\u02c618% cumulatively between 2023Q1 and 2025Q4, flowing directly into bodily-injury settlement values.",
+   "figures": [
+    "+18% cumulative since 2023Q1"
+   ],
+   "source": "medical CPI (BLS)",
+   "provenance": [
+    {
+     "doc_id": "M-02",
+     "title": "Actuarial Trend Selection Memo \u00e2\u20ac\u201d Q1",
+     "quote": "Medical care CPI has risen approximately 18% cumulatively since 2023Q1"
+    }
+   ]
+  },
+  {
+   "id": "litigation_climate",
+   "type": "driver",
+   "approved": true,
+   "name": "Litigation climate (Northeast)",
+   "curated": false,
+   "evidence": "Northeast attorney-representation rate on BI claims climbed from 48% to 57%; represented claims settle \u00e2\u2030\u02c625% higher than unrepresented ones.",
+   "figures": [
+    "rep rate 48% \u00e2\u2020\u2019 57%",
+    "+25% represented settlements"
+   ],
+   "source": "internal legal-ops data",
+   "provenance": [
+    {
+     "doc_id": "M-03",
+     "title": "Legal Operations Quarterly Review",
+     "quote": "Attorney representation rates on Northeast BI claims climbed from 48% to 57%"
+    },
+    {
+     "doc_id": "MEDIA-02",
+     "title": "Market Watch \u2014 Northeast BI Litigation",
+     "quote": "Represented-claim share in the Northeast reached 61%; litigation remains a significant regional driver of bodily-injury severity."
+    }
+   ]
+  },
+  {
+   "id": "cat_weather",
+   "type": "driver",
+   "approved": true,
+   "name": "Catastrophe weather event",
+   "curated": true,
+   "evidence": "A hurricane made landfall in the South region in 2024Q3; auto claim counts spiked +18% that quarter and +10% in 2024Q4 before normalizing.",
+   "figures": [
+    "+18% 2024Q3",
+    "+10% 2024Q4"
+   ],
+   "source": "cat event reports",
+   "provenance": [
+    {
+     "doc_id": "M-04",
+     "title": "Catastrophe Event Report \u00e2\u20ac\u201d 2024Q3 Hurricane",
+     "quote": "Auto claim counts spiked +18% in 2024Q3 and +10% in 2024Q4 before normalizing"
+    }
+   ]
+  },
+  {
+   "id": "vmt_mileage",
+   "type": "driver",
+   "approved": true,
+   "name": "Miles driven (VMT)",
+   "curated": false,
+   "evidence": "Vehicle-miles traveled grew +2.1% year over year \u00e2\u20ac\u201d mild upward pressure on accident frequency everywhere.",
+   "figures": [
+    "+2.1% YoY"
+   ],
+   "source": "FHWA vehicle-miles traveled",
+   "provenance": [
+    {
+     "doc_id": "M-06",
+     "title": "Mobility & Exposure Digest",
+     "quote": "Vehicle-miles traveled grew +2.1% year over year"
+    }
+   ]
+  },
+  {
+   "id": "winter_weather",
+   "type": "driver",
+   "approved": true,
+   "name": "Winter storm (episodic)",
+   "curated": false,
+   "evidence": "A polar vortex in 2025Q1 lifted Midwest frequency +6% for one quarter only; no persistent effect.",
+   "figures": [
+    "+6% 2025Q1 only"
+   ],
+   "source": "cat event reports",
+   "provenance": [
+    {
+     "doc_id": "M-07",
+     "title": "Winter Operations Flash \u00e2\u20ac\u201d Polar Vortex",
+     "quote": "The January polar vortex lifted Midwest auto frequency by about +6% for 2025Q1 only"
+    }
+   ]
+  },
+  {
+   "id": "rental_costs",
+   "type": "driver",
+   "approved": true,
+   "name": "Rental cost inflation",
+   "evidence": "Rental-reimbursement rates rose +11% in 2024 as rental fleets shrank; rental duration on repair claims grew from 9.1 to 12.4 days.",
+   "figures": [
+    "+11% rates",
+    "9.1 -> 12.4 days"
+   ],
+   "source": "rental fleet analytics",
+   "provenance": [
+    {
+     "doc_id": "M-10",
+     "title": "Rental & Towing Cost Review",
+     "quote": "Rental reimbursement rates rose +11% in 2024 and average rental duration grew from 9.1 to 12.4 days per repair claim"
+    }
+   ],
+   "curated": false
+  },
+  {
+   "id": "labor_rates",
+   "type": "driver",
+   "approved": true,
+   "name": "Body-shop labor rates",
+   "evidence": "Dealer labor rates rose +7.8% in 2024Q4 alone; labor now accounts for 41% of the average collision repair ticket.",
+   "figures": [
+    "+7.8% 2024Q4",
+    "41% of ticket"
+   ],
+   "source": "repair-order analytics",
+   "provenance": [
+    {
+     "doc_id": "M-11",
+     "title": "Repair Labor Rate Survey",
+     "quote": "Dealer labor rates rose +7.8% in 2024Q4 and labor now accounts for 41% of the average collision repair ticket"
+    }
+   ],
+   "curated": false
+  },
+  {
+   "id": "used_car_values",
+   "type": "driver",
+   "approved": true,
+   "name": "Used-car market volatility",
+   "evidence": "Used-car values fell -12% through 2025, making total-loss payouts less volatile but raising claims frequency on financed vehicles.",
+   "figures": [
+    "-12% values"
+   ],
+   "source": "valuation analytics",
+   "provenance": [
+    {
+     "doc_id": "M-12",
+     "title": "Valuation Trends Memo",
+     "quote": "Used-car values fell -12% through 2025, modestly easing total-loss severity while frequency on financed vehicles edged up"
+    }
+   ],
+   "curated": false
+  },
+  {
+   "id": "hail_corridor",
+   "type": "driver",
+   "approved": true,
+   "name": "Southwest hail season (recurrent)",
+   "evidence": "The 2025Q3 hail season struck the Southwest corridor twice \u2014 a significant spike in auto-pd frequency of +9% for one quarter.",
+   "figures": [
+    "+9% 2025Q3"
+   ],
+   "source": "cat event reports",
+   "provenance": [
+    {
+     "doc_id": "M-13",
+     "title": "Catastrophe Event Report \u2014 2025Q3 Hail",
+     "quote": "The 2025Q3 hail season hit the Southwest corridor twice, lifting auto-pd frequency about +9% for one quarter"
+    }
+   ],
+   "curated": false
+  },
+  {
+   "id": "telehealth_billing",
+   "type": "driver",
+   "approved": true,
+   "name": "Telehealth billing abuse",
+   "evidence": "Telehealth-based PT billing grew 4x since 2024; 18% of billed telehealth sessions on BI claims lack a supporting clinical note.",
+   "figures": [
+    "4x growth",
+    "18% unsubstantiated"
+   ],
+   "source": "medical bill review",
+   "provenance": [
+    {
+     "doc_id": "M-14",
+     "title": "Medical Bill Review Quarterly",
+     "quote": "Telehealth-based PT billing grew 4x since 2024 and 18% of billed sessions on BI claims lack a supporting clinical note"
+    }
+   ],
+   "curated": false
+  },
+  {
+   "id": "attorney_advertising",
+   "type": "driver",
+   "approved": true,
+   "name": "Attorney advertising intensity",
+   "evidence": "Attorney ad spend on BI claims rose +26% YoY in the Northeast; represented-claim share reached 61% there.",
+   "figures": [
+    "+26% ad spend",
+    "61% represented"
+   ],
+   "source": "media monitoring",
+   "provenance": [
+    {
+     "doc_id": "M-15",
+     "title": "Legal Media Monitor",
+     "quote": "Attorney advertising spend on BI claims rose +26% year over year; Northeast represented-claim share reached 61%"
+    }
+   ],
+   "curated": false
+  },
+  {
+   "id": "EVT-01",
+   "type": "event",
+   "approved": true,
+   "name": "Hurricane landfall \u2014 South",
+   "quarter": "2024Q3",
+   "region": "South",
+   "coverage": "auto_pd"
+  },
+  {
+   "id": "EVT-02",
+   "type": "event",
+   "approved": true,
+   "name": "Polar vortex \u2014 Midwest",
+   "quarter": "2025Q1",
+   "region": "Midwest",
+   "coverage": "auto_pd"
+  },
+  {
+   "id": "EVT-03",
+   "type": "event",
+   "approved": true,
+   "name": "OEM parts supply disruption",
+   "quarter": "2024Q2",
+   "region": "ALL",
+   "coverage": "auto_pd"
+  },
+  {
+   "id": "EVT-04",
+   "type": "event",
+   "approved": true,
+   "name": "Northeast lawsuit spike",
+   "quarter": "2025Q2",
+   "region": "Northeast",
+   "coverage": "auto_bi"
+  },
+  {
+   "id": "EVT-05",
+   "type": "event",
+   "approved": true,
+   "name": "Southwest hail season",
+   "quarter": "2025Q3",
+   "region": "Southwest",
+   "coverage": "auto_pd"
+  }
+ ],
+ "edges": [
+  {
+   "a": "parts_inflation",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.55,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "adas_complexity",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.45,
+   "direction": "+",
+   "lag_quarters": 2
+  },
+  {
+   "a": "supply_chain",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.35,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "medical_inflation",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_bi",
+   "region": "ALL",
+   "weight": 0.6,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "litigation_climate",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_bi",
+   "region": "Northeast",
+   "weight": 0.55,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "cat_weather",
+   "b": "frequency",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "South",
+   "weight": 0.7,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "cat_weather",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "home",
+   "region": "South",
+   "weight": 0.5,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "vmt_mileage",
+   "b": "frequency",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.3,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "winter_weather",
+   "b": "frequency",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "Midwest",
+   "weight": 0.35,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "severity",
+   "b": "loss_ratio",
+   "relation": "FEEDS_INTO",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.8,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "frequency",
+   "b": "loss_ratio",
+   "relation": "FEEDS_INTO",
+   "coverage": "ALL",
+   "region": "ALL",
+   "weight": 0.6,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "rental_costs",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.35,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "rental_costs",
+   "b": "M-10",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "labor_rates",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.4,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "labor_rates",
+   "b": "M-11",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "used_car_values",
+   "b": "frequency",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "ALL",
+   "weight": 0.25,
+   "direction": "+",
+   "lag_quarters": 2
+  },
+  {
+   "a": "used_car_values",
+   "b": "M-12",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "hail_corridor",
+   "b": "frequency",
+   "relation": "IMPACTS",
+   "coverage": "auto_pd",
+   "region": "Southwest",
+   "weight": 0.45,
+   "direction": "+",
+   "lag_quarters": 0
+  },
+  {
+   "a": "hail_corridor",
+   "b": "M-13",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "telehealth_billing",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_bi",
+   "region": "ALL",
+   "weight": 0.3,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "telehealth_billing",
+   "b": "M-14",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "attorney_advertising",
+   "b": "severity",
+   "relation": "IMPACTS",
+   "coverage": "auto_bi",
+   "region": "Northeast",
+   "weight": 0.35,
+   "direction": "+",
+   "lag_quarters": 1
+  },
+  {
+   "a": "attorney_advertising",
+   "b": "M-15",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "EVT-01",
+   "b": "cat_weather",
+   "relation": "CAUSES",
+   "weight": 0.7
+  },
+  {
+   "a": "EVT-02",
+   "b": "winter_weather",
+   "relation": "CAUSES",
+   "weight": 0.6
+  },
+  {
+   "a": "EVT-03",
+   "b": "supply_chain",
+   "relation": "CAUSES",
+   "weight": 0.55
+  },
+  {
+   "a": "EVT-04",
+   "b": "litigation_climate",
+   "relation": "CAUSES",
+   "weight": 0.55
+  },
+  {
+   "a": "EVT-05",
+   "b": "hail_corridor",
+   "relation": "CAUSES",
+   "weight": 0.6
+  },
+  {
+   "a": "parts_inflation",
+   "b": "M-01",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "adas_complexity",
+   "b": "M-05",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "supply_chain",
+   "b": "M-05",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "supply_chain",
+   "b": "M-08",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "medical_inflation",
+   "b": "M-02",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "litigation_climate",
+   "b": "M-03",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "cat_weather",
+   "b": "M-04",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "vmt_mileage",
+   "b": "M-06",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "winter_weather",
+   "b": "M-07",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "parts_inflation",
+   "b": "MEDIA-01",
+   "relation": "CITED_IN"
+  },
+  {
+   "a": "litigation_climate",
+   "b": "MEDIA-02",
+   "relation": "CITED_IN"
+  }
+ ]
+}

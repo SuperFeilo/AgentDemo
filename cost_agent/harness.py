@@ -16,4 +16,5 @@ class CostHarness(Harness):
         from cost_agent.planner import build_cost_plan
 
         plan = build_cost_plan()
-        super().__init__(plan, CostAnalystBrain(plan), cost_loop)
+        super().__init__(plan, CostAnalystBrain(plan), cost_loop,
+                         agent_name="cost")

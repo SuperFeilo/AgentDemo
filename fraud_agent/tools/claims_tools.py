@@ -17,7 +17,12 @@ from fraud_agent.tools.registry import tool
 # ── tiny in-memory "databases" ──────────────────────────────────────
 _CLAIMS = {c["claim_id"]: c for c in json.loads((DATA_DIR / "claims.json").read_text())}
 _POLICIES = {p["policy_id"]: p for p in json.loads((DATA_DIR / "policies.json").read_text())}
-_GRAPH = KnowledgeGraph()
+
+
+def _graph():
+    """Knowledge graph loaded per call — learned/written knowledge is
+    seen immediately (mirrors cost_agent's _graph)."""
+    return KnowledgeGraph()
 
 
 def _days_between(d1: str, d2: str) -> int:
@@ -81,12 +86,17 @@ def policy_check(policy_id: str, incident_date: str) -> dict:
     origin="knowledge_graph", autonomy="auto", cost_units=5,
 )
 def fraud_ring_network(claimant_id: str) -> dict:
-    result = _GRAPH.neighborhood(claimant_id, hops=2)
+    result = _graph().neighborhood(claimant_id, hops=2)
     try:
         from fraud_agent.graphrag import store
         approval = store.load_approval()
         if approval:
             result["graphrag_intel_approved"] = approval
+        # enrich with GraphRAG layer: rings this claimant belongs to
+        rings = store.get_store().run("root_cause_claimant",
+                                      claimant_id=claimant_id)
+        if rings.get("rings"):
+            result["graphrag_intel"] = rings["rings"]
     except Exception:
         pass
     return result
@@ -101,21 +111,18 @@ def fraud_ring_network(claimant_id: str) -> dict:
     origin="knowledge_graph", autonomy="auto", cost_units=8,
 )
 def fraud_graph_intel() -> dict:
-    from pathlib import Path
-    approval_path = DATA_DIR / "fraud_graph_approval.json"
-    intel = {"rings": [], "suspect_shops": [], "scam_types": [],
-             "note": "GraphRAG-extracted intel — provenance from "
-                     "data/fraud_memos.json. Use fraud_graphrag tab to "
-                     "run extraction and approve/reject candidates."}
-    if not approval_path.exists():
-        return intel
+    """Approved fraud intel from the GraphRAG store (Cypher / fallback)."""
     try:
-        approved = json.loads(approval_path.read_text())
-        candidates = json.loads((DATA_DIR / "fraud_memos.json").read_text())
-        pass
+        from fraud_agent.graphrag import store as fraud_store
+        catalog = fraud_store.get_store().run("intel_catalog")
     except Exception:
-        return intel
-    return intel
+        catalog = {"rings": [], "suspect_shops": [], "scam_types": []}
+    return {
+        **catalog,
+        "note": "GraphRAG-extracted intel — only entities a human has "
+                "approved. Provenance from the source memos (use the "
+                "GraphRAG tab to run extraction and curate candidates).",
+    }
 
 
 @tool(

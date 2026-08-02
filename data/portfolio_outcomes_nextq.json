@@ -1,0 +1,18 @@
+[
+  {"driver_id": "risk_score_override",    "validates": true,
+   "note": "5437 overridden binds showed +12% loss_ratio next quarter (edge confirmed)"},
+  {"driver_id": "inspection_flag_ignored", "validates": true,
+   "note": "inspected-flagged binds showed +38% claim_frequency vs clean (edge confirmed)"},
+  {"driver_id": "reserve_adequacy",       "validates": true,
+   "note": "low-reserve claims had settlement_vs_reserve_ratio > 2.0 (edge confirmed)"},
+  {"driver_id": "uw_note_hedging",         "validates": true,
+   "note": "hedged pricing notes predict 8% pricing haircut on next binds (confirmed)"},
+  {"driver_id": "broker_pattern",         "validates": false,
+   "note": "BRO-W loss_ratio next quarter was within portfolio range — broker not the cause, override is"},
+  {"driver_id": "late_fnol",              "validates": true,
+   "note": "5437 late-FNOL claims had 11% higher severity (edge confirmed)"},
+  {"driver_id": "settlement_slowness",    "validates": false,
+   "note": "long-tail settlements did not show ->leakage lift next quarter (distractor)"},
+  {"driver_id": "pricing_inadequacy",     "validates": true,
+   "note": "margin gap on overridden 5437 persisted next quarter (edge confirmed)"}
+]

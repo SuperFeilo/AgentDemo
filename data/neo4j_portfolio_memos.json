@@ -1,0 +1,121 @@
+[
+ {
+  "doc_id": "MEDIA-01",
+  "title": "Industry News \u2014 Reserve Adequacy Watch",
+  "date": "2025-Q4",
+  "publisher": "Industry news service \u2014 external newsfeed",
+  "text": "Regulators flagged reserve adequacy as the top watch item: carriers with low reserve adequacy on legacy books are seeing settlement leakage of up to 12% of reserves. The market expects the claim-stage reserve lever to dominate margin debates into next year."
+ },
+ {
+  "doc_id": "MEDIA-02",
+  "title": "Industry News \u2014 Risk-Model Override Coverage",
+  "date": "2025-Q4",
+  "publisher": "Industry news service \u2014 external newsfeed",
+  "text": "Audit firms spotlighted downward risk-score overrides in high-frequency classes: override rates near 2.2x the portfolio average on class 5437 correlate with loss-ratio spikes one to two quarters later."
+ },
+ {
+  "doc_id": "PFM-101",
+  "title": "Submission Hygiene Audit",
+  "publisher": "Internal UW",
+  "date": "2024-Q1",
+  "text": "A broker-by-broker audit of submission completeness found that BRO-W (West region) frequently supplies incomplete exposure detail at quote stage \u00e2\u20ac\u201d approximately 55% of BRO-W submissions are missing exposure component breakdowns. Comparing bind rates, incomplete-exposure submissions convert to bind at only ~45% versus ~68% for complete submissions; those that do bind produce worse subsequent loss ratios. The audit recommends requiring structured exposure fields from BRO-W before quote release and is a significant factor in any submission-quality score."
+ },
+ {
+  "doc_id": "PFM-102",
+  "title": "UW Note Quality Review",
+  "publisher": "Pricing Actuary",
+  "date": "2024-Q2",
+  "text": "A review of underwriting notes identified hedging phrasing in pricing notes as a meaningful leading indicator of subsequent under-pricing. Hedging phrases such as 'should be fine', 'best estimate subject to confirmation' and 'indicative at this stage' appear in roughly 35% of pricing notes attached to overridden 5437 risks. Hedging pricing notes \u00e2\u20ac\u201d a modest but non-trivial signal \u00e2\u20ac\u201d correlate with premium below model indication and with subsequent adverse development on the bound policy."
+ },
+ {
+  "doc_id": "PFM-103",
+  "title": "Override Discipline Memo",
+  "publisher": "Pricing Actuary",
+  "date": "2024-Q2",
+  "text": "Downward risk-score overrides are heavily concentrated on class 5437, where 55% of submissions carry an override reducing the model score by 8-15 points. These overrides are a dominant driver of under-pricing and significantly elevate loss frequency over the next two quarters. The Override Discipline Memo is a primary reference for any underwriting quality assessment: the agent should weight risk_score_override heavily."
+ },
+ {
+  "doc_id": "PFM-104",
+  "title": "Q4 Submission Rush Analysis",
+  "date": "2024-Q4",
+  "publisher": "Distribution analytics",
+  "text": "Rush quotes rose 3.1x in 2024Q4 as brokers raced year-end renewals. Rush submissions convert at 41% vs 68% for the portfolio \u2014 a significant drag on bind_conversion."
+ },
+ {
+  "doc_id": "PFM-105",
+  "title": "Broker Response Latency Review",
+  "date": "2025-Q1",
+  "publisher": "Operations",
+  "text": "Average broker response time grew from 6 to 11 days after the consolidation wave. Longer latency shows a moderate negative relationship with bind conversion across all regions."
+ },
+ {
+  "doc_id": "PFM-106",
+  "title": "UW Capacity & Note Volume Report",
+  "date": "2025-Q1",
+  "publisher": "Underwriting leadership",
+  "text": "Note volume per UW rose 40% while staffing was frozen in 2024Q4. Hedging phrasing in UW notes is a primary signal of pricing inadequacy under capacity strain."
+ },
+ {
+  "doc_id": "PFM-107",
+  "title": "Model Governance \u2014 Drift Log",
+  "date": "2025-Q2",
+  "publisher": "Model risk management",
+  "text": "Post-refresh score drift reached 0.7% of book between model versions. Drift concentrates in class 5437 where overrides are most frequent."
+ },
+ {
+  "doc_id": "PFM-108",
+  "title": "Bind Endorsement Analysis",
+  "date": "2025-Q1",
+  "publisher": "Pricing actuarial",
+  "text": "Deductible-lowering endorsements doubled in Q1 2025 for mid-tier accounts, a meaningful negative contribution to margin_contribution."
+ },
+ {
+  "doc_id": "PFM-109",
+  "title": "Premium Override Post-Filing Review",
+  "date": "2025-Q3",
+  "publisher": "Pricing actuarial",
+  "text": "Downward premium overrides rose 2.2x after the rate filing approval. Overrides are a significant drag on margin_contribution with a one-quarter lag."
+ },
+ {
+  "doc_id": "PFM-110",
+  "title": "Reserve History Deep Dive",
+  "date": "2025-Q2",
+  "publisher": "Actuarial reserving",
+  "text": "Reserve increase frequency fell 28% while settlement leakage stayed flat \u2014 signs of reserve suppression that later shows up as leakage_pct."
+ },
+ {
+  "doc_id": "PFM-111",
+  "title": "Settlement Attorney Engagement Review",
+  "date": "2025-Q2",
+  "publisher": "Claims legal ops",
+  "text": "Claimant attorney representation at settlement rose from 22% to 31%. Represented settlements leak a major share of reserve."
+ },
+ {
+  "doc_id": "PFM-112",
+  "title": "Internal Audit \u2014 Payment Exceptions",
+  "date": "2025-Q2",
+  "publisher": "Internal audit",
+  "text": "Audit exception rate on settlement payments reached 9.4% in 2025Q2 \u2014 a significant indicator of settlement-stage leakage."
+ },
+ {
+  "doc_id": "PFM-113",
+  "title": "Inspection QA Sample",
+  "date": "2025-Q1",
+  "publisher": "Field operations",
+  "text": "Inspection reports flagged incomplete in 18% of sampled files, a modest contributor to pricing inadequacy where waived inspection flags also appear."
+ },
+ {
+  "doc_id": "PFM-114",
+  "title": "Broker BRO-W Margin Attribution",
+  "date": "2025-Q3",
+  "publisher": "Portfolio analytics",
+  "text": "BRO-W's margin shortfall traces to the claim stage: low reserve adequacy combined with slow settlements converts adequate pricing into leakage. The claim-stage lever dominates the margin thesis."
+ },
+ {
+  "doc_id": "PFM-115",
+  "title": "Class 5437 Override Post-Mortem",
+  "date": "2025-Q3",
+  "publisher": "Portfolio analytics",
+  "text": "5437's loss-ratio spike traces to systematic risk-score overrides at binding, compounded by late FNOL reporting. The override lever dominates for this class."
+ }
+]

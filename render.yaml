@@ -1,0 +1,19 @@
+# Render blueprint — Agent Anatomy Explorer on the free tier.
+#
+# Free tier notes: 512 MB RAM / 0.1 CPU; spins down after ~15 min idle
+# (~1 min cold start); ephemeral filesystem — render_boot.py resets
+# runtime state every boot so each cold start is a pristine demo.
+services:
+  - type: web
+    name: agent-anatomy-explorer
+    runtime: python
+    plan: free
+    pythonVersion: 3.12.0
+    buildCommand: |
+      pip install -r requirements-render.txt
+      python scripts/generate_neo4j_demo_data.py
+    startCommand: |
+      python scripts/render_boot.py && \
+      streamlit run app/main.py --server.address 0.0.0.0 --server.port $PORT
+    healthCheckPath: /_stcore/health
+    autoDeploy: true

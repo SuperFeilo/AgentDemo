@@ -1,0 +1,24 @@
+# Neo4j GraphRAG connection + synthetic dataset configuration.
+#
+# The GraphRAG demo runs in TWO modes:
+#   - NEO4J MODE (real Cypher): set the env vars below (or edit uri/user/
+#     password) to point at a running Neo4j instance — Neo4j Desktop,
+#     a local server, or Neo4j AuraDB. The store loads the synthetic
+#     graph into the database and every query in the library executes
+#     as genuine Cypher.
+#   - FALLBACK MODE (offline): no Neo4j reachable -> the same query API
+#     is served from an in-memory networkx graph with identical
+#     semantics, so the demo and all evals stay reproducible offline.
+#     The UI shows the exact Cypher each query would run on Neo4j.
+uri: bolt://localhost:7687
+user: neo4j
+password: neo4j2026
+database: neo4j
+
+# Env vars take precedence over the values above:
+#   NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD, NEO4J_DATABASE
+
+# Seeded synthetic data -> deterministic graphs, reproducible evals.
+seed: 20260801
+# full | small   (full: ~300 claimants / 20 signals / 14 drivers)
+dataset_size: full
