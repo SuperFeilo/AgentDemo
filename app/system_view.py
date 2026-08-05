@@ -68,7 +68,7 @@ CSS = """
 .svsvg {width:100%; height:auto; display:block; margin-top:6px;}
 .svsvg.compact {width:auto; max-width:100%; max-height:44vh;
                 margin-left:auto; margin-right:auto;}
-.svsvg.loop {max-width:50%;}
+.svsvg.loop {max-width:94%;}
 .svsvg text {font-family:ui-sans-serif,system-ui,sans-serif;}
 /* nodes */
 .svn rect {transition: all .3s; rx:9px;}

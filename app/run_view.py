@@ -11,84 +11,65 @@ import pandas as pd
 import streamlit as st
 
 from app.anatomy_map import render_strip
-from app.components import (funnel_figure, gauge_figure, graph_figure,
+from app.components import (funnel_figure, graph_figure,
                             render_event_html, trend_figure)
 from app import ui
 
 
 def _evidence_row(agent: str, events: list[dict], run) -> None:
-    """Compact, always-visible evidence: gauge + the latest chart."""
-    cols = st.columns([1, 2])
-    with cols[0]:
-        if agent == "fraud":
-            score = max([e.get("score", 0) for e in events
-                         if e["type"] == "observation"] + [run.risk_score])
-            st.plotly_chart(gauge_figure(score), use_container_width=True)
-        elif agent == "portfolio":
-            decisions = [e for e in events if e["type"] == "decision"]
-            conf = decisions[-1]["confidence"] if decisions else 0
-            st.plotly_chart(gauge_figure(conf, title="Margin-confidence",
-                                         good="high"),
+    """Compact, always-visible evidence: the latest chart, full width."""
+    if agent == "fraud":
+        nets = [e for e in events
+                if e["type"] == "observation"
+                and e["step"] == "network_analysis"]
+        if nets:
+            raw = nets[-1]["raw"]
+            hot = set()
+            cid = run.subject if isinstance(run.subject, str) else None
+            claims = ui.load_claims()
+            if cid and cid in claims:
+                hot = {claims[cid]["claimant_id"]} | {
+                    l["entity"] for l in raw["fraud_links"]} | {
+                    l["via"] for l in raw["fraud_links"]}
+            st.plotly_chart(
+                graph_figure(raw["nodes"], raw["edges"], hot),
+                use_container_width=True)
+        else:
+            st.caption("No graph evidence yet — the network step "
+                       "lights the 🕸️ Graph box when it runs.")
+    elif agent == "portfolio":
+        funnels = [e for e in events
+                   if e["type"] == "observation"
+                   and e["step"] == "stage_flow"]
+        if funnels:
+            raw = funnels[-1]["raw"]
+            funnel = raw["funnel"] if isinstance(raw, dict) else raw
+            stages = [f["stage"] for f in funnel]
+            counts = [f["count"] for f in funnel]
+            rets = [f["retention"] for f in funnel]
+            seg = raw["segment"] if isinstance(raw, dict) else {}
+            label = (f"Funnel: {seg.get('broker', '?')}/"
+                     f"{seg.get('class_code', '?')}/"
+                     f"{seg.get('region', '?')}")
+            st.plotly_chart(funnel_figure(stages, counts, rets, label),
                             use_container_width=True)
         else:
-            decisions = [e for e in events if e["type"] == "decision"]
-            conf = decisions[-1]["confidence"] if decisions else 0
-            st.plotly_chart(gauge_figure(conf, title="Confidence",
-                                         good="high"),
-                            use_container_width=True)
-    with cols[1]:
-        if agent == "fraud":
-            nets = [e for e in events
-                    if e["type"] == "observation"
-                    and e["step"] == "network_analysis"]
-            if nets:
-                raw = nets[-1]["raw"]
-                hot = set()
-                cid = run.subject if isinstance(run.subject, str) else None
-                claims = ui.load_claims()
-                if cid and cid in claims:
-                    hot = {claims[cid]["claimant_id"]} | {
-                        l["entity"] for l in raw["fraud_links"]} | {
-                        l["via"] for l in raw["fraud_links"]}
-                st.plotly_chart(
-                    graph_figure(raw["nodes"], raw["edges"], hot),
-                    use_container_width=True)
-            else:
-                st.caption("No graph evidence yet — the network step "
-                           "lights the 🕸️ Graph box when it runs.")
-        elif agent == "portfolio":
-            funnels = [e for e in events
-                       if e["type"] == "observation"
-                       and e["step"] == "stage_flow"]
-            if funnels:
-                raw = funnels[-1]["raw"]
-                funnel = raw["funnel"] if isinstance(raw, dict) else raw
-                stages = [f["stage"] for f in funnel]
-                counts = [f["count"] for f in funnel]
-                rets = [f["retention"] for f in funnel]
-                seg = raw["segment"] if isinstance(raw, dict) else {}
-                label = (f"Funnel: {seg.get('broker', '?')}/"
-                         f"{seg.get('class_code', '?')}/"
-                         f"{seg.get('region', '?')}")
-                st.plotly_chart(funnel_figure(stages, counts, rets, label),
-                                use_container_width=True)
-            else:
-                st.caption("No funnel yet — stage_flow fills it when the "
-                           "lineage graph is queried.")
+            st.caption("No funnel yet — stage_flow fills it when the "
+                       "lineage graph is queried.")
+    else:
+        trends = [e for e in events
+                  if e["type"] == "observation"
+                  and e["step"] == "read_trend"]
+        if trends:
+            raw = trends[-1]["raw"]
+            st.plotly_chart(
+                trend_figure(raw["quarters"], raw["values"],
+                             f"{raw['metric']} · {raw['region']} · "
+                             f"{raw['coverage']}"),
+                use_container_width=True)
         else:
-            trends = [e for e in events
-                      if e["type"] == "observation"
-                      and e["step"] == "read_trend"]
-            if trends:
-                raw = trends[-1]["raw"]
-                st.plotly_chart(
-                    trend_figure(raw["quarters"], raw["values"],
-                                 f"{raw['metric']} · {raw['region']} · "
-                                 f"{raw['coverage']}"),
-                    use_container_width=True)
-            else:
-                st.caption("No trend chart yet — read_trend fills it when "
-                           "the warehouse is queried.")
+            st.caption("No trend chart yet — read_trend fills it when "
+                       "the warehouse is queried.")
 
 
 def render_run_cockpit(agent: str, live: dict, harness,
@@ -115,38 +96,35 @@ def render_run_cockpit(agent: str, live: dict, harness,
                 unsafe_allow_html=True)
     st.caption(f"Drawn from the run's architecture — "
                f"{ui.AGENTS[agent]['arch']} — lighting up as the trace "
-               "flows. Below: the case blackboard (left) and the "
-               "component layer + execution feed (right), all synced "
-               "from the same event list.")
+               "flows. Below: the case blackboard, then the component "
+               "layer + execution feed — all synced from the same event "
+               "list.")
 
     st.markdown("**📊 Evidence**")
     _evidence_row(agent, events, run)
 
-    left, right = st.columns([2, 3])
-    with left:
-        from app.blackboard_view import render_live_board
-        render_live_board(agent, events)
+    from app.blackboard_view import render_live_board
+    render_live_board(agent, events)
 
-    with right:
-        st.markdown("**Component layer ↔ execution** — stacked & synced")
-        st.markdown(render_strip(agent, events, run.state.value),
-                    unsafe_allow_html=True)
-        chronological = st.toggle(
-            "Chronological order (oldest first)", value=False,
-            key=f"feed_order_{agent}_{toggle_suffix}",
-            help="Newest-first keeps the latest card pinned at the top "
-                 "so it never scrolls out of view during Autoplay.")
-        _evs = events
-        _cards = [render_event_html(ev) for ev in
-                  (_evs if chronological else reversed(_evs))]
-        if _cards:
-            _latest_i = len(_evs) - 1 if chronological else 0
-            _cards[_latest_i] = (f'<div class="feed-latest">'
-                                 f'{_cards[_latest_i]}</div>')
-        st.markdown(f'<div class="feedpanel">{"".join(_cards)}</div>',
-                    unsafe_allow_html=True)
-        if feed_footer:
-            feed_footer()
+    st.markdown("**Component layer ↔ execution — stacked & synced**")
+    st.markdown(render_strip(agent, events, run.state.value),
+                unsafe_allow_html=True)
+    chronological = st.toggle(
+        "Chronological order (oldest first)", value=False,
+        key=f"feed_order_{agent}_{toggle_suffix}",
+        help="Newest-first keeps the latest card pinned at the top "
+             "so it never scrolls out of view during Autoplay.")
+    _evs = events
+    _cards = [render_event_html(ev) for ev in
+              (_evs if chronological else reversed(_evs))]
+    if _cards:
+        _latest_i = len(_evs) - 1 if chronological else 0
+        _cards[_latest_i] = (f'<div class="feed-latest">'
+                             f'{_cards[_latest_i]}</div>')
+    st.markdown(f'<div class="feedpanel">{"".join(_cards)}</div>',
+                unsafe_allow_html=True)
+    if feed_footer:
+        feed_footer()
 
     if events:
         from fraud_agent.dossier import compile_dossier, render_markdown
