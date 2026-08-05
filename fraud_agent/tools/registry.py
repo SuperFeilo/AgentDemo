@@ -39,12 +39,6 @@ def tool(name: str, description: str, args: dict[str, str], *,
     return wrap
 
 
-def list_tools() -> list[dict]:
-    """Schemas only — this is what the brain 'sees'."""
-    return [{k: v for k, v in spec.items() if k != "fn"}
-            for spec in _REGISTRY.values()]
-
-
 def tool_meta(name: str) -> dict:
     return _REGISTRY[name]
 

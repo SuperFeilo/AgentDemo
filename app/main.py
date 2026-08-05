@@ -17,17 +17,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app import home
 from app.components import CSS
+from app.frontier_view import frontier_page
 from app.nav import get_pages
-from app.ui import CHROME_CSS
+from app.ui import CHROME_CSS, _sync_llm_mode
 
 st.set_page_config(page_title="Agent Anatomy Explorer", page_icon="🧠",
                    layout="wide")
 st.markdown(CSS + CHROME_CSS, unsafe_allow_html=True)
 
+_sync_llm_mode()  # 🧠 brain engine: align session state with env (LLM/mock)
+
 pages = get_pages()
 nav = st.navigation({
     "Getting started": [
         st.Page(home.home_page, title="Home", icon="🏠", default=True),
+        st.Page(frontier_page, title="Frontier map", icon="🗺️",
+                url_path="frontier"),
     ],
     "🕵️ Fraud Investigator": [
         pages["fraud"]["anatomy"], pages["fraud"]["live"],

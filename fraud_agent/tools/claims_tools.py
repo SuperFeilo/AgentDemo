@@ -134,11 +134,25 @@ def fraud_graph_intel() -> dict:
     origin="model_brain", autonomy="auto", cost_units=25,
 )
 def notes_inconsistency_detector(claim_id: str) -> dict:
-    from fraud_agent.brain.notes_llm import MockLLMNotesAnalyzer  # lazy: keeps import cycle out
+    from fraud_agent.brain.notes_llm import LLMNotesAnalyzer  # lazy: keeps import cycle out
+    from fraud_agent.brain.notes_llm import MockLLMNotesAnalyzer
+    from llm_client import LLMCallError, available, usage
+    from llm_client.config import model_id
     claim = _CLAIMS.get(claim_id)
     if not claim:
         raise ValueError(f"Claim {claim_id} not found")
-    return MockLLMNotesAnalyzer().analyze(claim["adjuster_notes"])
+    if available():
+        try:
+            result = LLMNotesAnalyzer().analyze(
+                claim["adjuster_notes"], tag=f"notes:{claim_id}")
+            result["engine"] = f"llm:{model_id()}"
+            result["tokens"] = usage.last()
+            return result
+        except LLMCallError:
+            pass  # fall back to the deterministic mock
+    result = MockLLMNotesAnalyzer().analyze(claim["adjuster_notes"])
+    result["engine"] = "mock"
+    return result
 
 
 @tool(

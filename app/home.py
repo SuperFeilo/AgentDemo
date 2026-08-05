@@ -10,6 +10,7 @@ from __future__ import annotations
 import streamlit as st
 
 from app.anatomy_map import STYLES
+from app.frontier_view import frontier_page
 from app import ui
 from app.nav import get_pages
 
@@ -83,6 +84,18 @@ def home_page() -> None:
             st.caption("deterministic ⟵━━━━━━━╋━━━━━━━━━⟶ agentic")
             st.markdown(f"**✓ Where it wins** — {s['wins']}")
             st.markdown(f"**✗ What it costs** — {s['costs']}")
+
+    ui.section("Where these styles come from — the frontier map")
+    st.caption("Every component and every style above instantiates published "
+               "agent-workflow research (Anthropic, Ng, LangChain, ReAct, "
+               "CoALA, GraphRAG, MAST…). The 🗺️ Frontier map compares the "
+               "project against that canon, shows the two ideas it takes "
+               "further, and maps the frontier concepts it leaves out to "
+               "the code seams that would accept them.")
+    if st.button("🗺️ Frontier map — this project vs published research",
+                 use_container_width=True, key="home_frontier"):
+        st.switch_page(st.Page(frontier_page, title="Frontier map",
+                               icon="🗺️", url_path="frontier"))
 
     ui.section("How to run")
     st.markdown(

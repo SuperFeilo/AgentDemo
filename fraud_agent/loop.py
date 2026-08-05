@@ -19,8 +19,8 @@ run auditable (see dossier.py).
 """
 from __future__ import annotations
 
-from fraud_agent.blackboard import CaseBlackboard, Origin, write_event
-from fraud_agent.tools.registry import tool_meta
+from fraud_agent.blackboard import (CaseBlackboard, Origin, origin_of_tool,
+                                    write_event)
 
 
 class ToolError(Exception):
@@ -31,10 +31,6 @@ class RejectedByHuman(Exception):
     """Sent back into the loop when a human rejects a gated tool call at
     an autonomy checkpoint. The loop turns it into a degraded decision
     (e.g. ESCALATE -> REVIEW) rather than a failure."""
-
-
-def _origin_of(tool_name: str) -> Origin:
-    return Origin(tool_meta(tool_name)["origin"])
 
 
 def _summarize(step_name: str, result: dict) -> str:
@@ -55,10 +51,36 @@ def _summarize(step_name: str, result: dict) -> str:
                     f"{len(result['shared_attributes'])} shared attribute(s) "
                     f"in the claimant's graph neighbourhood.")
         case "notes_analysis":
+            engine = f" — {result['engine']}" if result.get("engine") else ""
+            tok = result.get("tokens") or {}
+            tok_s = (f" · {tok.get('total_tokens', 0):,} tok"
+                     if tok.get("total_tokens") else "")
             return (f"{len(result['inconsistencies'])} inconsistency(ies) and "
                     f"{result['hedging_count']} hedging phrases across "
-                    f"{result['notes_read']} notes.")
+                    f"{result['notes_read']} notes." + engine + tok_s)
     return "Done."
+
+
+def _llm_rationale(claim_id: str, signals: list[str]) -> tuple[str, dict] | None:
+    """Non-scoring LLM commentary on the gathered evidence. Silent no-op
+    when the LLM is unavailable or the call fails — the decision itself
+    is always made by the deterministic brain. Returns (text, usage)."""
+    try:
+        from llm_client import available, chat_text, usage
+        from llm_client.config import model_id
+        if not available():
+            return None
+        bullets = "\n".join(f"- {s}" for s in signals) or "- (no signals)"
+        system = (f"You are an SIU supervisor (model {model_id()}). Write "
+                  "2-3 plain sentences commenting on the evidence for this "
+                  "claim: what the signals suggest and what an investigator "
+                  "should look at next. Do not use JSON; be factual and "
+                  "specific to the listed signals.")
+        text = chat_text(system, f"Claim {claim_id}.\nSignals:\n{bullets}",
+                         tag=f"narrative:{claim_id}")
+        return (text[:600] or None, usage.last())
+    except Exception:
+        return None
 
 
 def agent_loop(claim_id: str, plan, brain):
@@ -99,9 +121,15 @@ def agent_loop(claim_id: str, plan, brain):
                      f"from {len(ctx['signals'])} signal(s)",
                      Origin.EPHEMERAL, step.name)
             yield write_event(bb.journal[-1])
-            yield {"type": "decision", "decision": ctx["decision"],
-                   "risk_score": ctx["risk_score"],
-                   "rationale": list(ctx["signals"])}
+            event = {"type": "decision", "decision": ctx["decision"],
+                     "risk_score": ctx["risk_score"],
+                     "rationale": list(ctx["signals"])}
+            llm_rationale = _llm_rationale(claim_id, ctx["signals"])
+            if llm_rationale:
+                event["llm_rationale"] = llm_rationale[0]
+                if llm_rationale[1]:
+                    event["llm_tokens"] = llm_rationale[1]
+            yield event
             continue
 
         # ACT (executed by the harness; gated tools may bounce back)
@@ -124,7 +152,7 @@ def agent_loop(claim_id: str, plan, brain):
             continue
 
         # OBSERVE
-        origin = _origin_of(step.tool) if step.tool else Origin.EPHEMERAL
+        origin = origin_of_tool(step.tool)
 
         if step.name == "load_claim":
             ctx["claim"] = result

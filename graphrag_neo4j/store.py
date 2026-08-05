@@ -557,6 +557,34 @@ def get_store(domain: str, prefer_neo4j: bool = True) -> LocalGraphStore | \
     return store
 
 
+class DomainStore:
+    """Per-domain facade over the shared dual-mode store — the API the
+    three agent store wrappers used to duplicate (approval functions stay
+    file-based; `get_store()` prefers the live Neo4j connection)."""
+
+    def __init__(self, domain: str) -> None:
+        self.domain = domain
+        self.approval_path = APPROVAL_PATHS[domain]
+
+    def _local(self):
+        return get_store(self.domain, prefer_neo4j=False)
+
+    def load_approval(self) -> dict[str, bool]:
+        return self._local().load_approval()
+
+    def save_approval(self, state: dict[str, bool]) -> None:
+        self._local().save_approval(state)
+
+    def set_approval(self, entity_id: str, approved: bool) -> None:
+        self._local().set_approval(entity_id, approved)
+
+    def is_citable(self, entity_id: str, node: dict | None = None) -> bool:
+        return self._local().is_citable(entity_id, node)
+
+    def get_store(self):
+        return get_store(self.domain)
+
+
 def reset_stores() -> None:
     for store in _STORES.values():
         if hasattr(store, "close") and getattr(store, "mode", "") == "neo4j":

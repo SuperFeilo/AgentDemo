@@ -8,6 +8,8 @@ explanation* instead of *risk of fraud*.
 """
 from __future__ import annotations
 
+from fraud_agent.brain.rule_based import noisy_or
+
 
 class CostAnalystBrain:
     def __init__(self, plan) -> None:
@@ -200,7 +202,7 @@ class CostAnalystBrain:
         weights = ctx.get("candidate_weights", {})
         evidence = ctx.get("evidence", {})
 
-        confidence = round(100 * _noisy_or(list(weights.values()))) \
+        confidence = round(100 * noisy_or(list(weights.values()))) \
             if weights else 0
         verdict = ("EXPLAINED" if confidence >= self.thresholds["explained"]
                    else "PARTIALLY EXPLAINED" if confidence >= self.thresholds["partial"]
@@ -244,10 +246,3 @@ class CostAnalystBrain:
                             "peak_dev_pct": trend["peak_dev_pct"],
                             "pattern": "episodic" if ctx.get("episodic")
                                        else "sustained"}}
-
-
-def _noisy_or(weights: list[float]) -> float:
-    prod = 1.0
-    for w in weights:
-        prod *= (1 - w)
-    return 1 - prod

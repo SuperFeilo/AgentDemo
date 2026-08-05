@@ -87,6 +87,9 @@ SIGNATURES = [
 _FIGURE_RE = re.compile(r"[+\-≈~]?\$?\d+(?:\.\d+)?%|(?:\d+(?:\.\d+)?\s*days)|"
                         r"\+\$\d+(?:\.\d+)?\s*per claim|\$\d+")
 
+# strength word -> edge weight, dict order (shared pick_strength order)
+_STRENGTHS_ORDERED = list(STRENGTH_WEIGHTS.items())
+
 
 class MockLLMGraphExtractor:
     """Deterministic stand-in for LLM document->graph extraction."""
@@ -94,6 +97,7 @@ class MockLLMGraphExtractor:
     def extract(self, memos: list[dict]) -> list[dict]:
         """Return candidate edges, one per (driver, document) mention,
         with provenance. Callers dedupe/merge by driver_id."""
+        from llm_client.extract import best_sentence, pick_strength
         candidates = []
         for memo in memos:
             text = memo["text"]
@@ -101,12 +105,15 @@ class MockLLMGraphExtractor:
             for sig in SIGNATURES:
                 if not any(k in lowered for k in sig["keywords"]):
                     continue
-                quote = self._best_sentence(text, sig["keywords"])
+                quote = best_sentence(text, sig["keywords"], _FIGURE_RE,
+                                      prefer_pct=True)
                 # attribute the strength word from the driver's own sentence
                 # first (a memo may grade several drivers differently)
-                weight, strength = self._strength(quote.lower())
+                weight, strength = pick_strength(quote.lower(),
+                                                 _STRENGTHS_ORDERED)
                 if strength == "(default)":
-                    weight, strength = self._strength(lowered)
+                    weight, strength = pick_strength(lowered,
+                                                     _STRENGTHS_ORDERED)
                 candidates.append({
                     "driver_id": sig["driver_id"], "name": sig["name"],
                     "metric": sig["metric"], "coverage": sig["coverage"],
@@ -123,37 +130,72 @@ class MockLLMGraphExtractor:
                 })
         return candidates
 
-    @staticmethod
-    def _strength(lowered_text: str) -> tuple[float, str]:
-        for word, weight in STRENGTH_WEIGHTS.items():
-            if word in lowered_text:
-                return weight, word
-        return 0.40, "(default)"
+
+_COST_LLM_SYSTEM = """You build insurance cost-driver knowledge graphs. From this
+document, extract any cost drivers. Return ONLY JSON:
+{"drivers": [{"driver_id": str, "name": str, "evidence_quote": str,
+ "impacts": [{"metric": str, "coverage": str, "region": str,
+              "strength": "overwhelmingly|dominant|primary|major|
+                           significant|moderate|modest|minor|mild",
+              "direction": "+|-", "lag_quarters": int}]}]}
+
+Rules:
+- driver_id must be a stable slug like parts_inflation, supply_chain
+  (no spaces).
+- metrics/coverages/regions should use the project's vocabulary
+  (metric: severity|frequency|loss_ratio; coverage: auto_pd|auto_bi|home;
+  region: ALL|Northeast|South|Midwest|Southwest|West).
+- Always quote the exact source sentence in evidence_quote; never infer
+  beyond the text. Empty result is valid: {"drivers": []}."""
+
+
+class LLMGraphExtractor:
+    """Real DeepSeek document->cost-graph extraction. Same candidate
+    contract as the mock; strength->weight stays policy (STRENGTH_WEIGHTS
+    above), figures stay regex-extracted."""
+
+    def extract(self, memos: list[dict]) -> list[dict]:
+        from llm_client.extract import extract_documents
+        return extract_documents(memos, _COST_LLM_SYSTEM,
+                                 self._normalize, "drivers",
+                                 tag="extract:cost")
 
     @staticmethod
-    def _best_sentence(text: str, keywords: list[str]) -> str:
-        sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text)]
-        for s in sentences:
-            if any(k in s.lower() for k in keywords) and \
-                    (_FIGURE_RE.search(s) or "%" in s):
-                return s
-        for s in sentences:
-            if any(k in s.lower() for k in keywords):
-                return s
-        return sentences[0]
+    def _normalize(item: dict, memo: dict) -> dict | None:
+        did = str(item.get("driver_id", "")).strip()
+        if not did:
+            return None
+        quote = str(item.get("evidence_quote") or item.get("quote") or "")
+        name = str(item.get("name") or did)
+        out = []
+        for imp in item.get("impacts") or []:
+            if not isinstance(imp, dict):
+                continue
+            strength = str(imp.get("strength", ""))
+            weight = STRENGTH_WEIGHTS.get(strength, 0.40)
+            out.append({
+                "driver_id": did, "name": name,
+                "metric": str(imp.get("metric", "")),
+                "coverage": str(imp.get("coverage", "ALL")),
+                "region": str(imp.get("region", "ALL")),
+                "weight": weight,
+                "strength_word": strength if strength in STRENGTH_WEIGHTS
+                                 else "(default)",
+                "direction": str(imp.get("direction", "+")),
+                "lag_quarters": int(imp.get("lag_quarters", 0) or 0),
+                "quote": quote,
+                "figures": _FIGURE_RE.findall(quote) or
+                           _FIGURE_RE.findall(memo["text"]),
+                "provenance": {
+                    "doc_id": memo["doc_id"], "title": memo["title"],
+                    "publisher": memo["publisher"], "date": memo["date"],
+                },
+            })
+        return out or None
 
 
 def merge_candidates(candidates: list[dict]) -> dict[str, dict]:
     """Merge per-document candidates into one entry per driver, keeping
     the strongest weight and ALL provenance docs."""
-    merged: dict[str, dict] = {}
-    for c in candidates:
-        did = c["driver_id"]
-        if did not in merged:
-            merged[did] = {**c, "provenance": [c["provenance"]]}
-        else:
-            m = merged[did]
-            m["provenance"].append(c["provenance"])
-            if c["weight"] > m["weight"]:
-                m["weight"], m["strength_word"] = c["weight"], c["strength_word"]
-    return merged
+    from llm_client.extract import merge_candidates as _shared
+    return _shared(candidates, "driver_id")

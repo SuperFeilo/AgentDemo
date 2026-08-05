@@ -339,11 +339,3 @@ OFFERINGS: dict[str, list[dict]] = {
 
 def load_ground_truth() -> dict:
     return json.loads(GROUND_TRUTH_PATH.read_text())
-
-
-def assignment_cypher(assignment: str, params: dict | None = None) -> list:
-    """The Cypher an assignment will run (shown in the UI before run)."""
-    plan = _PLANS[assignment]
-    return [{"query": q, "params": f(params or {}),
-             "cypher": fill_cypher(q, f(params or {}))}
-            for q, f in plan["steps"]]

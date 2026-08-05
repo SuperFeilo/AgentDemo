@@ -1,0 +1,12 @@
+# LLM CLIENT — non-secret defaults. The API key is NEVER stored here;
+# supply it via the DEEPSEEK_API_KEY env var (or a gitignored ds_api.txt
+# in the repo root, or .streamlit/secrets.toml).
+provider: deepseek
+base_url: https://api.deepseek.com
+model: deepseek-v4-flash
+temperature: 0.1
+timeout: 30
+# retries apply to TRANSIENT transport errors only (timeout / 429 / 5xx).
+# Empty or truncated completions are never retried — callers fall back to
+# the deterministic mock instead of burning the timeout twice.
+retries: 1

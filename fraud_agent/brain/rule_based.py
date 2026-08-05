@@ -37,6 +37,16 @@ def load_weights() -> dict:
     return _DEFAULT_WEIGHTS
 
 
+def noisy_or(weights: list[float]) -> float:
+    """Shared probabilistic-merge helper (1 - prod(1 - w)): the combined
+    confidence of several independent signals. Used by the cost and
+    portfolio brains (was duplicated 2x)."""
+    prod = 1.0
+    for w in weights:
+        prod *= (1 - w)
+    return 1 - prod
+
+
 class RuleBasedBrain:
     def __init__(self, plan) -> None:
         self.plan = plan
@@ -140,7 +150,7 @@ class RuleBasedBrain:
         elif step_name == "network_analysis":
             nw = w["network"]
             if result["fraud_links"]:
-                points = nw["known_fraud_link"]
+                points = nw["known_fraud_link"] * len(result["fraud_links"])
                 for link in result["fraud_links"]:
                     signals.append(f"Shares {link['via_type']} {link['via']} with "
                                    f"{link['entity']}, a KNOWN FRAUD entity "
@@ -173,11 +183,13 @@ class RuleBasedBrain:
         checks, corrected = [], False
 
         # 1. score arithmetic: every signal carries "(+N)"; the running
-        #    total must equal their sum. Real recomputation, real fix.
+        #    total must equal their sum (capped at 100 — the risk score
+        #    contract). Real recomputation, real fix.
         expected = sum(int(m.group(1)) for s in ctx["signals"]
                        if (m := re.search(r"\+(\d+)", s)))
         checks.append(f"signals sum to {expected}; running total is "
                       f"{ctx['risk_score']}")
+        expected = min(expected, 100)
         if expected != ctx["risk_score"]:
             ctx["risk_score"] = expected
             corrected = True

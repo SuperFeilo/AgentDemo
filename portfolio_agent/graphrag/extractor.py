@@ -136,6 +136,7 @@ class MockLLMPortfolioGraphExtractor:
     portfolio journey segment."""
 
     def extract(self, memos: list[dict]) -> list[dict]:
+        from llm_client.extract import best_sentence, pick_strength
         candidates = []
         for memo in memos:
             text = memo["text"]
@@ -143,10 +144,13 @@ class MockLLMPortfolioGraphExtractor:
             for sig in SIGNATURES:
                 if not any(k.lower() in lowered for k in sig["keywords"]):
                     continue
-                quote = self._best_sentence(text, sig["keywords"])
-                weight, strength = self._strength(quote.lower())
+                quote = best_sentence(text, sig["keywords"], _FIGURE_RE,
+                                      prefer_pct=True)
+                weight, strength = pick_strength(quote.lower(),
+                                                 _STRENGTHS_ORDERED)
                 if strength == "(default)":
-                    weight, strength = self._strength(lowered)
+                    weight, strength = pick_strength(lowered,
+                                                     _STRENGTHS_ORDERED)
                 candidates.append({
                     "signal_id": sig["signal_id"], "name": sig["name"],
                     "stage": sig["stage"], "outcome": sig["outcome"],
@@ -163,37 +167,75 @@ class MockLLMPortfolioGraphExtractor:
                 })
         return candidates
 
-    @staticmethod
-    def _strength(lowered_text: str) -> tuple[float, str]:
-        for word, weight in _STRENGTHS_ORDERED:
-            if word in lowered_text:
-                return weight, word
-        return 0.40, "(default)"
+
+_PORTFOLIO_LLM_SYSTEM = """You build portfolio-journey knowledge graphs. From this
+document, extract any risk signals relevant to the commercial-lines
+submission->bind->claim->settlement journey. Return ONLY JSON:
+{"signals": [{"signal_id": str, "name": str, "evidence_quote": str,
+ "stage": "submission|underwriting|risk_scoring|site_inspection|bind|
+           claim|settlement",
+ "predisposes": [{"outcome": str, "class_code": "ALL|...", "region": "ALL|...",
+                  "strength": "dominant|primary|major|significant|moderate|
+                               meaningful|modest|minor|mild",
+                  "direction": "+|-", "lag_quarters": int}]}]}
+
+Rules:
+- signal_id must be a stable slug like reserve_adequacy, late_fnol
+  (no spaces).
+- outcomes use the project vocabulary: bind_conversion, loss_ratio,
+  pricing_inadequacy, claim_frequency, margin_contribution, leakage_pct.
+- Always quote the exact source sentence in evidence_quote; never infer
+  beyond the text. Empty result is valid: {"signals": []}."""
+
+
+class LLMPortfolioGraphExtractor:
+    """Real DeepSeek document->portfolio-graph extraction. Same candidate
+    contract as the mock; strength->weight stays policy (STRENGTH_WEIGHTS
+    above), figures stay regex-extracted."""
+
+    def extract(self, memos: list[dict]) -> list[dict]:
+        from llm_client.extract import extract_documents
+        return extract_documents(memos, _PORTFOLIO_LLM_SYSTEM,
+                                 self._normalize, "signals",
+                                 tag="extract:portfolio")
 
     @staticmethod
-    def _best_sentence(text: str, keywords: list[str]) -> str:
-        sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text)]
-        for s in sentences:
-            if any(k.lower() in s.lower() for k in keywords) and \
-                    (_FIGURE_RE.search(s) or "%" in s):
-                return s
-        for s in sentences:
-            if any(k.lower() in s.lower() for k in keywords):
-                return s
-        return sentences[0]
+    def _normalize(item: dict, memo: dict) -> dict | None:
+        sid = str(item.get("signal_id", "")).strip()
+        if not sid:
+            return None
+        quote = str(item.get("evidence_quote") or item.get("quote") or "")
+        name = str(item.get("name") or sid)
+        stage = str(item.get("stage", ""))
+        out = []
+        for pre in item.get("predisposes") or []:
+            if not isinstance(pre, dict):
+                continue
+            strength = str(pre.get("strength", ""))
+            weight = STRENGTH_WEIGHTS.get(strength, 0.40)
+            out.append({
+                "signal_id": sid, "name": name, "stage": stage,
+                "outcome": str(pre.get("outcome", "")),
+                "class_code": str(pre.get("class_code", "ALL")),
+                "region": str(pre.get("region", "ALL")),
+                "weight": weight,
+                "strength_word": strength if strength in STRENGTH_WEIGHTS
+                                 else "(default)",
+                "direction": str(pre.get("direction", "+")),
+                "lag_quarters": int(pre.get("lag_quarters", 0) or 0),
+                "quote": quote,
+                "figures": _FIGURE_RE.findall(quote) or
+                           _FIGURE_RE.findall(memo["text"]),
+                "provenance": {
+                    "doc_id": memo["doc_id"], "title": memo["title"],
+                    "publisher": memo["publisher"], "date": memo["date"],
+                },
+            })
+        return out or None
 
 
 def merge_candidates(candidates: list[dict]) -> dict[str, dict]:
     """Merge per-document candidates into one entry per signal, keeping
     the strongest weight and ALL provenance docs."""
-    merged: dict[str, dict] = {}
-    for c in candidates:
-        sid = c["signal_id"]
-        if sid not in merged:
-            merged[sid] = {**c, "provenance": [c["provenance"]]}
-        else:
-            m = merged[sid]
-            m["provenance"].append(c["provenance"])
-            if c["weight"] > m["weight"]:
-                m["weight"], m["strength_word"] = c["weight"], c["strength_word"]
-    return merged
+    from llm_client.extract import merge_candidates as _shared
+    return _shared(candidates, "signal_id")

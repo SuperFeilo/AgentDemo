@@ -583,27 +583,42 @@ def graphrag_page(agent: str) -> None:
                 st.caption(m["publisher"])
                 st.write(m["text"])
     with right:
-        st.markdown("**Extraction** (mock-LLM — real-LLM seam marked in "
-                    "`{domain}_agent/graphrag/extractor.py`)".format(
-                        domain=domain))
+        from llm_client import available, model_id, usage
+        engine = (f"🤖 DeepSeek LLM (`{model_id()}`)"
+                  if available() else "⚙️ mock (set DEEPSEEK_API_KEY for "
+                                      "the real LLM)")
+        st.markdown(f"**Extraction** — engine: **{engine}**")
         if st.button("🔍 Run extraction over documents", type="primary",
                      key=f"neo4j_extract_{domain}"):
             if domain == "fraud":
                 from fraud_agent.graphrag.extractor import (
-                    MockLLMFraudGraphExtractor,
+                    MockLLMFraudGraphExtractor, LLMFraudGraphExtractor,
                     merge_candidates as merge)
             elif domain == "cost":
                 from cost_agent.graphrag.extractor import (
-                    MockLLMGraphExtractor, merge_candidates as merge)
+                    MockLLMGraphExtractor, LLMGraphExtractor,
+                    merge_candidates as merge)
             else:
                 from portfolio_agent.graphrag.extractor import (
                     MockLLMPortfolioGraphExtractor,
+                    LLMPortfolioGraphExtractor,
                     merge_candidates as merge)
-            merged = merge(MockLLMFraudGraphExtractor().extract(memos)) \
-                if domain == "fraud" else \
-                merge(MockLLMGraphExtractor().extract(memos)) \
-                if domain == "cost" else \
-                merge(MockLLMPortfolioGraphExtractor().extract(memos))
+            if domain == "fraud":
+                extractor = LLMFraudGraphExtractor() if available() \
+                    else MockLLMFraudGraphExtractor()
+            elif domain == "cost":
+                extractor = LLMGraphExtractor() if available() \
+                    else MockLLMGraphExtractor()
+            else:
+                extractor = LLMPortfolioGraphExtractor() if available() \
+                    else MockLLMPortfolioGraphExtractor()
+            tokens_before = usage.totals()["total_tokens"]
+            _t0 = time.perf_counter()
+            merged = merge(extractor.extract(memos))
+            _dt = time.perf_counter() - _t0
+            tokens_used = usage.totals()["total_tokens"] - tokens_before
+            st.session_state[f"neo4j_tokens_{domain}"] = tokens_used
+            st.session_state[f"neo4j_dt_{domain}"] = _dt
             st.session_state[f"neo4j_extraction_{domain}"] = merged
             upserted = store.upsert_intel(list(merged.values()),
                                           kind=domain)
@@ -614,10 +629,16 @@ def graphrag_page(agent: str) -> None:
         else:
             merged = st.session_state[f"neo4j_extraction_{domain}"]
             ups = st.session_state.get(f"neo4j_delta_{domain}", {})
+            tok = st.session_state.get(f"neo4j_tokens_{domain}")
+            _dt = st.session_state.get(f"neo4j_dt_{domain}")
+            tok_s = (f" — `{model_id()}` consumed "
+                     f"**{tok:,} tokens** in **{_dt:.1f}s** "
+                     f"({len(memos)} docs, 4-way parallel)"
+                     if available() and tok and _dt else "")
             st.success(
                 f"**{ups.get('upserted', len(merged))} entities extracted "
-                f"and MERGE'd into the graph** — new intel is ringed on "
-                f"the map below, CITED_IN to their source memos.")
+                f"and MERGE'd into the graph**{tok_s} — new intel is "
+                f"ringed on the map below, CITED_IN to their source memos.")
             kv.render_knowledge_map(store, highlight=set(merged))
             approval = store.load_approval()
             st.markdown("**Curation** — toggle and save; only approved "
@@ -710,17 +731,19 @@ def learning_page(agent: str) -> None:
         with st.form(f"write_{agent}", clear_on_submit=True):
             c1, c2 = st.columns(2)
             claimant = c1.text_input(
-                "Claimant", value="CL-101", key=f"wf_{agent}_claimant",
-                help="CL-101 = C-1001's claimant (starts clean at "
-                     "APPROVE) — the demo link that flips it")
+                "Claimant", value="CL-104", key=f"wf_{agent}_claimant",
+                help="CL-104 = C-1004's claimant (starts clean at "
+                     "APPROVE, score 10) — the demo link that flips it "
+                     "to REVIEW/ESCALATE")
             relation = c1.selectbox(
                 "Relation", ["uses_phone", "lives_at", "repaired_at",
                              "member_of"], key=f"wf_{agent}_rel")
             target = c2.text_input(
                 "Target entity", value="PH-900",
                 key=f"wf_{agent}_target",
-                help="e.g. PH-900 (known ring member CL-201's phone) — "
-                     "the demo link that flips a clean claim")
+                help="e.g. PH-900 (phone shared by known-fraud CL-201 / "
+                     "CL-202) — linking CL-104 to it flips clean claim "
+                     "C-1004")
             target_type = c2.selectbox(
                 "Target type", ["phone", "address", "repair_shop",
                                 "claimant"], key=f"wf_{agent}_ttype")
@@ -830,8 +853,9 @@ def learning_page(agent: str) -> None:
                "the append-only evidence ledger.")
     if agent == "fraud":
         _opts = list(CLAIMS)
+        _idx = _opts.index("C-1004") if "C-1004" in _opts else 0
         subject = st.selectbox(
-            "Subject", _opts, key=f"verify_subject_{agent}",
+            "Subject", _opts, index=_idx, key=f"verify_subject_{agent}",
             format_func=lambda c: f"{c} · {ui.PATTERN_HINTS[c]}")
     elif agent == "portfolio":
         _opts = ui.get_segments()
@@ -861,7 +885,7 @@ def learning_page(agent: str) -> None:
                     f"{base['score']} — {base['subject']}")
     if ver:
         b, a = ver["before"], ver["after"]
-        if ver["changed"]:
+        if b["decision"] != a["decision"]:
             st.success(f"⚡ **{b['decision']} → {a['decision']}** — the "
                        f"agent reacted to the updated knowledge (score "
                        f"{b['score']} → {a['score']}). This is what "
@@ -872,8 +896,14 @@ def learning_page(agent: str) -> None:
                              label="📊 See the score move → Eval Lab")
             except Exception:
                 pass
+        elif b["score"] != a["score"]:
+            st.success(f"📈 **Decision held** ({a['decision']} both runs) "
+                       f"but the risk score moved {b['score']} → "
+                       f"{a['score']} — the agent reacted, just not past "
+                       "the decision threshold yet. Toggle a heavier "
+                       "weight or write a stronger fact to cross it.")
         else:
-            st.info(f"No decision change ({a['decision']} both runs, "
+            st.info(f"No change ({a['decision']} both runs, "
                     f"score {b['score']} → {a['score']}) — try a "
                     "stronger toggle or a new fact, then re-run.")
     hist = ll.evidence_history(agent)

@@ -68,3 +68,13 @@ def write_event(w: Write) -> dict:
     return {"type": "blackboard_write", "section": w.section,
             "key": w.key, "summary": w.value_summary,
             "origin": w.origin.value, "step": w.step}
+
+
+def origin_of_tool(tool_name: str | None) -> Origin:
+    """Data origin for a tool call's result (persistent_db, knowledge_graph,
+    model_brain, side_effect) — or EPHEMERAL when there is no tool.
+    Shared by every agent loop (was duplicated 6x)."""
+    if not tool_name:
+        return Origin.EPHEMERAL
+    from fraud_agent.tools.registry import tool_meta  # lazy: avoids a cycle
+    return Origin(tool_meta(tool_name)["origin"])

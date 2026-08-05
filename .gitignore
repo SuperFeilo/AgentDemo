@@ -20,3 +20,7 @@ data/learning_evidence.jsonl
 # IDE
 .vscode/
 .idea/
+ds_api.txt
+
+# Local secrets (Streamlit) — never commit
+.streamlit/secrets.toml

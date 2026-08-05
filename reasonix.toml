@@ -1,0 +1,28 @@
+# Reasonix project config — OpenCode Go subscription
+# Resolution order: flag > ./reasonix.toml > <Reasonix home>/config.toml > built-in defaults.
+# No secrets live here; the key is referenced by name and stored in <Reasonix home>/.env.
+
+default_model = "opencode-go"   # provider name → its default model (kimi-k3)
+
+[[providers]]
+name           = "opencode-go"
+kind           = "openai"          # OpenAI-compatible chat endpoint
+base_url       = "https://opencode.ai/zen/v1"
+models         = [
+  "kimi-k3",          # flagship Go-plan model, image input, 1,048,576 ctx
+  "deepseek-v4-pro",
+  "deepseek-v4-flash",
+  "grok-4.5",
+  "qwen3.8-max",
+  "glm-5.2",
+  "minimax-m3",
+  "gpt-5.6-luna",
+  "qwen3.7-plus",
+  "hy3",
+  "mimo-v2.5",
+]
+default        = "kimi-k3"
+api_key_env    = "OPENCODE_API_KEY"
+context_window = 1000000
+# Per-model context budgets if you want tighter compaction:
+# model_overrides = { "grok-4.5" = { context_window = 500000 }, "minimax-m3" = { context_window = 512000 } }

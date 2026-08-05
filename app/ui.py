@@ -40,7 +40,7 @@ AGENTS = {
 # ── chrome CSS — Streamlit + app-level polish (dark) ─────────────────
 CHROME_CSS = """
 <style>
-[data-testid="stMainBlockContainer"] {padding-top: 1.2rem; padding-bottom: 4rem;}
+[data-testid="stMainBlockContainer"] {padding-top: 2rem; padding-bottom: 4rem;}
 [data-testid="stSidebar"] {border-right: 1px solid #22314f;}
 [data-testid="stSidebar"] h3 {font-size: .9rem; letter-spacing: .04em;}
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {color:#8ea0bd;}
@@ -50,10 +50,11 @@ h1, h2, h3 {letter-spacing: -0.02em;}
 [data-testid="stExpander"] {border-color: #22314f !important; background: rgba(20,29,51,.35);}
 [data-testid="stDataFrame"] {border-radius: 8px; overflow: hidden;}
 /* page header */
-.pagehead {display:flex; align-items:center; gap:14px; margin: 6px 0 2px;}
+.pagehead {display:flex; align-items:center; gap:14px; margin: 12px 0 8px;
+           padding-top: 8px;}
 .pagehead .phicon {font-size: 2.2rem; line-height:1;}
 .pagehead .phtitle {font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em;
-                    color: #e6ebf4; margin:0;}
+                    color: #e6ebf4; margin:0; line-height: 1.25;}
 .stylebadge {display:inline-block; font-size:.7rem; font-weight:700;
              letter-spacing:.05em; text-transform:uppercase;
              border-radius: 12px; padding: 2px 10px; margin-right:6px;}
@@ -152,6 +153,93 @@ def default_subject(agent: str):
 
 
 # ── sidebar: floating run controls + guided demo + ledger ────────────
+def _apply_llm_mode() -> None:
+    """Streamlit on_change for the brain-engine toggle: make the session
+    choice the process-wide truth (all LLM seams read it per call)."""
+    import os
+    if st.session_state.get("llm_mode"):
+        os.environ.pop("LLM_FORCE_MOCK", None)
+    else:
+        os.environ["LLM_FORCE_MOCK"] = "1"
+
+
+def _sync_llm_mode() -> None:
+    """Align session state + env with the configured default: LLM on when
+    a key exists (mock forced off), else mock. Called once per script run
+    before any widgets, so the toggle reflects reality."""
+    import os
+    from llm_client import available, force_mock
+    llm_on = available()
+    st.session_state.setdefault("llm_mode", llm_on)
+    if st.session_state["llm_mode"] and force_mock():
+        os.environ.pop("LLM_FORCE_MOCK", None)
+    elif not st.session_state["llm_mode"] and not force_mock():
+        os.environ["LLM_FORCE_MOCK"] = "1"
+
+
+def render_brain_engine_panel() -> None:
+    """🧠 Brain engine: real DeepSeek vs deterministic mock — one toggle,
+    plus the live model badge and the session token meter. When no API
+    key is configured anywhere, a password field prompts for one at demo
+    time (kept only in session state, never on disk)."""
+    from llm_client import model_id, usage
+    from llm_client.config import _api_key
+    with st.sidebar.container(border=True):
+        st.markdown("**🧠 Brain engine**")
+        llm_on = st.toggle(
+            "Real DeepSeek LLM", key="llm_mode",
+            on_change=_apply_llm_mode,
+            help="On: every model-based seam (notes, GraphRAG extraction, "
+                 "narrative) calls deepseek-v4-flash. Off: deterministic "
+                 "mocks — evals stay reproducible.")
+        if not _api_key():
+            st.caption("No API key configured — paste one for this "
+                       "session (never saved to disk):")
+            key_col, go_col = st.columns([3, 1])
+            pasted = key_col.text_input(
+                "DeepSeek API key", type="password",
+                key="llm_key_input",
+                placeholder="sk-…", label_visibility="collapsed")
+            if go_col.button("✓ Use", key="sb_llm_use",
+                             use_container_width=True,
+                             disabled=not pasted.strip()):
+                st.session_state["llm_key"] = pasted.strip()
+                st.session_state["llm_mode"] = True  # enable the LLM too
+                st.rerun()
+        else:
+            if st.session_state.get("llm_key"):
+                st.caption("🔑 key pasted this session · "
+                           f"🤖 model `{model_id()}`")
+                if st.button("✕ Clear key", key="sb_llm_clear",
+                             use_container_width=True):
+                    st.session_state.pop("llm_key", None)
+                    st.session_state.pop("llm_key_input", None)
+                    st.session_state["llm_mode"] = False
+                    st.rerun()
+            elif llm_on:
+                st.caption(f"🤖 model `{model_id()}` · live calls")
+            else:
+                st.caption("⚙️ mock (deterministic)")
+        t = usage.totals()
+        if t["calls"]:
+            last = usage.last()
+            last_ms = (f"last {last['elapsed_ms']:.1f}s" if last
+                       and last.get("elapsed_ms") else "")
+            st.markdown(f"**Session usage** — {t['calls']} call(s), "
+                        f"{t['total_tokens']:,} tokens, "
+                        f"∑ {t['elapsed_ms'] / 1000:.1f}s"
+                        + (f" · {last_ms}" if last_ms else ""))
+            st.caption(f"prompt {t['prompt_tokens']:,} · completion "
+                       f"{t['completion_tokens']:,} · reasoning "
+                       f"{t['reasoning_tokens']:,}")
+            if st.button("⟲ reset meter", key="sb_llm_reset",
+                         use_container_width=True):
+                usage.reset()
+                st.rerun()
+        else:
+            st.caption("No LLM calls this session yet.")
+
+
 def advance_run(agent: str, value: bool | None = None) -> bool:
     """The ONE place a live run's driver is advanced.
 
@@ -196,6 +284,8 @@ def advance_run(agent: str, value: bool | None = None) -> bool:
 def render_sidebar_controls(agent: str) -> None:
     """The pinned ▶️ Run controls deck — always visible, never scrolled."""
     harness = get_harness(agent)
+    _sync_llm_mode()
+    render_brain_engine_panel()
     _ga = st.session_state.get("guide_action")
     if _ga and _ga["agent"] == agent:
         st.session_state["sb_autonomy"] = _ga["guide"]["autonomy"]

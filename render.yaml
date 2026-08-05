@@ -3,12 +3,22 @@
 # Free tier notes: 512 MB RAM / 0.1 CPU; spins down after ~15 min idle
 # (~1 min cold start); ephemeral filesystem — render_boot.py resets
 # runtime state every boot so each cold start is a pristine demo.
+#
+# Secrets: DEEPSEEK_API_KEY is declared below with `sync: false` — the
+# value lives ONLY in the Render dashboard (stored encrypted at rest),
+# never in this file or the repo. Set it once under
+# Environment > Environment Variables. Without it the app still runs,
+# but in deterministic mock mode (or ask a presenter to paste a key in
+# the sidebar 🧠 Brain engine panel).
 services:
   - type: web
     name: agent-anatomy-explorer
     runtime: python
     plan: free
     pythonVersion: 3.12.0
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
     buildCommand: |
       pip install -r requirements-render.txt
       python scripts/generate_neo4j_demo_data.py

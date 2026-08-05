@@ -13,8 +13,7 @@ steps and calls it.
 """
 from __future__ import annotations
 
-import sqlite3
-
+from fraud_agent.brain.rule_based import noisy_or
 from portfolio_agent import warehouse
 from portfolio_agent._common import map_score_to_verdict
 
@@ -251,7 +250,7 @@ class ReflectionBrain:
         top = [c for c in top if c["weight"] >= self.min_weight]
         if top:
             lead = top[0]
-            confidence = round(100 * _noisy_or([c["weight"] for c in top]))
+            confidence = round(100 * noisy_or([c["weight"] for c in top]))
         else:
             lead, confidence = None, 0
         verdict = map_score_to_verdict(
@@ -307,10 +306,3 @@ class ReflectionBrain:
                 "citations": citations,
                 "stage_verdicts": stage_verdicts,
                 "funnel": funnel_rows}
-
-
-def _noisy_or(weights: list[float]) -> float:
-    prod = 1.0
-    for w in weights:
-        prod *= (1 - w)
-    return 1 - prod

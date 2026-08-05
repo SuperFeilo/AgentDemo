@@ -1,4 +1,4 @@
-"""ANATOMY COMPONENT: MODEL-BASED BRAIN (mock LLM)
+"""ANATOMY COMPONENT: MODEL-BASED BRAIN (mock LLM → real DeepSeek)
 
 `MockLLMNotesAnalyzer` plays the role a real LLM would play in
 production: reading messy free-text adjuster notes and returning
@@ -6,22 +6,24 @@ production: reading messy free-text adjuster notes and returning
 heuristics so the project runs offline and evals are reproducible.
 
 SEAM FOR A REAL LLM ────────────────────────────────────────────────
-To swap in a real model, reimplement `analyze()` with an API call
-using a prompt like:
+`LLMNotesAnalyzer` below is the real implementation: when the DeepSeek
+key is configured (see `llm_client`), `claims_tools` uses it instead of
+the mock. Both implement the same contract, so the loop, scoring, and
+dossier never know which one ran:
 
     SYSTEM: You are an insurance fraud analyst. Read the adjuster notes
     and return JSON: {"inconsistencies": [{"type", "detail", "quotes"}],
     "hedging_count": int}. Types: date_contradiction,
     time_contradiction, location_contradiction, injury_contradiction,
     story_revision.
-
-The rest of the agent (loop, harness, eval) does not change — that is
-the point of isolating brains behind a stable contract.
 ─────────────────────────────────────────────────────────────────────
 """
 from __future__ import annotations
 
 import re
+
+from llm_client import LLMCallError, chat_json
+from llm_client.config import model_id
 
 _MONTHS = ("January|February|March|April|May|June|July|August|"
            "September|October|November|December")
@@ -45,6 +47,26 @@ _NO_INJURY_RE = re.compile(r"no injur|declined ambulance|declined medical", re.I
 _INJURY_CLAIM_RE = re.compile(
     r"whiplash|severe|treatment|therapy|medical records|surgery|rehab", re.IGNORECASE)
 _REVISION_RE = re.compile(r"now says|changed (?:his|her|their) story", re.IGNORECASE)
+
+_NOTES_SYSTEM = f"""You are an insurance fraud analyst (model {model_id()}).
+Read the adjuster notes and return ONLY JSON (no prose) with exactly this shape:
+{{"inconsistencies": [{{"type": str, "detail": str, "quotes": [str]}}],
+"hedging_count": int}}
+
+"type" must be one of: date_contradiction, time_contradiction,
+location_contradiction, injury_contradiction, story_revision.
+
+Rules:
+- Each inconsistency must cite the exact source sentence(s) in "quotes".
+- Only flag contradictions that are actually present in the notes; never
+  infer beyond the text. A single mention is NOT a contradiction.
+- "hedging_count" = total hedging phrases found (e.g. "i think", "maybe",
+  "not sure", "approximately", "can't recall", "confused"). 0 if none.
+- Empty result is valid: {{"inconsistencies": [], "hedging_count": 0}}."""
+
+_VALID_TYPES = {"date_contradiction", "time_contradiction",
+                "location_contradiction", "injury_contradiction",
+                "story_revision"}
 
 
 class MockLLMNotesAnalyzer:
@@ -126,3 +148,44 @@ class MockLLMNotesAnalyzer:
                      "detail": "Claimant revised their account between statements",
                      "quotes": hits[:2]}]
         return []
+
+
+class LLMNotesAnalyzer:
+    """Real DeepSeek implementation of the notes-analysis contract.
+
+    Same `analyze(notes)` shape as the mock; raises `LLMCallError` on
+    transport failure or unparseable output so the caller can fall back
+    to the deterministic mock.
+    """
+
+    def analyze(self, notes: list[str], tag: str | None = None) -> dict:
+        user = "Adjuster notes (each line is one dated entry):\n\n" + "\n".join(
+            f"- {n}" for n in notes)
+        raw = chat_json(_NOTES_SYSTEM, user, tag=tag)
+        return _validate(raw, notes)
+
+
+def _validate(raw: dict, notes: list[str]) -> dict:
+    """Normalize/validate LLM output into the mock's contract shape."""
+    try:
+        incons = []
+        for item in raw.get("inconsistencies") or []:
+            if not isinstance(item, dict):
+                continue
+            itype = str(item.get("type", ""))
+            if itype not in _VALID_TYPES:
+                continue
+            quotes = [str(q) for q in (item.get("quotes") or [])
+                      if isinstance(q, str) and q.strip()][:4]
+            if not quotes:
+                continue
+            incons.append({
+                "type": itype,
+                "detail": str(item.get("detail", itype.replace("_", " "))),
+                "quotes": quotes,
+            })
+        hedging = int(raw.get("hedging_count", 0) or 0)
+        return {"notes_read": len(notes), "inconsistencies": incons,
+                "hedging_count": hedging}
+    except Exception as exc:
+        raise LLMCallError(f"notes analyzer: invalid LLM output: {exc}") from exc

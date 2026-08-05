@@ -115,9 +115,11 @@ def submission_summary(broker: str) -> dict:
 
 @tool(
     name="submission_note_scan",
-    description="MOCK-LLM scan of Underwriting notes attached to a "
-                "submission: counts hedging phrases and topics. SEAM FOR "
-                "A REAL LLM — same seam as fraud_agent's notes_llm.",
+    description="MODEL-BASED scan of Underwriting notes attached to a "
+                "submission: counts hedging phrases and topics. Real LLM "
+                "when configured (capped at LLM_NOTE_SCAN_CAP per session, "
+                "default 5 — later scans use the deterministic mock), "
+                "deterministic mock otherwise.",
     args={"submission_id": "int"},
     origin="model_brain", autonomy="auto", cost_units=4,
 )
@@ -130,12 +132,52 @@ def submission_note_scan(submission_id: int) -> dict:
     if not rows:
         return {"submission_id": submission_id, "notes_read": 0,
                 "hedging_count": 0, "topics": []}
+    try:
+        from llm_client import LLMCallError, available, chat_json, usage
+        if available() and _note_scans_used() < _note_scan_cap():
+            _NOTE_SCANS["used"] += 1
+            topics_in = [r[0] for r in rows]
+            hedged_in = sum(r[1] for r in rows)
+            system = ("You are an underwriting QA reviewer (model "
+                      "deepseek). From the list of underwriting note topics "
+                      "and how many are flagged as hedged, return ONLY JSON: "
+                      '{"hedging_count": int, "topics": [str]} with the '
+                      "hedging_count you believe from the flagged notes and "
+                      "the deduplicated topics.")
+            raw = chat_json(system, f"Topics: {topics_in!r}\n"
+                                    f"Hedged-flagged count: {hedged_in}",
+                            tag=f"note_scan:{submission_id}")
+            hedging = max(int(raw.get("hedging_count", 0) or 0), 0)
+            return {
+                "submission_id": submission_id,
+                "notes_read": len(rows),
+                "hedging_count": hedging,
+                "topics": [str(t) for t in (raw.get("topics") or [])
+                           if isinstance(t, str) and t.strip()][:20] or topics_in,
+                "tokens": usage.last(),
+            }
+    except LLMCallError:
+        pass  # fall back to the deterministic mock
     return {
         "submission_id": submission_id,
         "notes_read": len(rows),
         "hedging_count": sum(r[1] for r in rows),
         "topics": [r[0] for r in rows],
     }
+
+
+# ── per-session LLM cap: a run may scan dozens of submissions; the real
+#    model is only worth K calls, the rest fall back to the mock ──────
+_NOTE_SCANS = {"used": 0}
+
+
+def _note_scan_cap() -> int:
+    import os
+    return int(os.environ.get("LLM_NOTE_SCAN_CAP", "5"))
+
+
+def _note_scans_used() -> int:
+    return _NOTE_SCANS["used"]
 
 
 @tool(

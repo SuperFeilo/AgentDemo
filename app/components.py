@@ -242,10 +242,6 @@ def _card_html(css_class: str, tag: str, body: str) -> str:
             f'{body}</div>')
 
 
-def _card(css_class: str, tag: str, body: str) -> None:
-    st.markdown(_card_html(css_class, tag, body), unsafe_allow_html=True)
-
-
 def render_event_html(ev: dict) -> str:
     """HTML for one harness event card (used by the feed pane)."""
     t = ev["type"]
@@ -329,11 +325,6 @@ def render_event_html(ev: dict) -> str:
                           f"Final decision: <b>{ev['decision']}</b> · "
                           f"{label} <b>{score}</b>")
     return ""
-
-
-def render_event(ev: dict, key_prefix: str = "") -> None:
-    """Render one harness event as a card."""
-    st.markdown(render_event_html(ev), unsafe_allow_html=True)
 
 
 def verdict_html(decision: str, score: int, score_label: str = "risk") -> str:

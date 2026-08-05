@@ -19,7 +19,6 @@ Three capabilities, all persisted so the demo survives restarts:
 from __future__ import annotations
 
 import json
-import time
 from datetime import datetime
 from pathlib import Path
 
@@ -364,10 +363,12 @@ def verify_reactivity(agent: str, subject,
                       before: dict | None = None) -> dict:
     before = before or baseline(agent, subject)
     after = baseline(agent, subject)
+    changed = (before["decision"] != after["decision"]
+               or before["score"] != after["score"])
     record_evidence(agent, "verify", {
-        "subject": str(subject), "before": before, "after": after})
-    return {"before": before, "after": after,
-            "changed": before["decision"] != after["decision"]}
+        "subject": str(subject), "before": before, "after": after,
+        "changed": changed})
+    return {"before": before, "after": after, "changed": changed}
 
 
 # ═════════════════════════════════════════════════════════════════════

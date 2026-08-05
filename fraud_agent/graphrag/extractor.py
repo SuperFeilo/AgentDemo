@@ -178,6 +178,10 @@ _FIGURE_RE = re.compile(
     r"|\$\d+(?:,\d{3})*(?:\.\d+)?|\d+\s*(?:claimants?|cases?)"
 )
 
+# strength word -> weight, best-first (shared pick_strength order)
+_STRENGTHS_ORDERED = sorted(STRENGTH_WEIGHTS.items(),
+                            key=lambda x: -x[1])
+
 
 class MockLLMFraudGraphExtractor:
     """Deterministic stand-in for LLM document->fraud-graph extraction."""
@@ -185,6 +189,7 @@ class MockLLMFraudGraphExtractor:
     def extract(self, memos: list[dict]) -> list[dict]:
         """Return candidate intel entities, one per (signature, document)
         mention, with provenance. Callers dedupe/merge by entity_id."""
+        from llm_client.extract import best_sentence, pick_strength
         candidates = []
         for memo in memos:
             text = memo["text"]
@@ -192,10 +197,12 @@ class MockLLMFraudGraphExtractor:
             for sig in SIGNATURES:
                 if not any(k in lowered for k in sig["keywords"]):
                     continue
-                quote = self._best_sentence(text, sig["keywords"])
-                weight, strength = self._strength(quote.lower())
+                quote = best_sentence(text, sig["keywords"], _FIGURE_RE)
+                weight, strength = pick_strength(quote.lower(),
+                                                 _STRENGTHS_ORDERED)
                 if strength == "(default)":
-                    weight, strength = self._strength(lowered)
+                    weight, strength = pick_strength(lowered,
+                                                     _STRENGTHS_ORDERED)
                 candidates.append({
                     "entity_id": sig["entity_id"],
                     "name": sig["name"],
@@ -215,41 +222,66 @@ class MockLLMFraudGraphExtractor:
                 })
         return candidates
 
-    @staticmethod
-    def _strength(lowered_text: str) -> tuple[float, str]:
-        for word, weight in sorted(
-                STRENGTH_WEIGHTS.items(), key=lambda x: -x[1]):
-            if word in lowered_text:
-                return weight, word
-        return 0.40, "(default)"
+
+_FRAUD_LLM_SYSTEM = """You build insurance-fraud knowledge graphs. From this SIU
+memo or fraud bulletin, extract fraud-intel entities. Return ONLY JSON:
+{"entities": [{"entity_id": str, "name": str,
+ "type": "ring|shop|scam_type|high_risk_zip|suspect_claimant",
+ "evidence_quote": str, "linked_entities": [str],
+ "strength": "confirmed|strongly_suspected|suspected|probable|possible|
+              unsubstantiated"}]}
+
+Rules:
+- entity_id must be a stable slug like RING-SOUTH-1, SHOP-COLLUSION-1,
+  PATTERN-PIP-1 (no spaces).
+- Always quote the exact source sentence in evidence_quote; never infer
+  beyond the text. Empty result is valid: {"entities": []}."""
+
+_VALID_FRAUD_TYPES = {"ring", "shop", "scam_type", "high_risk_zip",
+                      "suspect_claimant"}
+
+
+class LLMFraudGraphExtractor:
+    """Real DeepSeek document->fraud-graph extraction. Same candidate
+    contract as the mock; strength->confidence stays policy (the
+    STRENGTH_WEIGHTS map above), figures stay regex-extracted."""
+
+    def extract(self, memos: list[dict]) -> list[dict]:
+        from llm_client.extract import extract_documents
+        return extract_documents(memos, _FRAUD_LLM_SYSTEM,
+                                 self._normalize, "entities",
+                                 tag="extract:fraud")
 
     @staticmethod
-    def _best_sentence(text: str, keywords: list[str]) -> str:
-        sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text)]
-        for s in sentences:
-            if any(k in s.lower() for k in keywords) and \
-                    (_FIGURE_RE.search(s)):
-                return s
-        for s in sentences:
-            if any(k in s.lower() for k in keywords):
-                return s
-        return sentences[0] if sentences else ""
+    def _normalize(item: dict, memo: dict) -> dict | None:
+        eid = str(item.get("entity_id", "")).strip()
+        itype = item.get("type", "")
+        if not eid or itype not in _VALID_FRAUD_TYPES:
+            return None
+        strength = str(item.get("strength", ""))
+        weight = STRENGTH_WEIGHTS.get(strength, 0.40)
+        quote = str(item.get("evidence_quote") or item.get("quote") or "")
+        return {
+            "entity_id": eid,
+            "name": str(item.get("name") or eid),
+            "type": itype,
+            "linked_entities": [str(x) for x in
+                                (item.get("linked_entities") or [])],
+            "strength_word": strength if strength in STRENGTH_WEIGHTS
+                             else "(default)",
+            "confidence": weight,
+            "quote": quote,
+            "figures": _FIGURE_RE.findall(quote) or
+                       _FIGURE_RE.findall(memo["text"]),
+            "provenance": {
+                "doc_id": memo["doc_id"], "title": memo["title"],
+                "publisher": memo["publisher"], "date": memo["date"],
+            },
+        }
 
 
 def merge_candidates(candidates: list[dict]) -> dict[str, dict]:
     """Merge per-document candidates into one entry per entity, keeping
     the strongest confidence and ALL provenance docs."""
-    merged: dict[str, dict] = {}
-    for c in candidates:
-        eid = c["entity_id"]
-        if eid not in merged:
-            merged[eid] = {**c, "provenance": [c["provenance"]]}
-        else:
-            m = merged[eid]
-            m["provenance"].append(c["provenance"])
-            m["linked_entities"] = list(
-                set(m["linked_entities"]) | set(c["linked_entities"]))
-            if c["confidence"] > m["confidence"]:
-                m["confidence"] = c["confidence"]
-                m["strength_word"] = c["strength_word"]
-    return merged
+    from llm_client.extract import merge_candidates as _shared
+    return _shared(candidates, "entity_id")

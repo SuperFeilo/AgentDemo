@@ -6,13 +6,9 @@ Same generator pattern as the submissions loop. Differences:
 """
 from __future__ import annotations
 
-from fraud_agent.blackboard import CaseBlackboard, Origin, write_event
+from fraud_agent.blackboard import (CaseBlackboard, Origin, origin_of_tool,
+                                    write_event)
 from fraud_agent.loop import ToolError
-from fraud_agent.tools.registry import tool_meta
-
-
-def _origin_of(tool_name: str) -> Origin:
-    return Origin(tool_meta(tool_name)["origin"])
 
 
 def underwriting_loop(subject: dict, plan, brain):
@@ -69,7 +65,7 @@ def underwriting_loop(subject: dict, plan, brain):
 
         obs = brain.interpret(step.name, result, ctx)
         bb.write("evidence", step.name, result, obs["summary"],
-                 _origin_of(step.tool) if step.tool else Origin.EPHEMERAL,
+                 origin_of_tool(step.tool),
                  step.name)
         yield write_event(bb.journal[-1])
         yield {"type": "observation", "step": step.name,

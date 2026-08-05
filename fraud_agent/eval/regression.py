@@ -26,38 +26,42 @@ def run_regression(agent: str = "fraud") -> dict:
 
     Returns {"checks": [{name, passed, detail, bug_context}], ...}.
     """
-    checks: list[dict] = []
+    from llm_client.config import mock_mode
+    with mock_mode():  # the gate asserts the deterministic brain, always
+        checks: list[dict] = []
 
-    def check(name: str, passed: bool, detail: str = "",
-              bug_context: bool = False) -> None:
-        checks.append({"name": name, "passed": bool(passed),
-                       "detail": detail, "bug_context": bug_context})
+        def check(name: str, passed: bool, detail: str = "",
+                  bug_context: bool = False) -> None:
+            checks.append({"name": name, "passed": bool(passed),
+                           "detail": detail, "bug_context": bug_context})
 
-    if agent == "fraud":
-        _fraud_checks(check)
-    elif agent == "cost":
-        _cost_checks(check)
-    else:
-        raise ValueError(agent)
+        if agent == "fraud":
+            _fraud_checks(check)
+        elif agent == "cost":
+            _cost_checks(check)
+        else:
+            raise ValueError(agent)
     return {"checks": checks, "passed": sum(c["passed"] for c in checks),
             "total": len(checks), "agent": agent}
 
 
 def run_bug_sweep(agent: str = "fraud") -> dict:
     """Every planted reasoning bug, injected and caught by reflection."""
-    checks: list[dict] = []
+    from llm_client.config import mock_mode
+    with mock_mode():
+        checks: list[dict] = []
 
-    def check(name: str, passed: bool, detail: str = "",
-              bug_context: bool = True) -> None:
-        checks.append({"name": name, "passed": bool(passed),
-                       "detail": detail, "bug_context": bug_context})
+        def check(name: str, passed: bool, detail: str = "",
+                  bug_context: bool = True) -> None:
+            checks.append({"name": name, "passed": bool(passed),
+                           "detail": detail, "bug_context": bug_context})
 
-    if agent == "fraud":
-        _fraud_reflection_checks(check, bug_on=True)
-    elif agent == "cost":
-        _cost_reflection_checks(check, bug_on=True)
-    else:
-        raise ValueError(agent)
+        if agent == "fraud":
+            _fraud_reflection_checks(check, bug_on=True)
+        elif agent == "cost":
+            _cost_reflection_checks(check, bug_on=True)
+        else:
+            raise ValueError(agent)
     return {"checks": checks, "passed": sum(c["passed"] for c in checks),
             "total": len(checks), "agent": agent}
 

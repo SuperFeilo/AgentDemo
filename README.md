@@ -60,6 +60,7 @@ python scripts\demo_reset.py --yes    # clean demo slate (backup → restore →
 python scripts\generate_neo4j_demo_data.py  # (re)generate the Neo4j GraphRAG datasets
 python scripts\demo_neo4j_graphrag.py       # Neo4j GraphRAG: extraction → curation → 5 assignments
 python scripts\test_neo4j_graphrag.py       # Neo4j GraphRAG: ground-truth tests (both modes)
+python scripts\test_llm.py                  # live DeepSeek smoke test (needs DEEPSEEK_API_KEY)
 ```
 
 ## The anatomy map
@@ -108,7 +109,12 @@ Andrew Ng, "Agentic Design Patterns" (DeepLearning.AI, 2024); Anthropic,
 plan-and-execute (2024), "The Anatomy of an Agent Harness" (2026),
 "The Art of Loop Engineering" (2026), "3 Years of Graph Engineering"
 (2026); Karpathy, "Verifiability" and "2025 LLM Year in Review" (2025);
-Answer.AI, "The unauthorized tool call problem" (2026).
+Answer.AI, "The unauthorized tool call problem" (2026). For the full
+comparison — every component mapped to the research that published it,
+the two ideas this project takes beyond the frontier, and a roadmap of
+the frontier concepts it omits (each with its code seam) — see
+[`docs/FRONTIER_COMPARISON.md`](docs/FRONTIER_COMPARISON.md), rendered
+live as the 🗺️ **Frontier map** page in the app.
 
 ## How a run flows
 

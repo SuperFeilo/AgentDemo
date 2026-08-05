@@ -6,13 +6,9 @@ finding is journaled to the blackboard with its data origin.
 """
 from __future__ import annotations
 
-from fraud_agent.blackboard import CaseBlackboard, Origin, write_event
+from fraud_agent.blackboard import (CaseBlackboard, Origin, origin_of_tool,
+                                    write_event)
 from fraud_agent.loop import ToolError
-from fraud_agent.tools.registry import tool_meta
-
-
-def _origin_of(tool_name: str) -> Origin:
-    return Origin(tool_meta(tool_name)["origin"])
 
 
 def submissions_loop(subject: dict, plan, brain):
@@ -71,8 +67,7 @@ def submissions_loop(subject: dict, plan, brain):
         obs = brain.interpret(step.name, result, ctx)
         section = "evidence" if step.name != "reflect" else "hypotheses"
         bb.write(section, step.name, result, obs["summary"],
-                 _origin_of(step.tool) if step.tool else Origin.EPHEMERAL,
-                 step.name)
+                 origin_of_tool(step.tool), step.name)
         yield write_event(bb.journal[-1])
         yield {"type": "observation", "step": step.name,
                "summary": obs["summary"], "raw": result}
